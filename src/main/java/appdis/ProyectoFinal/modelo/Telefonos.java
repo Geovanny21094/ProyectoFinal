@@ -3,6 +3,9 @@ package appdis.ProyectoFinal.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 /**
  * 
@@ -19,6 +22,14 @@ public class Telefonos {
 	
 	private String numero;
 	private String tipo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cedula")
+	private Persona persona;
+	
+	
+	
+	
 	public int getId_telf() {
 		return id_telf;
 	}

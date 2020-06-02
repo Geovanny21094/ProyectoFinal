@@ -1,10 +1,12 @@
 package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
@@ -23,6 +25,15 @@ public class BancaVirtual {
 	
 	
 	private Date fecha_ingreso;
+	
+	
+	@OneToMany(mappedBy = "banca")
+	private List<Notificaciones> notificaciones;
+	
+	
+	@OneToMany(mappedBy = "bancav")
+	private List<SolicitudCredito> solicitud;
+	
 	
 	public int getId_banca() {
 		return id_banca;

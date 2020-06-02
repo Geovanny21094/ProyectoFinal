@@ -1,8 +1,11 @@
 package appdis.ProyectoFinal.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * 
@@ -21,6 +24,12 @@ public class Cuenta {
 	private String tipoCuenta;
 	private String tipoOperacion;
 	private double saldo;
+	
+	
+	@OneToMany(mappedBy = "cuenta")
+	private List<Transferencia> transferencia;
+	
+	
 	
 	public int getId_cuenta() {
 		return id_cuenta;

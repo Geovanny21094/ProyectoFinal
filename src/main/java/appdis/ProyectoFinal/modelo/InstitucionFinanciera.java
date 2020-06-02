@@ -1,8 +1,11 @@
 package appdis.ProyectoFinal.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -20,6 +23,12 @@ public class InstitucionFinanciera {
 	private String nombre;
 	private String direccion;
 	private String correo;
+	
+	
+	
+	@OneToMany(mappedBy = "institucion")
+	private List<Transferencia> transferencia;
+	
 	
 	
 	public int getId_inst() {

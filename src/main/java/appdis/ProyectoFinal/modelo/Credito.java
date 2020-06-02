@@ -3,6 +3,8 @@ package appdis.ProyectoFinal.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -20,6 +22,12 @@ public class Credito {
 	private double monto;
 	private double saldo;
 	private double cuotas;
+	
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
 	
 	
 	public int getId_credito() {

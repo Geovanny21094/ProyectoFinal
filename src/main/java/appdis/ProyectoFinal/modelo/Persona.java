@@ -1,10 +1,13 @@
 package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 
 
@@ -30,6 +33,9 @@ public class Persona {
 	private Date fecha_nacimiento;
 	private String roll;
 	
+	
+	@OneToMany(mappedBy = "persona")
+	private List<Telefonos> telefonos;
 	
 	
 	public int getId() {

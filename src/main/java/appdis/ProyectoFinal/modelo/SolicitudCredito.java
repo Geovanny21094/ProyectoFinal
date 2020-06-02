@@ -3,6 +3,8 @@ package appdis.ProyectoFinal.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 
@@ -19,6 +21,12 @@ public class SolicitudCredito {
 	
 	private String notificacion;
 	private String estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_banca")
+	private BancaVirtual bancav;
+	
+	
 	
 	public int getId_sol() {
 		return id_sol;
