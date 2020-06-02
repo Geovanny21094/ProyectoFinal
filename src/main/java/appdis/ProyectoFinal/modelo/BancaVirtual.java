@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 
@@ -35,6 +36,12 @@ public class BancaVirtual {
 	private List<SolicitudCredito> solicitud;
 	
 	
+	@OneToOne
+	@Column (name = "id_cliente")
+	private Cliente cliente;
+	
+	
+	
 	public int getId_banca() {
 		return id_banca;
 	}
@@ -51,6 +58,30 @@ public class BancaVirtual {
 	
 	public void setFecha_ingreso(Date fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
+	}
+
+	public List<Notificaciones> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(List<Notificaciones> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+
+	public List<SolicitudCredito> getSolicitud() {
+		return solicitud;
+	}
+
+	public void setSolicitud(List<SolicitudCredito> solicitud) {
+		this.solicitud = solicitud;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

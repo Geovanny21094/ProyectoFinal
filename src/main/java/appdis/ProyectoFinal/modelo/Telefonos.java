@@ -48,6 +48,12 @@ public class Telefonos {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public Persona getPersona() {
+		return persona;
+	}
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 	
 	
 	

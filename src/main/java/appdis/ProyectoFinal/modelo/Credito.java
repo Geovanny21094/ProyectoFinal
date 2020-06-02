@@ -61,10 +61,14 @@ public class Credito {
 	public void setCuotas(double cuotas) {
 		this.cuotas = cuotas;
 	}
-	
-	
-	
-	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 	
 	

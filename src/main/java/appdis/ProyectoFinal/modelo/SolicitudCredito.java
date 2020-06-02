@@ -51,6 +51,14 @@ public class SolicitudCredito {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public BancaVirtual getBancav() {
+		return bancav;
+	}
+
+	public void setBancav(BancaVirtual bancav) {
+		this.bancav = bancav;
+	}
 	
 	
 	

@@ -36,18 +36,10 @@ public class Cliente {
 	
 	
 	@OneToOne
-	@JoinColumn(name="id_cedula")
+	@JoinColumn(name="id_persona")
 	private Persona persona;
 	
-	
-	@OneToOne
-	@JoinColumn(name="id_cuenta")
-	private Cuenta cuenta;
-	
-	
-	@OneToOne
-	@Column (name = "id_banca")
-	private BancaVirtual banca;
+
 	
 	
 	@OneToMany(mappedBy = "cliente")
@@ -94,20 +86,19 @@ public class Cliente {
 		this.persona = persona;
 	}
 
-	public Cuenta getCuenta() {
-		return cuenta;
+	public List<Credito> getCredito() {
+		return credito;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+	public void setCredito(List<Credito> credito) {
+		this.credito = credito;
 	}
+
 	
 	
 	
 	
-	
-	
-	
+
 	
 	
 	

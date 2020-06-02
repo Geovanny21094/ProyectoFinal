@@ -100,6 +100,14 @@ public class Persona {
 	public void setRoll(String roll) {
 		this.roll = roll;
 	}
+
+	public List<Telefonos> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<Telefonos> telefonos) {
+		this.telefonos = telefonos;
+	}
 	
 	
 	

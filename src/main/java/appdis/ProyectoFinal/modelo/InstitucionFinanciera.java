@@ -62,6 +62,14 @@ public class InstitucionFinanciera {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
+	public List<Transferencia> getTransferencia() {
+		return transferencia;
+	}
+
+	public void setTransferencia(List<Transferencia> transferencia) {
+		this.transferencia = transferencia;
+	}
 	
 	
 	

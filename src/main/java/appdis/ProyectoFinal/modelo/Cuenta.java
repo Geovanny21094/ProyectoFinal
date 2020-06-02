@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -28,6 +30,12 @@ public class Cuenta {
 	
 	@OneToMany(mappedBy = "cuenta")
 	private List<Transferencia> transferencia;
+	
+	
+	
+	@OneToOne
+	@JoinColumn(name="id_cliente")
+	private Cliente cliente;
 	
 	
 	
@@ -69,6 +77,22 @@ public class Cuenta {
 	
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
+	}
+
+	public List<Transferencia> getTransferencia() {
+		return transferencia;
+	}
+
+	public void setTransferencia(List<Transferencia> transferencia) {
+		this.transferencia = transferencia;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

@@ -23,6 +23,7 @@ public class Notificaciones {
 	private int id_not;
 	
 	private String mensaje_notificacion;
+	
 	private Date fecha;
 	
 	@ManyToOne
@@ -52,6 +53,14 @@ public class Notificaciones {
 	
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public BancaVirtual getBanca() {
+		return banca;
+	}
+
+	public void setBanca(BancaVirtual banca) {
+		this.banca = banca;
 	}
 	
 	

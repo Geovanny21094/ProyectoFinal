@@ -49,6 +49,22 @@ public class Transferencia {
 	public void setCuenta_destino(String cuenta_destino) {
 		this.cuenta_destino = cuenta_destino;
 	}
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	public InstitucionFinanciera getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(InstitucionFinanciera institucion) {
+		this.institucion = institucion;
+	}
 	
 	
 	
