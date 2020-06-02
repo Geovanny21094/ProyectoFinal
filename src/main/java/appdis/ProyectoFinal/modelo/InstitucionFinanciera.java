@@ -1,8 +1,21 @@
 package appdis.ProyectoFinal.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class InstitucionFinanciera {
 
-	
+	@Id
+	@Column (name = "id_inst")
 	private int id_inst;
 	private String nombre;
 	private String direccion;

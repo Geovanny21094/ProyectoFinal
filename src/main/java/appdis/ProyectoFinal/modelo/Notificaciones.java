@@ -2,10 +2,24 @@ package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Notificaciones {
 	
-	
+	@Id
+	@Column (name = "id_not")
 	private int id_not;
+	
 	private String mensaje_notificacion;
 	private Date fecha;
 	

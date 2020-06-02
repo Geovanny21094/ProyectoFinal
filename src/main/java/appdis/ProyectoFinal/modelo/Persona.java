@@ -2,10 +2,26 @@ package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Persona {
 
-	
+	@Id
+	@Column (name = "id_persona")
 	private int id;
+	
+	
 	private String cedula;
 	private String nombres;
 	private String apellidos;

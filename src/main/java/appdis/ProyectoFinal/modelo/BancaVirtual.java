@@ -2,9 +2,26 @@ package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class BancaVirtual {
 	
+	@Id
+	@Column (name = "id_banca")
 	private int id_banca;
+	
+	
 	private Date fecha_ingreso;
 	
 	public int getId_banca() {

@@ -2,9 +2,23 @@ package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Cliente {
 	
-	
+	@Id
+	@Column (name = "id_cliente")
 	private int id_cliente;
 	private Date fecha_registro;
 	private String usuario;

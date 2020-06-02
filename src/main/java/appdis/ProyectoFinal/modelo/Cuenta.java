@@ -1,8 +1,22 @@
 package appdis.ProyectoFinal.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Cuenta {
-	
+	@Id
+	@Column (name = "id_cuenta")
 	private int id_cuenta;
+	
+	
 	private String numeroCuenta;
 	private String tipoCuenta;
 	private String tipoOperacion;

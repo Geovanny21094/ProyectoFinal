@@ -1,9 +1,22 @@
 package appdis.ProyectoFinal.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Telefonos {
 
-	
+	@Id
+	@Column (name = "id_telf")
 	private int id_telf;
+	
 	private String numero;
 	private String tipo;
 	public int getId_telf() {

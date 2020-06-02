@@ -1,8 +1,21 @@
 package appdis.ProyectoFinal.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class Credito {
 
-	
+	@Id
+	@Column (name = "id_credito")
 	private int id_credito;
 	private double monto;
 	private double saldo;

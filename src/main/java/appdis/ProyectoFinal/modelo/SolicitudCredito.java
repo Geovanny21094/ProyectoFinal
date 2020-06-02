@@ -1,9 +1,22 @@
 package appdis.ProyectoFinal.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+@Entity
 public class SolicitudCredito {
 
-	
+	@Id
+	@Column (name = "id_sol")
 	private int id_sol;
+	
 	private String notificacion;
 	private String estado;
 	
