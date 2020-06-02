@@ -5,7 +5,7 @@ public class Transferencia {
 	
 	
 	private int id_transferencia;
-	private String cuenta;
+	private String cuenta_destino;
 	
 	
 	public int getId_transferencia() {
@@ -15,14 +15,18 @@ public class Transferencia {
 	public void setId_transferencia(int id_transferencia) {
 		this.id_transferencia = id_transferencia;
 	}
-	
-	public String getCuenta() {
-		return cuenta;
+
+	public String getCuenta_destino() {
+		return cuenta_destino;
+	}
+
+	public void setCuenta_destino(String cuenta_destino) {
+		this.cuenta_destino = cuenta_destino;
 	}
 	
-	public void setCuenta(String cuenta) {
-		this.cuenta = cuenta;
-	}
+	
+	
+	
 	
 	
 	

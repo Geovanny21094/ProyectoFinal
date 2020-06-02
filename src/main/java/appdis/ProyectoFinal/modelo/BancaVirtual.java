@@ -5,7 +5,6 @@ import java.sql.Date;
 public class BancaVirtual {
 	
 	private int id_banca;
-	private String notificacion;
 	private Date fecha_ingreso;
 	
 	public int getId_banca() {
@@ -16,13 +15,7 @@ public class BancaVirtual {
 		this.id_banca = id_banca;
 	}
 	
-	public String getNotificacion() {
-		return notificacion;
-	}
 	
-	public void setNotificacion(String notificacion) {
-		this.notificacion = notificacion;
-	}
 	
 	public Date getFecha_ingreso() {
 		return fecha_ingreso;

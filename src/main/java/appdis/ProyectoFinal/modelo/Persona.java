@@ -12,6 +12,7 @@ public class Persona {
 	private String genero;
 	private String correo;
 	private Date fecha_nacimiento;
+	private String roll;
 	
 	
 	
@@ -68,6 +69,14 @@ public class Persona {
 	
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
+	}
+
+	public String getRoll() {
+		return roll;
+	}
+
+	public void setRoll(String roll) {
+		this.roll = roll;
 	}
 	
 	
