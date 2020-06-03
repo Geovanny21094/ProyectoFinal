@@ -43,7 +43,7 @@ public class Persona {
 	@OneToMany(mappedBy = "persona")
 	private List<Telefonos> telefonos;
 	
-	
+	private List<Cliente> cliente;
 	
 	
 	public String getCedula() {
@@ -113,12 +113,28 @@ public class Persona {
 	
 	
 	
-	 public void agregarTelefono(Telefonos telf) {
+	 public List<Cliente> getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(List<Cliente> cliente) {
+		this.cliente = cliente;
+	}
+
+	public void agregarTelefono(Telefonos telf) {
 	    	if (telefonos == null)
 	    		telefonos = new ArrayList<Telefonos>();
 	    	telefonos.add(telf);
 	    }
+
 	
+	
+	 public void agregarCliente(Cliente cli) {
+	    	if (cliente == null)
+	    		cliente = new ArrayList<Cliente>();
+	    	cliente.add(cli);
+	    }
+
 	
 	
 	

@@ -299,13 +299,28 @@ public class ProyectoBean {
 	}
 
 
-	public String guardarDatos () {
+	public String guardarDatosPersona () {
 		System.out.println(this.toString());
 		
+		try {
+		
+			dalp.guardarPersona(persona);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public String guardarDatosCliente () {
+		System.out.println(this.toString());
 		
 		try {
-		//	telefono.setPersona(persona);
-			dalp.guardarPersona(persona);
+		
+			dalp.guardarCliente(cliente);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
