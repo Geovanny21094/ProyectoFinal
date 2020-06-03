@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 
 @Stateless
-public class InstituicionFinancieraDao {
+public class InstitucionFinancieraDao {
 
 	/**
 	 * 
