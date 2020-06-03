@@ -4,41 +4,50 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/template/template2.xhtml">
+
+
+
+
+<ui:composition template="/template/template.xhtml">
 
 	<ui:define name="titulo">
-		Login
+		LOGIN
 	</ui:define>
 
 
 	<ui:define name="contenido">
 
 		<h:form>
-
 			<div class="form-group">
-				<label class="col-md-12">Usuario</label>
+				<label class="col-md-12">USUARIO</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="25001"
+					<input type="text" placeholder="USUARIO1"
 						class="form-control form-control-line" value=".." />
 				</div>
 			</div>
 
+			<br />
+
 			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Contrasena</label>
+				<label class="col-md-12">CONTRASENA</label>
 				<div class="col-md-12">
-					<input type="password" placeholder="01005998793"
-						class="form-control form-control-line" value=".." />
+					<input type="password" class="form-control form-control-line"
+						value=".." />
 				</div>
 			</div>
 
-			<div class="form-group">
-				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success" action=".."
-						value="Guardar" />
-				</div>
-			</div>
+			<br />
 
 		</h:form>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<h:commandButton class="btn btn-success" action=".."
+					value="INGRESAR">
+					<f:ajax render="ingresar" execute="ingresar">
+					</f:ajax>
+				</h:commandButton>
+			</div>
+		</div>
 
 
 	</ui:define>
