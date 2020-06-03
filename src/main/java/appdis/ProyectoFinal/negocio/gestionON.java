@@ -9,6 +9,7 @@ import appdis.ProyectoFinal.dao.BancaVirtualDao;
 import appdis.ProyectoFinal.dao.ClienteDao;
 import appdis.ProyectoFinal.dao.CreditoDao;
 import appdis.ProyectoFinal.dao.CuentaDao;
+import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.dao.InstitucionFinancieraDao;
 import appdis.ProyectoFinal.dao.NotificacionesDao;
 import appdis.ProyectoFinal.dao.PersonaDao;
@@ -50,6 +51,10 @@ public class gestionON implements DaoProyectoLocal{
 
 	@Inject
 	CuentaDao  cudao;
+	
+	
+	@Inject
+	EnviarCorreo enviarCorreo;
     
 	@Inject
 	InstitucionFinancieraDao infdao;
@@ -93,6 +98,14 @@ public class gestionON implements DaoProyectoLocal{
 		} else {
 			bvdao.insert(bv);
 		}
+	}
+	
+	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception {
+		
+		if (asunto!= "" && mensaje != "" && correoDestino!="") {
+			enviarCorreo.enviarMail(asunto, mensaje, correoDestino);
+		}
+		
 	}
 
 	public  List<BancaVirtual> buscarBanca(int id) throws Exception {
