@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
-
 /**
  * 
  *
@@ -19,43 +17,37 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class BancaVirtual {
-	
+
 	@Id
-	@Column (name = "id_banca")
+	@Column(name = "id_banca")
 	private int id_banca;
-	
-	@Column (name = "fecha_ingreso")
+
+	@Column(name = "fecha_ingreso")
 	private Date fecha_ingreso;
-	
-	@Column (name = "notificaciones")
+
+	@Column(name = "notificaciones")
 	@OneToMany(mappedBy = "banca")
 	private List<Notificaciones> notificaciones;
-	
-	
-	@Column (name = "solcitud")
+
+	@Column(name = "solcitud")
 	@OneToMany(mappedBy = "bancav")
 	private List<SolicitudCredito> solicitud;
-	
-	
+
 	@OneToOne
 	private Cliente cliente;
-	
-	
-	
+
 	public int getId_banca() {
 		return id_banca;
 	}
-	
+
 	public void setId_banca(int id_banca) {
 		this.id_banca = id_banca;
 	}
-	
-	
-	
+
 	public Date getFecha_ingreso() {
 		return fecha_ingreso;
 	}
-	
+
 	public void setFecha_ingreso(Date fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
@@ -83,17 +75,5 @@ public class BancaVirtual {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
