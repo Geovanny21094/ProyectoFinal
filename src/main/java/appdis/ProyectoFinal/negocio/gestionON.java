@@ -38,46 +38,45 @@ import appdis.ProyectoFinal.modelo.Transferencia;
  */
 
 @Stateless
-public class gestionON implements DaoProyectoLocal{
+public class gestionON implements DaoProyectoLocal {
 
 	@Inject
-	BancaVirtualDao  bvdao;
+	BancaVirtualDao bvdao;
 
 	@Inject
 	ClienteDao cldao;
-	
+
 	@Inject
 	CreditoDao crdao;
 
 	@Inject
-	CuentaDao  cudao;
-	
-	
+	CuentaDao cudao;
+
 	@Inject
 	EnviarCorreo enviarCorreo;
-    
+
 	@Inject
 	InstitucionFinancieraDao infdao;
-	
+
 	@Inject
 	NotificacionesDao notdao;
-	
+
 	@Inject
-	PersonaDao  pedao;
+	PersonaDao pedao;
 
 	@Inject
 	SolicitudCreditoDao soldao;
-	
+
 	@Inject
 	TelefonosDao telfdao;
-	
+
 	@Inject
 	TransferenciaDao trdao;
-	
+
 	@Inject
 	RolDao rdao;
-	
-	/*Banca Virtual*/
+
+	/* Banca Virtual */
 	public void guardarBanca(BancaVirtual bv) throws Exception {
 
 		BancaVirtual aux = bvdao.read(bv.getId_banca());
@@ -91,7 +90,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarBanca(BancaVirtual bv) throws Exception {
 
-		BancaVirtual  aux = bvdao.read(bv.getId_banca());
+		BancaVirtual aux = bvdao.read(bv.getId_banca());
 
 		if (aux != null) {
 			bvdao.update(bv);
@@ -99,27 +98,25 @@ public class gestionON implements DaoProyectoLocal{
 			bvdao.insert(bv);
 		}
 	}
-	
+
 	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception {
-		
-		if (asunto!= "" && mensaje != "" && correoDestino!="") {
+
+		if (asunto != "" && mensaje != "" && correoDestino != "") {
 			enviarCorreo.enviarMail(asunto, mensaje, correoDestino);
 		}
-		
+
 	}
 
-	public  List<BancaVirtual> buscarBanca(int id) throws Exception {
+	public List<BancaVirtual> buscarBanca(int id) throws Exception {
 		return bvdao.getBanca(id + "%");
 	}
 
 	public void eliminarBanca(int id) throws Exception {
 		bvdao.delete(id);
-		
+
 	}
 
-
-
-	/*Cliente*/
+	/* Cliente */
 	public void guardarCliente(Cliente cl) throws Exception {
 
 		Cliente aux = cldao.read(cl.getId_cliente());
@@ -141,18 +138,34 @@ public class gestionON implements DaoProyectoLocal{
 			cldao.insert(cl);
 		}
 	}
-	
-	public  List<Cliente> buscarCliente(int id) throws Exception {
+
+	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
-		
+
 	}
 
 	public void eliminarCliente(int id) throws Exception {
 		cldao.delete(id);
 	}
 
-	
-	/*Credito*/
+	public String userPass(Cliente cl) {
+		Cliente aux = cldao.read(cl.getId_cliente());
+		if (aux != null) {
+			
+		} else {
+			String nombre=cl.getUsuario();
+			String apellido=cl.getUsuario();
+			
+			for(int i=0; i<=nombre.length(); i++) {
+				String a=nombre.substring(0, 1);
+				for(int j=0; j<=apellido.length(); j++) {
+				String b=apellido.substring(0, apellido.length());
+			}
+				
+		}
+	}
+
+	/* Credito */
 	public void guardarCredito(Credito cr) throws Exception {
 
 		Credito aux = crdao.read(cr.getId_credito());
@@ -175,18 +188,16 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Credito> buscarCredito(int id) throws Exception {
+	public List<Credito> buscarCredito(int id) throws Exception {
 		return crdao.getCredito(id + "%");
-		
+
 	}
 
 	public void eliminarCredito(int id) throws Exception {
 		crdao.delete(id);
 	}
 
-
-	
-	/*Cuenta*/
+	/* Cuenta */
 	public void guardarCuenta(Cuenta cu) throws Exception {
 
 		Cuenta aux = cudao.read(cu.getId_cuenta());
@@ -209,19 +220,16 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Cuenta> buscarCuenta(int id) throws Exception {
+	public List<Cuenta> buscarCuenta(int id) throws Exception {
 		return cudao.getCuenta(id + "%");
-		
+
 	}
 
 	public void eliminarCuenta(int id) throws Exception {
 		cudao.delete(id);
 	}
 
-
-	
-	
-	/*Intitucion Financiera*/
+	/* Intitucion Financiera */
 	public void guardarInstitucion(InstitucionFinanciera inf) throws Exception {
 
 		InstitucionFinanciera aux = infdao.read(inf.getId_inst());
@@ -235,7 +243,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarInstitucion(InstitucionFinanciera inf) throws Exception {
 
-	InstitucionFinanciera aux = infdao.read(inf.getId_inst());
+		InstitucionFinanciera aux = infdao.read(inf.getId_inst());
 
 		if (aux != null) {
 			infdao.update(inf);
@@ -244,17 +252,16 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<InstitucionFinanciera> buscarInstitucion(int id) throws Exception {
+	public List<InstitucionFinanciera> buscarInstitucion(int id) throws Exception {
 		return infdao.getInstitucion(id + "%");
-		
+
 	}
 
 	public void eliminarInstitucion(int id) throws Exception {
 		infdao.delete(id);
 	}
 
-
-	/*Notificaciones*/
+	/* Notificaciones */
 	public void guardarNotificaciones(Notificaciones not) throws Exception {
 
 		Notificaciones aux = notdao.read(not.getId_not());
@@ -268,7 +275,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarNotificaciones(Notificaciones not) throws Exception {
 
-	Notificaciones aux = notdao.read(not.getId_not());
+		Notificaciones aux = notdao.read(not.getId_not());
 
 		if (aux != null) {
 			notdao.update(not);
@@ -277,18 +284,16 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Notificaciones> buscarNotificaciones(int id) throws Exception {
+	public List<Notificaciones> buscarNotificaciones(int id) throws Exception {
 		return notdao.getNotificaciones(id + "%");
-		
+
 	}
 
 	public void eliminarNotificaciones(int id) throws Exception {
 		notdao.delete(id);
 	}
 
-
-	
-	/*Persona*/
+	/* Persona */
 	public void guardarPersona(Persona per) throws Exception {
 
 		Persona aux = pedao.read(per.getCedula());
@@ -302,7 +307,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarPersona(Persona per) throws Exception {
 
-	Persona aux = pedao.read(per.getCedula());
+		Persona aux = pedao.read(per.getCedula());
 
 		if (aux != null) {
 			pedao.update(per);
@@ -311,19 +316,16 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Persona> buscarPersona(String cedula) throws Exception {
-		return pedao.getPersona(cedula  + "%");
+	public List<Persona> buscarPersona(String cedula) throws Exception {
+		return pedao.getPersona(cedula + "%");
 	}
 
 	public void eliminarPersona(String cedula) throws Exception {
 		pedao.delete(cedula);
-		
+
 	}
 
-
-	
-	
-	/*SolicitudCredito*/
+	/* SolicitudCredito */
 	public void guardarSolicitud(SolicitudCredito sol) throws Exception {
 
 		SolicitudCredito aux = soldao.read(sol.getId_sol());
@@ -337,7 +339,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarSolicitud(SolicitudCredito sol) throws Exception {
 
-	SolicitudCredito aux = soldao.read(sol.getId_sol());
+		SolicitudCredito aux = soldao.read(sol.getId_sol());
 
 		if (aux != null) {
 			soldao.update(sol);
@@ -346,22 +348,19 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<SolicitudCredito> buscarSolicitud(int id) throws Exception {
+	public List<SolicitudCredito> buscarSolicitud(int id) throws Exception {
 		return soldao.getSolicitud(id + "%");
-		
+
 	}
 
 	public void eliminarSolicitud(int id) throws Exception {
 		soldao.delete(id);
 	}
 
-
-	
-	
-	/*Telefonos*/
+	/* Telefonos */
 	public void guardarTelefonos(Telefonos telf) throws Exception {
 
-		Telefonos aux =   telfdao.read(telf.getId_telf());
+		Telefonos aux = telfdao.read(telf.getId_telf());
 
 		if (aux != null) {
 			telfdao.update(telf);
@@ -372,7 +371,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarTelefono(Telefonos telf) throws Exception {
 
-	Telefonos aux = telfdao.read(telf.getId_telf());
+		Telefonos aux = telfdao.read(telf.getId_telf());
 
 		if (aux != null) {
 			telfdao.update(telf);
@@ -381,23 +380,19 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Telefonos> buscarTelefono(int id) throws Exception {
+	public List<Telefonos> buscarTelefono(int id) throws Exception {
 		return telfdao.getTelefonos(id + "%");
-		
+
 	}
 
 	public void eliminarTelefono(int id) throws Exception {
 		telfdao.delete(id);
 	}
 
-	
-
-	
-	
-	/*Transferencia*/
+	/* Transferencia */
 	public void guardarTransferencia(Transferencia tr) throws Exception {
 
-		Transferencia aux =   trdao.read(tr.getId_transferencia());
+		Transferencia aux = trdao.read(tr.getId_transferencia());
 
 		if (aux != null) {
 			trdao.update(tr);
@@ -408,7 +403,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarTransferencia(Transferencia tr) throws Exception {
 
-	Transferencia aux = trdao.read(tr.getId_transferencia());
+		Transferencia aux = trdao.read(tr.getId_transferencia());
 
 		if (aux != null) {
 			trdao.update(tr);
@@ -417,22 +412,19 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Transferencia> buscarTrasnferencia(int id) throws Exception {
+	public List<Transferencia> buscarTrasnferencia(int id) throws Exception {
 		return trdao.getTransferencia(id + "%");
-		
+
 	}
 
 	public void eliminarTransferencia(int id) throws Exception {
 		trdao.delete(id);
 	}
 
-	
-
-	
-	/*Rol*/
+	/* Rol */
 	public void guardarRol(Rol r) throws Exception {
 
-		Rol aux =   rdao.read(r.getRol_id());
+		Rol aux = rdao.read(r.getRol_id());
 
 		if (aux != null) {
 			rdao.update(r);
@@ -443,7 +435,7 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void actualizarRol(Rol r) throws Exception {
 
-	Rol aux = rdao.read(r.getRol_id());
+		Rol aux = rdao.read(r.getRol_id());
 
 		if (aux != null) {
 			rdao.update(r);
@@ -452,9 +444,9 @@ public class gestionON implements DaoProyectoLocal{
 		}
 	}
 
-	public  List<Rol> buscarRol(int id) throws Exception {
+	public List<Rol> buscarRol(int id) throws Exception {
 		return rdao.getRol(id + "%");
-		
+
 	}
 
 	public void eliminarRol(int id) throws Exception {
@@ -506,12 +498,4 @@ public class gestionON implements DaoProyectoLocal{
 		return cedulaValida;
 	}
 
-	
-
-	
-	
-	
-	
-	
-	
 }
