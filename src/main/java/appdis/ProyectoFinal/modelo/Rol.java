@@ -1,7 +1,5 @@
 package appdis.ProyectoFinal.modelo;
 
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,7 +24,6 @@ public class Rol {
 	
 	
 	@OneToOne
-	@JoinColumn(name="cedula_persona")
 	private Persona persona;
 
 	
@@ -55,12 +52,7 @@ public class Rol {
 		this.persona = persona;
 	}
 	
-	 public void agregarPersona(Persona per) {
-	    	if (persona == null)
-	    		persona = new Persona();
-	    	persona.setCedula(per.getCedula());
-	    }
-
+	
 	
 	
 	

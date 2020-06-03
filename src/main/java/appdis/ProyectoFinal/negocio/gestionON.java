@@ -299,7 +299,7 @@ public class gestionON implements DaoProyectoLocal{
 	}
 
 	public  List<Persona> buscarPersona(String cedula) throws Exception {
-		return pedao.getPersona(cedula + "%");
+		return pedao.getPersona(cedula  + "%");
 	}
 
 	public void eliminarPersona(String cedula) throws Exception {
