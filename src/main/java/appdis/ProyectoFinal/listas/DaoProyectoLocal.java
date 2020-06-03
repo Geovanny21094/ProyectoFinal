@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import appdis.ProyectoFinal.modelo.BancaVirtual;
+import appdis.ProyectoFinal.modelo.Cliente;
+import appdis.ProyectoFinal.modelo.Credito;
+
 
 
 
@@ -14,34 +18,17 @@ import javax.ejb.Local;
 public interface DaoProyectoLocal {
 
 	
-	public void guardarAutor(ExaAutor a) throws Exception;
-
-	public void actualizarAutor(ExaAutor a) throws Exception;
-
-	public List<ExaAutor> buscarAutor(String cedula) throws Exception;
-
-	public void eliminarAutor(String cedula) throws Exception;
-
-	
-
-	public void guardarLibros(ExaLibros l) throws Exception;
-
-	public void actualizarLibros(ExaLibros l) throws Exception;
-
-	public List<ExaLibros> buscarLibros(int id) throws Exception;
-
-	public void eliminarLibros(int id) throws Exception;
-	
-	
-	
-	public void guardarCapitulos(ExaCapitulos c) throws Exception;
-	
-	public void actualizarcapitulos(ExaCapitulos c) throws Exception ;
-	
-	public  List<ExaCapitulos> buscarCapitulos(int id) throws Exception;
-	
-	public void eliminarCapitulos(int id) throws Exception;
-	
-	
+	public void guardarBanca(BancaVirtual bv) throws Exception;
+	public void actualizarBanca(BancaVirtual bv) throws Exception;
+	public  List<BancaVirtual> buscarBanca(int id) throws Exception;
+	public void eliminarBanca(int id) throws Exception;
+	public void guardarCliente(Cliente cl) throws Exception;
+	public void actualizarCliente(Cliente cl) throws Exception; 
+	public  List<Cliente> buscarCliente(int id) throws Exception;
+	public void eliminarCliente(int id) throws Exception;
+	public void guardarCredito(Credito cr) throws Exception; 
+	public void actualizarCredito(Credito cr) throws Exception;
+	public  List<Credito> buscarCredito(int id) throws Exception;
+	public void eliminarCredito(int id) throws Exception;
 	
 }
