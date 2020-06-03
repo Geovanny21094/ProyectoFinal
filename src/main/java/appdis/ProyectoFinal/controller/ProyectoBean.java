@@ -1,5 +1,6 @@
 package appdis.ProyectoFinal.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,10 +82,13 @@ public class ProyectoBean {
 		
 		guardarDatosPersona();
 		
-		persona.agregarTelefono(new Telefonos());
+		//persona.agregarTelefono(new Telefonos());
 		
-		agregarPersona(persona);
-		//rol.agregarPersona(persona);
+		//agregarPersona(persona);
+		rol.agregarRol(rol, persona);
+		
+		guardarDatosPersona();
+		agregarRol();
 		
 		
 		this.listaPersonas = listaPersonas;
@@ -101,16 +105,24 @@ public class ProyectoBean {
 				
 	}
 	
-	 public void agregarPersona(Persona per) {
-	    	if (persona == null)
-	    		persona = new Persona();
-	    	persona.setCedula(per.getCedula());
-	    }
 
 	
+//	 public void agregarPersona(Persona per) {
+//	    	if (persona == null)
+//	    		persona = new Persona();
+//	    	persona.setCedula(per.getCedula());
+//
+//	    }
+		public void agregarRol() {
+			try {
+				dalp.guardarRol(rol);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 	public String guardarDatosPersona () {
-		System.out.println(this.toString());
-		
 		try {
 			dalp.guardarPersona(persona);
 		} catch (Exception e) {

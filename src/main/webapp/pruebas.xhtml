@@ -9,20 +9,55 @@
 
 	<h:form>
 		cedula
-		<h:inputText value="#{proyectoBean.persona.cedula}" /><br/>
+		<h:inputText value="#{proyectoBean.persona.cedula}" />
+		<br />
 		nombte
-		<h:inputText value="#{proyectoBean.persona.nombres}" /><br/>
+		<h:inputText value="#{proyectoBean.persona.nombres}" />
+		<br />
 		apellido
-		<h:inputText value="#{proyectoBean.persona.apellidos}" /><br/>
+		<h:inputText value="#{proyectoBean.persona.apellidos}" />
+		<br />
 		direcion
-		<h:inputText value="#{proyectoBean.persona.direccion}" /><br/>
-		telefno
-		<h:inputText value="#{proyectoBean.persona.telefonos}" /><br/>
+		<h:inputText value="#{proyectoBean.persona.direccion}" />
+		<br />
 				correo
-		<h:inputText value="#{proyectoBean.persona.genero}" /><br/>
-		
+		<h:inputText value="#{proyectoBean.persona.genero}" />
+		<br />
+		Fecha
+		<h:inputText value="#{proyectoBean.persona.fecha_nacimiento}">
+			<f:convertDateTime pattern="dd/mm/yyyy" />
+		</h:inputText>
+		<br />
 		correo
-		<h:inputText value="#{proyectoBean.persona.correo}" /><br/>
+		<h:inputText value="#{proyectoBean.persona.correo}" />
+		<br />
+
+			<h:dataTable id="agregar" value="#{proyectoBean.persona.telefonos}"
+			var="tel">
+
+
+			<h:column>
+				<f:facet name="header">
+					num
+				</f:facet>
+				<h:inputText value="#{tel.numero}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					tipo
+				</f:facet>
+				<h:selectOneMenu 
+					value="#{tel.tipo}">
+					<f:selectItem 
+						itemValue="Celular" itemLabel="Celular"></f:selectItem>
+					<f:selectItem 
+						itemValue="Convencional" itemLabel="Convencional"></f:selectItem>
+				</h:selectOneMenu>
+			</h:column>
+
+		</h:dataTable>
+
 
 
 		<h:commandButton action="Guardar"
