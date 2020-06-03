@@ -36,7 +36,6 @@ public class Cliente {
 	
 	
 	@OneToOne
-	@JoinColumn(name="id_persona")
 	private Persona persona;
 	
 

@@ -38,7 +38,6 @@ public class BancaVirtual {
 	
 	
 	@OneToOne
-	@Column (name = "id_cliente")
 	private Cliente cliente;
 	
 	

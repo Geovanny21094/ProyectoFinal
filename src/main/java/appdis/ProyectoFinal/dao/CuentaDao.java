@@ -26,12 +26,12 @@ public class CuentaDao {
 
 	    
 	 	public void insert(Cuenta cuenta) {
-	 em.persist(cuenta);
+	 		em.persist(cuenta);
 	 	}
 
 	 	
-	 	public void update(Cuenta cuenta)   {
-	 em.merge(cuenta);
+	 	public void update(Cuenta cuenta){
+	 		em.merge(cuenta);
 	 	}
 
 	 	
