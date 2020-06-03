@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.transaction.TransactionScoped;
 
 
 
@@ -36,13 +38,13 @@ public class Persona {
 	private String correo;
 	@Column (name = "fecha_nacimiento")
 	private Date fecha_nacimiento;
-	@Column (name = "roll")
-	private String roll;
+	
 	
 	
 	@OneToMany(mappedBy = "persona")
 	private List<Telefonos> telefonos;
 	
+	@Transient
 	private List<Cliente> cliente;
 	
 	
@@ -93,13 +95,7 @@ public class Persona {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
-	public String getRoll() {
-		return roll;
-	}
 
-	public void setRoll(String roll) {
-		this.roll = roll;
-	}
 
 	public List<Telefonos> getTelefonos() {
 		return telefonos;

@@ -11,6 +11,7 @@ import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
+import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
 import appdis.ProyectoFinal.modelo.Transferencia;
@@ -114,6 +115,16 @@ public interface DaoProyectoLocal {
 	public void actualizarTransferencia(Transferencia tr) throws Exception;
 	public  List<Transferencia> buscarTrasnferencia(int id) throws Exception;
 	public void eliminarTransferencia(int id) throws Exception;
+	
+	
+	
+	
+	
+	/*Rol*/
+	public void guardarRol(Rol r) throws Exception;
+	public void actualizarRol(Rol r) throws Exception;
+	public  List<Rol> buscarRol(int id) throws Exception;
+	public void eliminarRol(int id) throws Exception;
 	
 	
 }

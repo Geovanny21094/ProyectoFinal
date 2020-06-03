@@ -12,6 +12,7 @@ import appdis.ProyectoFinal.dao.CuentaDao;
 import appdis.ProyectoFinal.dao.InstitucionFinancieraDao;
 import appdis.ProyectoFinal.dao.NotificacionesDao;
 import appdis.ProyectoFinal.dao.PersonaDao;
+import appdis.ProyectoFinal.dao.RolDao;
 import appdis.ProyectoFinal.dao.SolicitudCreditoDao;
 import appdis.ProyectoFinal.dao.TelefonosDao;
 import appdis.ProyectoFinal.dao.TransferenciaDao;
@@ -23,6 +24,7 @@ import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
+import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
 import appdis.ProyectoFinal.modelo.Transferencia;
@@ -66,6 +68,9 @@ public class gestionON implements DaoProyectoLocal{
 	
 	@Inject
 	TransferenciaDao trdao;
+	
+	@Inject
+	RolDao rdao;
 	
 	/*Banca Virtual*/
 	public void guardarBanca(BancaVirtual bv) throws Exception {
@@ -406,6 +411,41 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void eliminarTransferencia(int id) throws Exception {
 		trdao.delete(id);
+	}
+
+	
+
+	
+	/*Rol*/
+	public void guardarRol(Rol r) throws Exception {
+
+		Rol aux =   rdao.read(r.getRol_id());
+
+		if (aux != null) {
+			rdao.update(r);
+		} else {
+			rdao.insert(r);
+		}
+	}
+
+	public void actualizarRol(Rol r) throws Exception {
+
+	Rol aux = rdao.read(r.getRol_id());
+
+		if (aux != null) {
+			rdao.update(r);
+		} else {
+			rdao.insert(r);
+		}
+	}
+
+	public  List<Rol> buscarRol(int id) throws Exception {
+		return rdao.getRol(id + "%");
+		
+	}
+
+	public void eliminarRol(int id) throws Exception {
+		rdao.delete(id);
 	}
 
 	
