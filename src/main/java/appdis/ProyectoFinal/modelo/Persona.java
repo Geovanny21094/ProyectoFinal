@@ -42,14 +42,16 @@ public class Persona {
 	private List<Telefonos> telefonos;
 	
 	
-	public String getId() {
+	
+	
+	public String getCedula() {
 		return cedula;
 	}
-	
-	public void setId(String cedula) {
+
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-	
+
 	public String getNombres() {
 		return nombres;
 	}
