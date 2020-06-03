@@ -16,6 +16,7 @@ import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
+import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
 import appdis.ProyectoFinal.modelo.Transferencia;
@@ -49,6 +50,7 @@ public class ProyectoBean {
 	private Telefonos telefonos;
 	private SolicitudCredito solicitud;
 	private Transferencia transferencia;
+	private Rol rol;
 	
 	private List<Persona> listaPersonas = new ArrayList<>() ;
 	private List<Telefonos> listaTelefonos = new ArrayList<>() ;
@@ -56,10 +58,11 @@ public class ProyectoBean {
 	private List<Cliente> listaClientes = new ArrayList<>() ;
 	private List<Credito> listaCredito = new ArrayList<>() ;
 	private List<Cuenta> listaCuenta = new ArrayList<>() ;
-	private List<InstitucionFinanciera> listaInstitucion = new ArrayList<>() ;
-	private List<Notificaciones> listaNotificaciones = new ArrayList<>() ;
-	private List<SolicitudCredito> listaSolicitud = new ArrayList<>() ;
-	private List<Transferencia> listaTransferencia = new ArrayList<>() ;
+	private List<InstitucionFinanciera> listaInstitucion = new ArrayList<>();
+	private List<Notificaciones> listaNotificaciones = new ArrayList<>();
+	private List<SolicitudCredito> listaSolicitud = new ArrayList<>();
+	private List<Transferencia> listaTransferencia = new ArrayList<>();
+	private List<Rol> listaRol=new ArrayList<>();
 	
 	@PostConstruct
 	public void init () {
@@ -73,14 +76,17 @@ public class ProyectoBean {
 		notificaciones = new Notificaciones();
 		solicitud = new SolicitudCredito();
 		transferencia = new Transferencia();
+		rol=new Rol();
 		
 		
-		
-		
+		guardarDatosPersona();
 		
 		persona.agregarTelefono(new Telefonos());
 		
-		datosPersona();
+		agregarPersona(persona);
+		//rol.agregarPersona(persona);
+		
+		
 		this.listaPersonas = listaPersonas;
 		this.listaTelefonos = listaTelefonos;
 		this.listaBanca = listaBanca;
@@ -91,9 +97,63 @@ public class ProyectoBean {
 		this.listaNotificaciones = listaNotificaciones;
 		this.listaSolicitud = listaSolicitud;
 		this.listaTransferencia = listaTransferencia;	
+		this.listaRol=listaRol;
 				
 	}
 	
+	 public void agregarPersona(Persona per) {
+	    	if (persona == null)
+	    		persona = new Persona();
+	    	persona.setCedula(per.getCedula());
+	    }
+
+	
+	public String guardarDatosPersona () {
+		System.out.println(this.toString());
+		
+		try {
+			dalp.guardarPersona(persona);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public String guardarDatosCliente () {
+		System.out.println(this.toString());
+		
+		try {
+		
+			dalp.guardarCliente(cliente);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
+	private void datosPersona() {
+		try {
+			//ltTelf = dal.buscarTelefono();
+			//listas=dal.buscarCedula();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public String agregarTelefono() {
+		persona.agregarTelefono(new Telefonos());
+		return null;
+		
+	}
 
 
 
@@ -299,54 +359,27 @@ public class ProyectoBean {
 	}
 
 
-	public String guardarDatosPersona () {
-		System.out.println(this.toString());
-		
-		try {
-		
-			dalp.guardarPersona(persona);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public Rol getRol() {
+		return rol;
 	}
-	
-	
-	public String guardarDatosCliente () {
-		System.out.println(this.toString());
-		
-		try {
-		
-			dalp.guardarCliente(cliente);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
-	
-	
-	
-	private void datosPersona() {
-		try {
-			//ltTelf = dal.buscarTelefono();
-			//listas=dal.buscarCedula();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+
+	public List<Rol> getListaRol() {
+		return listaRol;
 	}
-	
-	
-	
-	public String agregarTelefono() {
-		persona.agregarTelefono(new Telefonos());
-		return null;
-		
+
+
+	public void setListaRol(List<Rol> listaRol) {
+		this.listaRol = listaRol;
 	}
+
+
+	
 	
 	
 	

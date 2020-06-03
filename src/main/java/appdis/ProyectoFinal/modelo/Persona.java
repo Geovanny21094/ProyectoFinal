@@ -38,7 +38,8 @@ public class Persona {
 	private String correo;
 	@Column (name = "fecha_nacimiento")
 	private Date fecha_nacimiento;
-	
+	@Column (name = "direccion")
+	private String direccion;
 	
 	
 	@OneToMany(mappedBy = "persona")
@@ -105,17 +106,24 @@ public class Persona {
 		this.telefonos = telefonos;
 	}
 	
-	
-	
-	
-	
-	 public List<Cliente> getCliente() {
+	 public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public List<Cliente> getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(List<Cliente> cliente) {
 		this.cliente = cliente;
 	}
+	
+	
+	
 
 	public void agregarTelefono(Telefonos telf) {
 	    	if (telefonos == null)
@@ -125,11 +133,6 @@ public class Persona {
 
 	
 	
-	 public void agregarCliente(Cliente cli) {
-	    	if (cliente == null)
-	    		cliente = new ArrayList<Cliente>();
-	    	cliente.add(cli);
-	    }
 
 	
 	

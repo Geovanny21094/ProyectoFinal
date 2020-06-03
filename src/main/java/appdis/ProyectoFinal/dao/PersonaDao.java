@@ -1,9 +1,6 @@
 package appdis.ProyectoFinal.dao;
 
-
 import java.util.List;
-
-
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.Persona;
-
 
 /**
  * 
@@ -24,37 +20,31 @@ import appdis.ProyectoFinal.modelo.Persona;
 public class PersonaDao {
 
 	@PersistenceContext(name = "testjpaPersistenceUnit")
-	 private EntityManager em;
+	private EntityManager em;
 
-	    
-	 	public void insert(Persona persona) {
-	 em.persist(persona);
-	 	}
+	public void insert(Persona persona) {
+		em.persist(persona);
+	}
 
-	 	
-	 	public void update(Persona persona)   {
-	 em.merge(persona);
-	 	}
+	public void update(Persona persona) {
+		em.merge(persona);
+	}
 
-	 	
-	 	public Persona read(String cedula)   {
-	 		return em.find(Persona.class, cedula);
-	 	}
+	public Persona read(String cedula) {
+		return em.find(Persona.class, cedula);
+	}
 
-	 	
-	 	public void delete(String cedula)  {
-	       Persona pe = read (cedula);
-	       em.remove(pe);
-	 	}
+	public void delete(String cedula) {
+		Persona pe = read(cedula);
+		em.remove(pe);
+	}
 
-	
-	 	
-	 	@SuppressWarnings("unchecked")
-		public List<Persona> getPersona(String filtro) {
-			String jpql = " SELECT pe FROM persona pe WHERE cedula LIKE :filtro";
-			Query q = em.createQuery(jpql, Persona.class);
-			q.setParameter("filtro", filtro);
-			return q.getResultList();
-		}
-	 	
-	 }
+	@SuppressWarnings("unchecked")
+	public List<Persona> getPersona(String filtro) {
+		String jpql = " SELECT pe FROM persona pe WHERE cedula LIKE :filtro";
+		Query q = em.createQuery(jpql, Persona.class);
+		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
+
+}

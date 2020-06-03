@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+
+	<h:form>
+		cedula
+		<h:inputText value="#{proyectoBean.persona.cedula}" /><br/>
+		nombte
+		<h:inputText value="#{proyectoBean.persona.nombres}" /><br/>
+		apellido
+		<h:inputText value="#{proyectoBean.persona.apellidos}" /><br/>
+		direcion
+		<h:inputText value="#{proyectoBean.persona.direccion}" /><br/>
+		telefno
+		<h:inputText value="#{proyectoBean.persona.telefonos}" /><br/>
+				correo
+		<h:inputText value="#{proyectoBean.persona.genero}" /><br/>
+		
+		correo
+		<h:inputText value="#{proyectoBean.persona.correo}" /><br/>
+
+
+		<h:commandButton action="Guardar"
+			value="#{proyectoBean.guardarDatosPersona()}" />
+	</h:form>
+</h:body>
+</html>

@@ -20,7 +20,7 @@
 				<label class="col-md-12">Cedula</label>
 				<div class="col-md-12">
 					<input type="text" placeholder="01001939393"
-						class="form-control form-control-line" value=".." />
+						class="form-control form-control-line" value="#{proyectoBean.persona.cedula}" />
 				</div>
 			</div>
 
@@ -28,7 +28,7 @@
 				<label for="col-md-12" class="col-md-12">Nombres</label>
 				<div class="col-md-12">
 					<input type="text" placeholder="Carlos Andres"
-						class="form-control form-control-line" value=".." />
+						class="form-control form-control-line" value="#{proyectoBean.persona.nombres}" />
 				</div>
 			</div>
 
@@ -36,7 +36,7 @@
 				<label for="col-md-12" class="col-md-12">Apellidos</label>
 				<div class="col-md-12">
 					<input type="text" placeholder="Perez Lopez"
-						class="form-control form-control-line" value=".." />
+						class="form-control form-control-line" value="#{proyectoBean.persona.apellidos}" />
 				</div>
 			</div>
 
@@ -44,7 +44,7 @@
 				<label for="col-md-12" class="col-md-12">Dirección</label>
 				<div class="col-md-12">
 					<input type="text" placeholder="Av. Americas"
-						class="form-control form-control-line" value=".." />
+						class="form-control form-control-line" value="#{proyectoBean.persona.direccion}" />
 				</div>
 			</div>
 
@@ -85,22 +85,15 @@
 				<label for="col-md-12" class="col-md-12">Correo</label>
 				<div class="col-md-12">
 					<input type="email" placeholder="carlos@gmail.com"
-						class="form-control form-control-line" value=".." />
+						class="form-control form-control-line" value="#{proyectoBean.persona.correo}" />
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Contraseña</label>
-				<div class="col-md-12">
-					<input type="text" placeholder="**********"
-						class="form-control form-control-line" value=".." />
-				</div>
-			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Rol</label>
 				<div class="col-md-12">
-					<h:selectOneMenu class="form-control form-control-line" value="..">
+					<h:selectOneMenu class="form-control form-control-line" value="#{proyectoBean.rol.cargo}">
 						<f:selectItem class="form-control form-control-line"
 							itemValue="Administrador" itemLabel="Administrador"></f:selectItem>
 						<f:selectItem class="form-control form-control-line"
@@ -124,7 +117,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success" action=".."
+					<h:commandButton class="btn btn-success" action="#{proyectoBean.guardarDatosPersona()}"
 						value="Guardar" />
 				</div>
 			</div>
