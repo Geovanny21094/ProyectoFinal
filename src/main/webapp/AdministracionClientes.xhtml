@@ -17,42 +17,58 @@
 		<h:form class="form-horizontal form-material">
 
 			<div class="form-group">
-				<label  class="col-md-12">Numero de Cuenta</label>
+				<label class="col-md-12">Cedula</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="25001"
-						class="form-control form-control-line" value=".." />
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Cedula</label>
-				<div class="col-md-12">
-					<input type="text" placeholder="01005998793"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.cedula}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Nombres</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="Perez Lopez"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.nombres}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Apellidos</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="Av. Americas"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.apellidos}" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Direccion</label>
+				<label for="col-md-12" class="col-md-12">Dirección</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="Av. Americas"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.direccion}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Fecha Nacimiento</label>
+				<div class="col-md-12">
+				
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.fecha_nacimiento}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+				</div>
+			</div>
+			
+				<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Fecha Registro</label>
+				<div class="col-md-12">
+				#{proyectoBean.cliente.fecha_registro}
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.cliente.fecha_registro}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
 				</div>
 			</div>
 
@@ -60,15 +76,16 @@
 			<div class="form-group">
 				<label class="col-md-12">Telefonos</label>
 				<div class="col-md-12">
-
-					<h:dataTable id="agregar" value=".." var="tel">
+				
+					<h:dataTable id="agregar" value="#{proyectoBean.persona.telefonos}" var="tel">
 
 
 						<h:column>
 							<f:facet name="header">
 								<label class="col-md-12">Num Numero</label>
 							</f:facet>
-							<h:inputText class="form-control form-control-line" value=".." />
+							<h:inputText class="form-control form-control-line"
+								value="#{tel.persona}"/>
 						</h:column>
 
 						<h:column>
@@ -76,7 +93,7 @@
 								<label class="col-md-12">Tipo</label>
 							</f:facet>
 							<h:selectOneMenu class="form-control form-control-line"
-								value="..">
+								value="#{tel.tipo}">
 								<f:selectItem class="form-control form-control-line"
 									itemValue="Celular" itemLabel="Celular"></f:selectItem>
 								<f:selectItem class="form-control form-control-line"
@@ -85,25 +102,26 @@
 						</h:column>
 
 					</h:dataTable>
-
+					
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Correo</label>
 				<div class="col-md-12">
-					<input type="email" placeholder="carlos@gmail.com"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.correo}" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Fecha</label>
+				<label for="col-md-12" class="col-md-12">Genero</label>
 				<div class="col-md-12">
-					<input type="date" placeholder="carlos@gmail.com"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.persona.genero}" />
 				</div>
 			</div>
+
 
 
 
@@ -118,8 +136,8 @@
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success" action=".."
-						value="Guardar" />
+					<h:commandButton class="btn btn-success"
+						action="#{proyectoBean.agregarCliente()}" value="Guardar" />
 				</div>
 			</div>
 
@@ -131,4 +149,5 @@
 </ui:composition>
 
 </html>
+
 

@@ -83,9 +83,11 @@ public class ProyectoBean {
 
 		// agregarPersona(persona);
 		rol.agregarRol(rol, persona);
+		cliente.agregarCliente(cliente, persona);
 
 		guardarDatosPersona();
 		agregarRol();
+		agregarCliente();
 
 		this.listaPersonas = listaPersonas;
 		this.listaTransferencia = listaTransferencia;
@@ -101,6 +103,15 @@ public class ProyectoBean {
 //	    	persona.setCedula(per.getCedula());
 //
 //	    }
+	public void agregarCliente() {
+		try {
+			dalp.guardarCliente(cliente);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void agregarRol() {
 		try {
 			dalp.guardarRol(rol);

@@ -9,8 +9,6 @@ import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.Cliente;
 
-
-
 /**
  * 
  *
@@ -22,45 +20,31 @@ import appdis.ProyectoFinal.modelo.Cliente;
 public class ClienteDao {
 
 	@PersistenceContext(name = "testjpaPersistenceUnit")
-	 private EntityManager em;
+	private EntityManager em;
 
-	    
-	 	public void insert(Cliente cliente) {
-	 em.persist(cliente);
-	 	}
+	public void insert(Cliente cliente) {
+		em.persist(cliente);
+	}
 
-	 	
-	 	public void update(Cliente cliente)   {
-	 em.merge(cliente);
-	 	}
+	public void update(Cliente cliente) {
+		em.merge(cliente);
+	}
 
-	 	
-	 	public Cliente read(int id) {
-			return em.find(Cliente.class, id);
-		}
+	public Cliente read(int id_cliente) {
+		return em.find(Cliente.class, id_cliente);
+	}
 
-		public void delete(int id) {
-			Cliente cl = read(id);
-			em.remove(cl);
-		}
+	public void delete(int id_cliente) {
+		Cliente cl = read(id_cliente);
+		em.remove(cl);
+	}
 
-	
-	 	
-		@SuppressWarnings("unchecked")
-		public List<Cliente> getCliente(String filtro) {
-			String jpql = " SELECT cl FROM Cliente cl WHERE id_cliente LIKE :filtro";
-			Query q = em.createQuery(jpql, Cliente.class);
-			q.setParameter("filtro", filtro);
-			return q.getResultList();
-		}
-	 	
-	 }
+	@SuppressWarnings("unchecked")
+	public List<Cliente> getCliente(String filtro) {
+		String jpql = " SELECT cl FROM Cliente cl WHERE id_cliente LIKE :filtro";
+		Query q = em.createQuery(jpql, Cliente.class);
+		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
+}

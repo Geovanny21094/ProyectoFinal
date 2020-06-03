@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 
@@ -44,8 +45,7 @@ public class Persona {
 	@OneToMany(mappedBy = "persona")
 	private List<Telefonos> telefonos;
 	
-	@Transient
-	private List<Cliente> cliente;
+	
 	
 	
 	public String getCedula() {
@@ -113,13 +113,6 @@ public class Persona {
 		this.direccion = direccion;
 	}
 
-	public List<Cliente> getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(List<Cliente> cliente) {
-		this.cliente = cliente;
-	}
 	
 	
 	

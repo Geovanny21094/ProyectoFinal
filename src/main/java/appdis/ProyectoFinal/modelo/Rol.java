@@ -26,7 +26,6 @@ public class Rol {
 	private String cargo;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cedula_persona")
 	private Persona persona;
 
 	public int getRol_id() {

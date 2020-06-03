@@ -1,11 +1,14 @@
 package appdis.ProyectoFinal.modelo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -24,6 +27,7 @@ public class Cliente {
 	
 	@Id
 	@Column (name = "id_cliente")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_cliente;
 	
 	@Column (name = "fecha_registro")
@@ -36,7 +40,7 @@ public class Cliente {
 	private String contrasenia;
 	
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Persona persona;
 	
 
@@ -45,6 +49,14 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente")
 	private List<Credito> credito;
 	
+	
+	public void agregarCliente(Cliente cl, Persona per) {
+
+		if (cl == null)
+			cl = new Cliente();
+		cl.setPersona(per);
+		
+	}
 	
 	
 	public int getId_cliente() {
