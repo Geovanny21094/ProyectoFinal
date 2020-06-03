@@ -21,16 +21,20 @@ import javax.persistence.OneToMany;
 public class Persona {
 
 	@Id
-	@Column (name = "id_persona")
-	private int id;
-	
-	
+	@Column (name = "cedula_persona")
 	private String cedula;
+	
+	@Column (name = "nombres")
 	private String nombres;
+	@Column (name = "apellidos")
 	private String apellidos;
+	@Column (name = "genero")
 	private String genero;
+	@Column (name = "correo")
 	private String correo;
+	@Column (name = "fecha_nacimiento")
 	private Date fecha_nacimiento;
+	@Column (name = "roll")
 	private String roll;
 	
 	
@@ -38,19 +42,11 @@ public class Persona {
 	private List<Telefonos> telefonos;
 	
 	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getCedula() {
+	public String getId() {
 		return cedula;
 	}
 	
-	public void setCedula(String cedula) {
+	public void setId(String cedula) {
 		this.cedula = cedula;
 	}
 	

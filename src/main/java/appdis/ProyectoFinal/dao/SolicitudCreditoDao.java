@@ -46,6 +46,7 @@ public class SolicitudCreditoDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<SolicitudCredito> getSolicitud(String filtro) {
 			String jpql = " SELECT sc FROM SolicitudCredito sc WHERE id_sol LIKE :filtro";
 			Query q = em.createQuery(jpql, SolicitudCredito.class);

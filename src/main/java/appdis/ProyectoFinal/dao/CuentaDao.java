@@ -26,12 +26,12 @@ public class CuentaDao {
 
 	    
 	 	public void insert(Cuenta cuenta) {
-	 em.persist(cuenta);
+	 		em.persist(cuenta);
 	 	}
 
 	 	
-	 	public void update(Cuenta cuenta)   {
-	 em.merge(cuenta);
+	 	public void update(Cuenta cuenta){
+	 		em.merge(cuenta);
 	 	}
 
 	 	
@@ -46,6 +46,7 @@ public class CuentaDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Cuenta> getCuenta(String filtro) {
 			String jpql = " SELECT cu FROM cuenta cu WHERE id_cuenta LIKE :filtro";
 			Query q = em.createQuery(jpql, Cuenta.class);

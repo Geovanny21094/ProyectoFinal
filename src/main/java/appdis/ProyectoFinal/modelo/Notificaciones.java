@@ -22,8 +22,9 @@ public class Notificaciones {
 	@Column (name = "id_not")
 	private int id_not;
 	
+	@Column (name = "mensaje_notificacion")
 	private String mensaje_notificacion;
-	
+	@Column (name = "fecha")
 	private Date fecha;
 	
 	@ManyToOne

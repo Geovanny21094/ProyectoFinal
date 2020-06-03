@@ -46,6 +46,7 @@ public class TransferenciaDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Transferencia> getTransferencia(String filtro) {
 			String jpql = " SELECT tr FROM transferencia tr WHERE id_transferencia LIKE :filtro";
 			Query q = em.createQuery(jpql, Transferencia.class);

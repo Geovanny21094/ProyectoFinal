@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -25,23 +24,22 @@ public class Cliente {
 	@Column (name = "id_cliente")
 	private int id_cliente;
 	
-	
+	@Column (name = "fecha_registro")
 	private Date fecha_registro;
 	
-	
+	@Column (name = "usuario")
 	private String usuario;
 	
-	
+	@Column (name = "contrasenia")
 	private String contrasenia;
 	
 	
 	@OneToOne
-	@JoinColumn(name="id_persona")
 	private Persona persona;
 	
 
 	
-	
+	@Column (name = "credito")
 	@OneToMany(mappedBy = "cliente")
 	private List<Credito> credito;
 	

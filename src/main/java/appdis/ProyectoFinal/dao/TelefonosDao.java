@@ -46,6 +46,7 @@ public class TelefonosDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Telefonos> getTelefonos(String filtro) {
 			String jpql = " SELECT tl FROM telefonos tl WHERE id_telf LIKE :filtro";
 			Query q = em.createQuery(jpql, Telefonos.class);
