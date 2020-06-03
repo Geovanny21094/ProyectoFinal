@@ -75,6 +75,7 @@ public interface DaoProyectoLocal {
 	public void actualizarNotificaciones(Notificaciones not) throws Exception;
 	public  List<Notificaciones> buscarNotificaciones(int id) throws Exception;
 	public void eliminarNotificaciones(int id) throws Exception;
+	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception;
 	
 	
 	

@@ -7,7 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.sound.midi.Soundbank;
 
+import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.BancaVirtual;
 import appdis.ProyectoFinal.modelo.Cliente;
@@ -21,9 +23,6 @@ import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
-
-
-
 /**
  * 
  *
@@ -34,11 +33,9 @@ import appdis.ProyectoFinal.modelo.Transferencia;
 @ManagedBean
 @ViewScoped
 public class ProyectoBean {
-	
-	
+
 	@Inject
 	private DaoProyectoLocal dalp;
-
 
 	private BancaVirtual banca;
 	private Cliente cliente;
@@ -51,22 +48,23 @@ public class ProyectoBean {
 	private SolicitudCredito solicitud;
 	private Transferencia transferencia;
 	private Rol rol;
-	
-	private List<Persona> listaPersonas = new ArrayList<>() ;
-	private List<Telefonos> listaTelefonos = new ArrayList<>() ;
-	private List<BancaVirtual> listaBanca = new ArrayList<>() ;
-	private List<Cliente> listaClientes = new ArrayList<>() ;
-	private List<Credito> listaCredito = new ArrayList<>() ;
-	private List<Cuenta> listaCuenta = new ArrayList<>() ;
+	private EnviarCorreo envCorreo;
+
+	private List<Persona> listaPersonas = new ArrayList<>();
+	private List<Telefonos> listaTelefonos = new ArrayList<>();
+	private List<BancaVirtual> listaBanca = new ArrayList<>();
+	private List<Cliente> listaClientes = new ArrayList<>();
+	private List<Credito> listaCredito = new ArrayList<>();
+	private List<Cuenta> listaCuenta = new ArrayList<>();
 	private List<InstitucionFinanciera> listaInstitucion = new ArrayList<>();
 	private List<Notificaciones> listaNotificaciones = new ArrayList<>();
 	private List<SolicitudCredito> listaSolicitud = new ArrayList<>();
 	private List<Transferencia> listaTransferencia = new ArrayList<>();
-	private List<Rol> listaRol=new ArrayList<>();
-	
+	private List<Rol> listaRol = new ArrayList<>();
+
 	@PostConstruct
-	public void init () {
-		persona = new Persona ();
+	public void init() {
+		persona = new Persona();
 		telefonos = new Telefonos();
 		banca = new BancaVirtual();
 		cliente = new Cliente();
@@ -76,17 +74,16 @@ public class ProyectoBean {
 		notificaciones = new Notificaciones();
 		solicitud = new SolicitudCredito();
 		transferencia = new Transferencia();
-		rol=new Rol();
-		
-		
+		rol = new Rol();
+		envCorreo = new EnviarCorreo();
+
 		guardarDatosPersona();
-		
+
 		persona.agregarTelefono(new Telefonos());
-		
+
 		agregarPersona(persona);
-		//rol.agregarPersona(persona);
-		
-		
+		// rol.agregarPersona(persona);
+
 		this.listaPersonas = listaPersonas;
 		this.listaTelefonos = listaTelefonos;
 		this.listaBanca = listaBanca;
@@ -96,21 +93,20 @@ public class ProyectoBean {
 		this.listaInstitucion = listaInstitucion;
 		this.listaNotificaciones = listaNotificaciones;
 		this.listaSolicitud = listaSolicitud;
-		this.listaTransferencia = listaTransferencia;	
-		this.listaRol=listaRol;
-				
-	}
-	
-	 public void agregarPersona(Persona per) {
-	    	if (persona == null)
-	    		persona = new Persona();
-	    	persona.setCedula(per.getCedula());
-	    }
+		this.listaTransferencia = listaTransferencia;
+		this.listaRol = listaRol;
 
-	
-	public String guardarDatosPersona () {
+	}
+
+	public void agregarPersona(Persona per) {
+		if (persona == null)
+			persona = new Persona();
+		persona.setCedula(per.getCedula());
+	}
+
+	public String guardarDatosPersona() {
 		System.out.println(this.toString());
-		
+
 		try {
 			dalp.guardarPersona(persona);
 		} catch (Exception e) {
@@ -119,77 +115,68 @@ public class ProyectoBean {
 		}
 		return null;
 	}
-	
-	
-	public String guardarDatosCliente () {
-		System.out.println(this.toString());
-		
+
+	public void enviarCorreo(String asunto, String mensaje, String destinatario) {
 		try {
-		
+			envCorreo.enviarMail(asunto, mensaje, destinatario);
+		} catch (Exception e) {
+			System.out.println("Existe un error en el envio del correo");
+		}
+	}
+
+	public String guardarDatosCliente() {
+		System.out.println(this.toString());
+
+		try {
+
 			dalp.guardarCliente(cliente);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	
-	
+
 	private void datosPersona() {
 		try {
-			//ltTelf = dal.buscarTelefono();
-			//listas=dal.buscarCedula();
+			// ltTelf = dal.buscarTelefono();
+			// listas=dal.buscarCedula();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	public String agregarTelefono() {
 		persona.agregarTelefono(new Telefonos());
 		return null;
-		
+
 	}
-
-
 
 	public BancaVirtual getBanca() {
 		return banca;
 	}
 
-
 	public void setBanca(BancaVirtual banca) {
 		this.banca = banca;
 	}
-
-
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	public Credito getCredito() {
 		return credito;
 	}
 
-
-
 	public void setCredito(Credito credito) {
 		this.credito = credito;
 	}
-
-
 
 	public Cuenta getCuenta() {
 		return cuenta;
@@ -199,53 +186,41 @@ public class ProyectoBean {
 		this.cuenta = cuenta;
 	}
 
-
 	public InstitucionFinanciera getInstitucion() {
 		return institucion;
 	}
-
 
 	public void setInstitucion(InstitucionFinanciera institucion) {
 		this.institucion = institucion;
 	}
 
-
 	public Notificaciones getNotificaciones() {
 		return notificaciones;
 	}
-
 
 	public void setNotificaciones(Notificaciones notificaciones) {
 		this.notificaciones = notificaciones;
 	}
 
-
 	public Persona getPersona() {
 		return persona;
 	}
-
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
 
-
-
 	public Telefonos getTelefonos() {
 		return telefonos;
 	}
-
-
 
 	public void setTelefonos(Telefonos telefonos) {
 		this.telefonos = telefonos;
 	}
 
-
 	public SolicitudCredito getSolicitud() {
 		return solicitud;
 	}
-
 
 	public void setSolicitud(SolicitudCredito solicitud) {
 		this.solicitud = solicitud;
@@ -255,11 +230,9 @@ public class ProyectoBean {
 		return transferencia;
 	}
 
-
 	public void setTransferencia(Transferencia transferencia) {
 		this.transferencia = transferencia;
 	}
-
 
 	public List<Persona> getListaPersonas() {
 		return listaPersonas;
@@ -269,38 +242,29 @@ public class ProyectoBean {
 		this.listaPersonas = listaPersonas;
 	}
 
-
 	public List<Telefonos> getListaTelefonos() {
 		return listaTelefonos;
 	}
-
 
 	public void setListaTelefonos(List<Telefonos> listaTelefonos) {
 		this.listaTelefonos = listaTelefonos;
 	}
 
-
 	public List<BancaVirtual> getListaBanca() {
 		return listaBanca;
 	}
-
-
 
 	public void setListaBanca(List<BancaVirtual> listaBanca) {
 		this.listaBanca = listaBanca;
 	}
 
-
-
 	public List<Cliente> getListaClientes() {
 		return listaClientes;
 	}
 
-
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
 	}
-
 
 	public List<Credito> getListaCredito() {
 		return listaCredito;
@@ -310,26 +274,21 @@ public class ProyectoBean {
 		this.listaCredito = listaCredito;
 	}
 
-
 	public List<Cuenta> getListaCuenta() {
 		return listaCuenta;
 	}
-
 
 	public void setListaCuenta(List<Cuenta> listaCuenta) {
 		this.listaCuenta = listaCuenta;
 	}
 
-
 	public List<InstitucionFinanciera> getListaInstitucion() {
 		return listaInstitucion;
 	}
 
-
 	public void setListaInstitucion(List<InstitucionFinanciera> listaInstitucion) {
 		this.listaInstitucion = listaInstitucion;
 	}
-
 
 	public List<Notificaciones> getListaNotificaciones() {
 		return listaNotificaciones;
@@ -339,7 +298,6 @@ public class ProyectoBean {
 		this.listaNotificaciones = listaNotificaciones;
 	}
 
-
 	public List<SolicitudCredito> getListaSolicitud() {
 		return listaSolicitud;
 	}
@@ -348,40 +306,36 @@ public class ProyectoBean {
 		this.listaSolicitud = listaSolicitud;
 	}
 
-
 	public List<Transferencia> getListaTransferencia() {
 		return listaTransferencia;
 	}
-
 
 	public void setListaTransferencia(List<Transferencia> listaTransferencia) {
 		this.listaTransferencia = listaTransferencia;
 	}
 
-
 	public Rol getRol() {
 		return rol;
 	}
-
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
 
-
 	public List<Rol> getListaRol() {
 		return listaRol;
 	}
-
 
 	public void setListaRol(List<Rol> listaRol) {
 		this.listaRol = listaRol;
 	}
 
+	public EnviarCorreo getEnviarCorreo() {
+		return envCorreo;
+	}
 
-	
-	
-	
-	
-	
+	public void setEnviarCorreo(EnviarCorreo enviarCorreo) {
+		this.envCorreo = enviarCorreo;
+	}
+
 }
