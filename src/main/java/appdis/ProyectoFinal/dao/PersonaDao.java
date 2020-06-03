@@ -19,7 +19,7 @@ import appdis.ProyectoFinal.modelo.Persona;
 @Stateless
 public class PersonaDao {
 
-	@PersistenceContext(name = "testjpaPersistenceUnit")
+	@PersistenceContext
 	private EntityManager em;
 
 	public void insert(Persona persona) {
@@ -30,18 +30,17 @@ public class PersonaDao {
 		em.merge(persona);
 	}
 
-	public Persona read(String cedula) {
-		return em.find(Persona.class, cedula);
-	}
+	public Persona read(String cedula_persona)   {
+ 		return em.find(Persona.class, cedula_persona);
+ 	}
 
 	public void delete(String cedula) {
 		Persona pe = read(cedula);
 		em.remove(pe);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Persona> getPersona(String filtro) {
-		String jpql = " SELECT pe FROM persona pe WHERE cedula LIKE :filtro";
+		String jpql = " SELECT pe FROM persona pe WHERE cedula_persona LIKE :filtro";
 		Query q = em.createQuery(jpql, Persona.class);
 		q.setParameter("filtro", filtro);
 		return q.getResultList();

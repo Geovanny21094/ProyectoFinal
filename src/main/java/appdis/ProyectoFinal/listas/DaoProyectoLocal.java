@@ -75,6 +75,7 @@ public interface DaoProyectoLocal {
 	public void actualizarNotificaciones(Notificaciones not) throws Exception;
 	public  List<Notificaciones> buscarNotificaciones(int id) throws Exception;
 	public void eliminarNotificaciones(int id) throws Exception;
+	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception;
 	
 	
 	
@@ -85,6 +86,7 @@ public interface DaoProyectoLocal {
 	public  List<Persona> buscarPersona(String cedula) throws Exception;
 	public void eliminarPersona(String cedula) throws Exception;
 	
+	public boolean validarCedula(String cedula) throws Exception;
 	
 	
 	
@@ -125,6 +127,9 @@ public interface DaoProyectoLocal {
 	public void actualizarRol(Rol r) throws Exception;
 	public  List<Rol> buscarRol(int id) throws Exception;
 	public void eliminarRol(int id) throws Exception;
+	
+	
+	
 	
 	
 }

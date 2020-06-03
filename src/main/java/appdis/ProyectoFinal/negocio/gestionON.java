@@ -9,6 +9,7 @@ import appdis.ProyectoFinal.dao.BancaVirtualDao;
 import appdis.ProyectoFinal.dao.ClienteDao;
 import appdis.ProyectoFinal.dao.CreditoDao;
 import appdis.ProyectoFinal.dao.CuentaDao;
+import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.dao.InstitucionFinancieraDao;
 import appdis.ProyectoFinal.dao.NotificacionesDao;
 import appdis.ProyectoFinal.dao.PersonaDao;
@@ -50,6 +51,10 @@ public class gestionON implements DaoProyectoLocal{
 
 	@Inject
 	CuentaDao  cudao;
+	
+	
+	@Inject
+	EnviarCorreo enviarCorreo;
     
 	@Inject
 	InstitucionFinancieraDao infdao;
@@ -93,6 +98,14 @@ public class gestionON implements DaoProyectoLocal{
 		} else {
 			bvdao.insert(bv);
 		}
+	}
+	
+	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception {
+		
+		if (asunto!= "" && mensaje != "" && correoDestino!="") {
+			enviarCorreo.enviarMail(asunto, mensaje, correoDestino);
+		}
+		
 	}
 
 	public  List<BancaVirtual> buscarBanca(int id) throws Exception {
@@ -299,7 +312,7 @@ public class gestionON implements DaoProyectoLocal{
 	}
 
 	public  List<Persona> buscarPersona(String cedula) throws Exception {
-		return pedao.getPersona(cedula + "%");
+		return pedao.getPersona(cedula  + "%");
 	}
 
 	public void eliminarPersona(String cedula) throws Exception {
@@ -446,6 +459,51 @@ public class gestionON implements DaoProyectoLocal{
 
 	public void eliminarRol(int id) throws Exception {
 		rdao.delete(id);
+	}
+
+	@Override
+	public boolean validarCedula(String cedula) throws Exception {
+		boolean cedulaValida = false;
+
+		try {
+
+			if (cedula.length() == 10) {
+				int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+				if (tercerDigito < 6) {
+
+					int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+					int verificador = Integer.parseInt(cedula.substring(9, 10));
+					int suma = 0;
+					int digito = 0;
+					for (int i = 0; i < (cedula.length() - 1); i++) {
+						digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+						suma += ((digito % 10) + (digito / 10));
+					}
+
+					if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+						cedulaValida = true;
+					} else if ((10 - (suma % 10)) == verificador) {
+						cedulaValida = true;
+					} else {
+						cedulaValida = false;
+					}
+				} else {
+					cedulaValida = false;
+				}
+			} else {
+				cedulaValida = false;
+			}
+		} catch (NumberFormatException nfe) {
+			cedulaValida = false;
+		} catch (Exception err) {
+			cedulaValida = false;
+			throw new Exception("Error al validar cedula");
+		}
+
+		if (!cedulaValida) {
+			throw new Exception("Cedula Correcta");
+		}
+		return cedulaValida;
 	}
 
 	
