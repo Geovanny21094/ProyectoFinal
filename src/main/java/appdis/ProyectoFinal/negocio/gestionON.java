@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.negocio;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -148,9 +149,44 @@ public class gestionON implements DaoProyectoLocal {
 		cldao.delete(id);
 	}
 
-	public String userPass(Cliente cl) {
-		Cliente aux = cldao.read(cl.getId_cliente());
-	return null;
+	public String getUser(Cliente cl) throws Exception {
+
+		String user = "";
+
+		Random r = new Random();
+		int num = r.nextInt(9999);
+
+		String nombre = cl.getPersona().getNombres();
+		String apellido = cl.getPersona().getApellidos();
+
+		String a = nombre.substring(0, 1).toLowerCase();
+		String b = apellido.substring(0, apellido.length()).toLowerCase();
+
+		user = a + b + num;
+
+		cl.setUsuario(user);
+
+		return user;
+	}
+
+	public String getPassword(Cliente cl) throws Exception {
+
+		String NUMEROS = "0123456789";
+
+		String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
+
+		String pass = "";
+
+		String key = NUMEROS + MAYUSCULAS + MINUSCULAS;
+
+		for (int i = 0; i < 8; i++) {
+			pass += (key.charAt((int) (Math.random() * key.length())));
+		}
+		cl.setContrasenia(pass);
+
+		return pass;
 	}
 
 	/* Credito */

@@ -92,8 +92,6 @@ public class ProyectoBean {
 		this.listaPersonas = listaPersonas;
 		this.listaTransferencia = listaTransferencia;
 		this.listaRol = listaRol;
-		
-
 
 	}
 
@@ -105,13 +103,17 @@ public class ProyectoBean {
 //	    }
 	public void agregarCliente() {
 		try {
+			dalp.getUser(cliente);
+			dalp.getPassword(cliente);
 			dalp.guardarCliente(cliente);
+			dalp.enviarCorreo("Creacion de Cuenta", "Su usuario es: "+dalp.getUser(cliente)+
+					" Su contraseña es: " + dalp.getPassword(cliente) , persona.getCorreo());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void agregarRol() {
 		try {
 			dalp.guardarRol(rol);
@@ -120,7 +122,6 @@ public class ProyectoBean {
 			e.printStackTrace();
 		}
 	}
-
 
 	public void agregarPersona(Persona per) {
 		if (persona == null)

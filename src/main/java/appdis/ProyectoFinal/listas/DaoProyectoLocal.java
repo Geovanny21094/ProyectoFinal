@@ -43,6 +43,8 @@ public interface DaoProyectoLocal {
 	public void actualizarCliente(Cliente cl) throws Exception;
 	public  List<Cliente> buscarCliente(int id) throws Exception; 
 	public void eliminarCliente(int id) throws Exception;
+	public String getUser(Cliente cl)throws Exception;
+	public String getPassword(Cliente cl)throws Exception;
 	
 	
 	/*Credito*/
