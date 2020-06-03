@@ -10,6 +10,10 @@
 
 <ui:composition template="/template/template.xhtml">
 
+	<ui:define name="user">
+	<!-- <h:inputText value="#{proyectoBean.cliente.usuario}" /> -->
+	</ui:define>
+
 	<ui:define name="titulo">
 		LOGIN
 	</ui:define>
@@ -19,35 +23,31 @@
 
 		<h:form>
 			<div class="form-group">
-				<label class="col-md-12">USUARIO</label>
+				<label for="col-md-12" class="col-md-12">Usuario</label>
 				<div class="col-md-12">
-					<input type="text" placeholder="USUARIO1"
-						class="form-control form-control-line" value=".." />
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{proyectoBean.cliente.usuario}" />
 				</div>
 			</div>
-
-			<br />
 
 			<div class="form-group">
-				<label class="col-md-12">CONTRASENA</label>
+				<label for="col-md-12" class="col-md-12">Contraseña</label>
 				<div class="col-md-12">
-					<input type="password" class="form-control form-control-line"
-						value=".." />
+					<h:inputText type="password" class="form-control form-control-line"
+						value="#{proyectoBean.cliente.contrasenia}" />
 				</div>
 			</div>
 
-			<br />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success"
+						action="#{proyectoBean.isValid()}" value="INGRESAR">
+					</h:commandButton>
+				</div>
+			</div>
 
 		</h:form>
-		<div class="form-group">
-			<div class="col-sm-12">
-				<h:commandButton class="btn btn-success" action=".."
-					value="INGRESAR">
-					<f:ajax render="ingresar" execute="ingresar">
-					</f:ajax>
-				</h:commandButton>
-			</div>
-		</div>
+
 
 
 	</ui:define>

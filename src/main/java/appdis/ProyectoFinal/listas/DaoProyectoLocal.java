@@ -41,7 +41,8 @@ public interface DaoProyectoLocal {
 	/*Cliente*/
 	public void guardarCliente(Cliente cl) throws Exception;
 	public void actualizarCliente(Cliente cl) throws Exception;
-	public  List<Cliente> buscarCliente(int id) throws Exception; 
+	public  List<Cliente> buscarCliente(int cedula) throws Exception; 
+	public Cliente buscarCliente(String cedula) throws Exception;
 	public void eliminarCliente(int id) throws Exception;
 	public String getUser(Cliente cl)throws Exception;
 	public String getPassword(Cliente cl)throws Exception;
@@ -129,6 +130,10 @@ public interface DaoProyectoLocal {
 	public void actualizarRol(Rol r) throws Exception;
 	public  List<Rol> buscarRol(int id) throws Exception;
 	public void eliminarRol(int id) throws Exception;
+	
+	/*Login*/
+	public boolean isValidUserPass(String user, String pass) throws Exception;
+
 	
 	
 	

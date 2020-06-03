@@ -139,14 +139,29 @@ public class gestionON implements DaoProyectoLocal {
 			cldao.insert(cl);
 		}
 	}
+	
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
 
 	}
+	
+	public Cliente buscarCliente(String cedula) throws Exception {
+		return cldao.readCedula(cedula);
+
+	}
 
 	public void eliminarCliente(int id) throws Exception {
 		cldao.delete(id);
+	}
+
+	public boolean isValidUserPass(String user, String pass) throws Exception {
+		Cliente aux = cldao.getUserPass(user, pass);
+		if (aux != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public String getUser(Cliente cl) throws Exception {

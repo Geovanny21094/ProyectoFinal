@@ -34,9 +34,24 @@ public class ClienteDao {
 		return em.find(Cliente.class, id_cliente);
 	}
 
+	public Cliente readCedula(String cedula) {
+		return em.find(Cliente.class, cedula);
+	}
+
+	
 	public void delete(int id_cliente) {
 		Cliente cl = read(id_cliente);
 		em.remove(cl);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Cliente getUserPass(String user, String pass) {
+		String jpql = " SELECT cl FROM Cliente cl WHERE usuario = :user AND contrasenia = :pass";
+		Query q = em.createQuery(jpql, Cliente.class);
+		q.setParameter("user", user);
+		q.setParameter("pass", pass);
+		
+		return (Cliente) q.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
