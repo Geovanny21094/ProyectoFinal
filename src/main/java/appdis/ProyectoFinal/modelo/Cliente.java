@@ -25,13 +25,13 @@ public class Cliente {
 	@Column (name = "id_cliente")
 	private int id_cliente;
 	
-	
+	@Column (name = "fecha_registro")
 	private Date fecha_registro;
 	
-	
+	@Column (name = "usuario")
 	private String usuario;
 	
-	
+	@Column (name = "contrasenia")
 	private String contrasenia;
 	
 	
@@ -41,7 +41,7 @@ public class Cliente {
 	
 
 	
-	
+	@Column (name = "credito")
 	@OneToMany(mappedBy = "cliente")
 	private List<Credito> credito;
 	

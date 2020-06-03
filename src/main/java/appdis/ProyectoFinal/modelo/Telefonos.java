@@ -20,7 +20,9 @@ public class Telefonos {
 	@Column (name = "id_telf")
 	private int id_telf;
 	
+	@Column (name = "numero")
 	private String numero;
+	@Column (name = "tipo")
 	private String tipo;
 	
 	@ManyToOne

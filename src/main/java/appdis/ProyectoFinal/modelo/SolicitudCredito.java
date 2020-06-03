@@ -19,7 +19,9 @@ public class SolicitudCredito {
 	@Column (name = "id_sol")
 	private int id_sol;
 	
+	@Column (name = "notificacion")
 	private String notificacion;
+	@Column (name = "estado")
 	private String estado;
 	
 	@ManyToOne

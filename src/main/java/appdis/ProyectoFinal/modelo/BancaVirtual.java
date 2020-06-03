@@ -24,14 +24,15 @@ public class BancaVirtual {
 	@Column (name = "id_banca")
 	private int id_banca;
 	
-	
+	@Column (name = "fecha_ingreso")
 	private Date fecha_ingreso;
 	
-	
+	@Column (name = "notificaciones")
 	@OneToMany(mappedBy = "banca")
 	private List<Notificaciones> notificaciones;
 	
 	
+	@Column (name = "solcitud")
 	@OneToMany(mappedBy = "bancav")
 	private List<SolicitudCredito> solicitud;
 	

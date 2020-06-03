@@ -20,8 +20,11 @@ public class InstitucionFinanciera {
 	@Id
 	@Column (name = "id_inst")
 	private int id_inst;
+	@Column (name = "nombre")
 	private String nombre;
+	@Column (name = "direccion")
 	private String direccion;
+	@Column (name = "correo")
 	private String correo;
 	
 	

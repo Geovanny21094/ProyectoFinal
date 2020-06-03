@@ -21,10 +21,13 @@ public class Cuenta {
 	@Column (name = "id_cuenta")
 	private int id_cuenta;
 	
-	
+	@Column (name = "numeroCuenta")
 	private String numeroCuenta;
+	@Column (name = "tipoCuenta")
 	private String tipoCuenta;
+	@Column (name = "tipoOperacion")
 	private String tipoOperacion;
+	@Column (name = "saldo")
 	private double saldo;
 	
 	

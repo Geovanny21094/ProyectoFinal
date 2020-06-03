@@ -19,8 +19,11 @@ public class Credito {
 	@Id
 	@Column (name = "id_credito")
 	private int id_credito;
+	@Column (name = "monto")
 	private double monto;
+	@Column (name = "saldo")
 	private double saldo;
+	@Column (name = "cuotas")
 	private double cuotas;
 	
 	

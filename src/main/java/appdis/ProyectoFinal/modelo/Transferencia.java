@@ -21,6 +21,7 @@ public class Transferencia {
 	@Column (name = "id_transferencia")
 	private int id_transferencia;
 	
+	@Column (name = "cuenta_destino")
 	private String cuenta_destino;
 	
 	
