@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+	<h1>ADMINISTRACION CLIENTES</h1>
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<h:outputLabel value="#Cuenta" />
+		<h:inputText value="Hola" />
+
+		<br />
+
+		<h:outputLabel value="Cedula" />
+		<h:inputText value="Hola" />
+
+		<br />
+
+		<h:outputLabel value="Nombre" />
+		<h:inputText value="Hola" />
+
+		<br />
+
+
+		<h:outputLabel value="Apellido" />
+		<h:inputText value="Hola" />
+
+		<br />
+
+		<h:outputLabel value="Dirección" />
+		<h:inputText value="Hola" />
+
+		<br />
+
+		<h4>
+			<h:outputLabel value="Telefonos" />
+		</h4>
+		<h:dataTable id="filaTelefono" value="" var="telefono">
+			<h:column>
+				<f:facet name="header">Numero</f:facet>
+				<h:inputText value="" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:selectOneMenu value="">
+					<f:selectItem itemValue="Celular" itemLabel="Celular"></f:selectItem>
+					<f:selectItem itemValue="Fijo" itemLabel="Fijo"></f:selectItem>
+				</h:selectOneMenu>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton action="#{javax.enterprise.context.conversation}}"
+			value="Agregar Telefono">
+			<br />
+			<f:ajax render="filaTelefono" execute="filaTelefono">
+			</f:ajax>
+		</h:commandButton>
+		<br />
+
+		<h:outputLabel value="Correo" />
+		<h:inputText value="Hola" />
+		<br />
+
+		<h:outputLabel value="Fecha de Registro" />
+		<h:inputText value="Hola" />
+		<br />
+
+	</h:form>
+
+	<br />
+
+	<h:commandButton action="#{javax.enterprise.context.conversation}"
+		value="Guardar" />
+
+
+
+
+
+</h:body>
+
+
+</html>
