@@ -63,13 +63,6 @@ public class gestionON implements DaoProyectoLocal{
 	@Inject
 	TransferenciaDao trdao;
 	
-	
-	
-	
-	
-	
-	
-
 	public void guardarBanca(BancaVirtual bv) throws Exception {
 
 		BancaVirtual aux = bvdao.read(bv.getId_banca());
