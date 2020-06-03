@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+
+	<ui:define name="titulo">
+		Cuenta
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+
+					<h:dataTable class="table" var="per" value="..">
+
+						<h:column>
+							<f:facet name="header">Tipo Movimiento</f:facet>
+							<h:selectOneMenu class="form-control form-control-line"
+								value="..">
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Retiro" itemLabel="Todos"></f:selectItem>
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Retiro" itemLabel="Retiro"></f:selectItem>
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Deposito" itemLabel="Deposito"></f:selectItem>
+							</h:selectOneMenu>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Fecha Desde</f:facet>
+							<h:inputText value="" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Fecha Hasta</f:facet>
+							<h:inputText value="" />
+						</h:column>
+					</h:dataTable>
+
+					<h:commandButton class="btn btn-success" action=".." value="Buscar" />
+
+				</div>
+			</div>
+
+			<h:dataTable class="table" var="per" value="..">
+
+				<f:facet name="header">Libreta</f:facet>
+
+
+				<h:column>
+					<f:facet name="header"># Cuenta</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Propietario</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Fecha Ultima Trasanción</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Saldo</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+
+			</h:dataTable>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+</html>

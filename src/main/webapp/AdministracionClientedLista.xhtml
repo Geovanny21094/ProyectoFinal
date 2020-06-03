@@ -7,7 +7,7 @@
 <ui:composition template="/template/template.xhtml">
 
 	<ui:define name="titulo">
-		Lista de Usuarios Roles
+		Lista de Usuarios 
 	</ui:define>
 
 
@@ -18,10 +18,15 @@
 
 				<f:facet name="header">Personas Roles</f:facet>
 
+				<h:column>
+					<f:facet name="header"># Cuenta</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
 
 				<h:column>
 					<f:facet name="header">Cedula</f:facet>
 					<h:outputLabel value=".." />
+
 				</h:column>
 
 				<h:column>
@@ -49,10 +54,6 @@
 					<h:outputLabel value=".." />
 				</h:column>
 
-				<h:column>
-					<f:facet name="header">Rol</f:facet>
-					<h:outputLabel value=".." />
-				</h:column>
 
 				<h:column>
 					<f:facet name="header">Opciones</f:facet>
@@ -65,9 +66,9 @@
 						value="Eliminar" />
 
 				</h:column>
-
 			</h:dataTable>
-			
+
+
 		</h:form>
 
 	</ui:define>

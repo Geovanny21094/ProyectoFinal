@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/template2.xhtml">
+
+	<ui:define name="titulo">
+		Login
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group">
+				<label class="col-md-12">Usuario</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="25001"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Contrasena</label>
+				<div class="col-md-12">
+					<input type="password" placeholder="01005998793"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success" action=".."
+						value="Guardar" />
+				</div>
+			</div>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+
+</html>
