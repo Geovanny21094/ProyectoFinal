@@ -27,7 +27,12 @@ import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
-
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
 
 @Stateless
 public class gestionON implements DaoProyectoLocal{
