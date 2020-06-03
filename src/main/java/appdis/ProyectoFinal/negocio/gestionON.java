@@ -41,7 +41,6 @@ public class gestionON implements DaoProyectoLocal{
 	@Inject
 	CreditoDao crdao;
 
-	
 	@Inject
 	CuentaDao  cudao;
     

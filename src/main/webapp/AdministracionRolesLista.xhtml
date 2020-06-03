@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+
+	<ui:define name="titulo">
+		Lista de Usuarios
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+
+		<h:dataTable class="table" var="per" value="..">
+
+			<f:facet name="header">Personas Roles</f:facet>
+
+			<h:column>
+				<f:facet name="header">Cedula</f:facet>
+				<h:outputLabel value=".." />
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombres</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Apellidos</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Direcion</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Telefono</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Correo</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Rol</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Opciones</f:facet>
+
+				<h:commandButton class="btn btn-success" action=".."
+					value="Modificar" />
+
+
+				<h:commandButton class="btn btn-success" action=".." value="Eliminar" />
+
+			</h:column>
+
+
+
+		</h:dataTable>
+
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

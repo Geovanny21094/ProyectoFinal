@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+
+
+	<ui:define name="titulo">
+		Crear Rol
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="01001939393"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombres</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="Carlos Andres"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Apellidos</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="Perez Lopez"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Dirección</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="Av. Americas"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Telefonos</label>
+				<div class="col-md-12">
+
+					<h:dataTable id="agregar" value=".." var="tel">
+
+
+						<h:column>
+							<f:facet name="header">
+								<label class="col-md-12">Num Numero</label>
+							</f:facet>
+							<h:inputText class="form-control form-control-line" value=".." />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<label class="col-md-12">Tipo</label>
+							</f:facet>
+							<h:selectOneMenu class="form-control form-control-line"
+								value="..">
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Celular" itemLabel="Celular"></f:selectItem>
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Convencional" itemLabel="Convencional"></f:selectItem>
+							</h:selectOneMenu>
+						</h:column>
+
+					</h:dataTable>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Correo</label>
+				<div class="col-md-12">
+					<input type="email" placeholder="carlos@gmail.com"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Contraseña</label>
+				<div class="col-md-12">
+					<input type="text" placeholder="**********"
+						class="form-control form-control-line" value=".." />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Rol</label>
+				<div class="col-md-12">
+					<h:selectOneMenu class="form-control form-control-line" value="..">
+						<f:selectItem class="form-control form-control-line"
+							itemValue="Administrador" itemLabel="Administrador"></f:selectItem>
+						<f:selectItem class="form-control form-control-line"
+							itemValue="Jefe Credito" itemLabel="Jefe Credito"></f:selectItem>
+						<f:selectItem class="form-control form-control-line"
+							itemValue="Cajero" itemLabel="Cajero"></f:selectItem>
+					</h:selectOneMenu>
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success" action=".." value="+">
+						<f:ajax render="agregar" execute="agregar">
+						</f:ajax>
+					</h:commandButton>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success" action=".."
+						value="Guardar" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+<!-- 
+<h:head></h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel value="Cedula:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:outputLabel value="Nombres:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:outputLabel value="Apellidos:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:outputLabel value="Direccion:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:outputLabel value="Correo:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:outputLabel value="Contraseña:" />
+		<h:inputText value="" />
+		<br />
+
+		<h:commandButton value="Guardar:" />
+
+	</h:form>
+</h:body>
+</html> -->
