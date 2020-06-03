@@ -150,19 +150,7 @@ public class gestionON implements DaoProyectoLocal {
 
 	public String userPass(Cliente cl) {
 		Cliente aux = cldao.read(cl.getId_cliente());
-		if (aux != null) {
-			
-		} else {
-			String nombre=cl.getUsuario();
-			String apellido=cl.getUsuario();
-			
-			for(int i=0; i<=nombre.length(); i++) {
-				String a=nombre.substring(0, 1);
-				for(int j=0; j<=apellido.length(); j++) {
-				String b=apellido.substring(0, apellido.length());
-			}
-				
-		}
+	return null;
 	}
 
 	/* Credito */
