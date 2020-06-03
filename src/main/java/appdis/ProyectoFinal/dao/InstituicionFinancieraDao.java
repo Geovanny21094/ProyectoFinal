@@ -49,6 +49,7 @@ public class InstituicionFinancieraDao {
 
 		
 		 	
+			@SuppressWarnings("unchecked")
 			public List<InstitucionFinanciera> getInstitucion(String filtro) {
 				String jpql = " SELECT inf FROM InstitucionFinanciera inf WHERE id_inst LIKE :filtro";
 				Query q = em.createQuery(jpql, InstitucionFinanciera.class);

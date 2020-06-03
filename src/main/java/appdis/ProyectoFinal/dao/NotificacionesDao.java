@@ -46,6 +46,7 @@ public class NotificacionesDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Notificaciones> getNotificaciones(String filtro) {
 			String jpql = " SELECT nt FROM Notificaciones nt WHERE id_not LIKE :filtro";
 			Query q = em.createQuery(jpql, Notificaciones.class);

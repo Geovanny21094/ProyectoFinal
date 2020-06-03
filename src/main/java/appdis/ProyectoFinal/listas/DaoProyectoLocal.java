@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import appdis.ProyectoFinal.modelo.BancaVirtual;
+import appdis.ProyectoFinal.modelo.Cliente;
+import appdis.ProyectoFinal.modelo.Credito;
+
 
 
 
@@ -14,7 +18,8 @@ import javax.ejb.Local;
 public interface DaoProyectoLocal {
 
 	
-	public void guardarAutor(ExaAutor a) throws Exception;
+	
+	/*public void guardarAutor(ExaAutor a) throws Exception;
 
 	public void actualizarAutor(ExaAutor a) throws Exception;
 
@@ -42,6 +47,7 @@ public interface DaoProyectoLocal {
 	
 	public void eliminarCapitulos(int id) throws Exception;
 	
+	*/
 	
 	
 }

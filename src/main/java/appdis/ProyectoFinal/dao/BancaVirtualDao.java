@@ -8,8 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.BancaVirtual;
-import appdis.ProyectoFinal.modelo.Persona;
-
 
 /**
  * 
@@ -46,6 +44,7 @@ public class BancaVirtualDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<BancaVirtual> getBanca(String filtro) {
 			String jpql = " SELECT bv FROM BancaVirtual bv WHERE id_banca LIKE :filtro";
 			Query q = em.createQuery(jpql, BancaVirtual.class);

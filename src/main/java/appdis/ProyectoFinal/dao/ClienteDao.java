@@ -46,6 +46,7 @@ public class ClienteDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Cliente> getCliente(String filtro) {
 			String jpql = " SELECT cl FROM Cliente cl WHERE id_cliente LIKE :filtro";
 			Query q = em.createQuery(jpql, Cliente.class);

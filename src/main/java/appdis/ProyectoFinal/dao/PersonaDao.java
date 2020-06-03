@@ -1,16 +1,10 @@
 package appdis.ProyectoFinal.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 
-import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,7 +49,8 @@ public class PersonaDao {
 
 	
 	 	
-	 	public List<Persona> getPersona(String filtro) {
+	 	@SuppressWarnings("unchecked")
+		public List<Persona> getPersona(String filtro) {
 			String jpql = " SELECT pe FROM persona pe WHERE cedula LIKE :filtro";
 			Query q = em.createQuery(jpql, Persona.class);
 			q.setParameter("filtro", filtro);

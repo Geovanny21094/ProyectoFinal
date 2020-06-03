@@ -46,6 +46,7 @@ public class CreditoDao {
 
 	
 	 	
+		@SuppressWarnings("unchecked")
 		public List<Credito> getCredito(String filtro) {
 			String jpql = " SELECT cr FROM credito cr WHERE id_credito LIKE :filtro";
 			Query q = em.createQuery(jpql, Credito.class);
