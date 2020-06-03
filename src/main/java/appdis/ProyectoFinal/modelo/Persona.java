@@ -1,12 +1,14 @@
 package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 
 
 
@@ -111,7 +113,11 @@ public class Persona {
 	
 	
 	
-	
+	 public void agregarTelefono(Telefonos telf) {
+	    	if (telefonos == null)
+	    		telefonos = new ArrayList<Telefonos>();
+	    	telefonos.add(telf);
+	    }
 	
 	
 	

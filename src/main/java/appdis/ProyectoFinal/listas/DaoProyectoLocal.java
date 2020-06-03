@@ -17,7 +17,12 @@ import appdis.ProyectoFinal.modelo.Transferencia;
 
 
 
-
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
 
 @Local
 public interface DaoProyectoLocal {
