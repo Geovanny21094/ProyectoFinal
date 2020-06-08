@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="/template/template.xhtml">
+<ui:composition template="/template2/template.xhtml">
 
 
 	<ui:define name="titulo">
@@ -14,45 +14,52 @@
 
 	<ui:define name="contenido">
 
-		<h:form class="form-horizontal form-material">
+		<h:form class="">
 
 			<div class="form-group">
-				<label class="col-md-12">Cedula</label>
+				<label>Cedula</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.cedula}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese la Cedula"
+						value="#{administradorBean.persona.cedula}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Nombres</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.nombres}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Nombres"
+						value="#{administradorBean.persona.nombres}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Apellidos</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.apellidos}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Apellidos"
+						value="#{administradorBean.persona.apellidos}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Dirección</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.direccion}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese su Dirección"
+						value="#{administradorBean.persona.direccion}" />
 				</div>
 			</div>
+
+
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Fecha</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.fecha_nacimiento}">
+					<h:inputText type="text" class="form-control"
+						placeholder="dd/mm/yyyy" data-provide="datepicker"
+						value="#{administradorBean.persona.fecha_nacimiento}">
 						<f:convertDateTime pattern="dd/mm/yyyy" />
 					</h:inputText>
 
@@ -63,8 +70,9 @@
 			<div class="form-group">
 				<label class="col-md-12">Telefonos</label>
 				<div class="col-md-12">
-				
-					<h:dataTable id="agregar" value="#{proyectoBean.persona.telefonos}" var="tel">
+
+					<h:dataTable id="agregar" value="#{administradorBean.persona.telefonos}"
+						var="tel">
 
 
 						<h:column>
@@ -72,40 +80,41 @@
 								<label class="col-md-12">Num Numero</label>
 							</f:facet>
 							<h:inputText class="form-control form-control-line"
-								value="#{tel.persona}"/>
+								value="#{tel.persona}" />
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">
 								<label class="col-md-12">Tipo</label>
 							</f:facet>
-							<h:selectOneMenu class="form-control form-control-line"
-								value="#{tel.tipo}">
-								<f:selectItem class="form-control form-control-line"
-									itemValue="Celular" itemLabel="Celular"></f:selectItem>
-								<f:selectItem class="form-control form-control-line"
-									itemValue="Convencional" itemLabel="Convencional"></f:selectItem>
+							<h:selectOneMenu class="form-control" value="#{tel.tipo}">
+								<f:selectItem class="form-control" itemValue="Celular"
+									itemLabel="Celular"></f:selectItem>
+								<f:selectItem class="form-control" itemValue="Convencional"
+									itemLabel="Convencional"></f:selectItem>
 							</h:selectOneMenu>
 						</h:column>
 
 					</h:dataTable>
-					
+					<!-- 	kk -->
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Correo</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.correo}" />
+					<h:inputText type="email" class="form-control" required="true"
+						placeholder="Ingrese su Correo"
+						value="#{administradorBean.persona.correo}" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Genero</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.persona.genero}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese Genero"
+						value="#{administradorBean.persona.genero}" />
 				</div>
 			</div>
 
@@ -115,36 +124,32 @@
 				<label for="col-md-12" class="col-md-12">Rol</label>
 				<div class="col-md-12">
 					<h:selectOneMenu class="form-control form-control-line"
-						value="#{proyectoBean.rol.cargo}">
-						<f:selectItem class="form-control form-control-line"
-							itemValue="Administrador" itemLabel="Administrador"></f:selectItem>
-						<f:selectItem class="form-control form-control-line"
-							itemValue="Jefe Credito" itemLabel="Jefe Credito"></f:selectItem>
-						<f:selectItem class="form-control form-control-line"
-							itemValue="Cajero" itemLabel="Cajero"></f:selectItem>
+						value="#{administradorBean.rol.cargo}">
+						<f:selectItem class="form-control" itemValue="Administrador"
+							itemLabel="Administrador"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Jefe Credito"
+							itemLabel="Jefe Credito"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cajero"
+							itemLabel="Cajero"></f:selectItem>
 					</h:selectOneMenu>
 				</div>
 			</div>
 
 
 
-			<div class="form-group">
-				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success" action=".." value="+">
+			<div class="form-group mb-0">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1" action=".."
+						value="+">
 						<f:ajax render="agregar" execute="agregar">
 						</f:ajax>
 					</h:commandButton>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{administradorBean.agregarRol()}" value="Guardar" />
 				</div>
 			</div>
-
-			<div class="form-group">
-				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success"
-						action="#{proyectoBean.agregarRol()}" value="Guardar" />
-				</div>
-			</div>
-
-
 		</h:form>
 
 	</ui:define>

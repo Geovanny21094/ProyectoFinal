@@ -139,29 +139,46 @@ public class gestionON implements DaoProyectoLocal {
 			cldao.insert(cl);
 		}
 	}
-	
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
 
 	}
-	
+
 	public Cliente buscarCliente(String cedula) throws Exception {
 		return cldao.readCedula(cedula);
 
+	}
+	
+	public List<Cliente> listarClinetes() throws Exception {
+		return cldao.getClientes();
 	}
 
 	public void eliminarCliente(int id) throws Exception {
 		cldao.delete(id);
 	}
 
-	public boolean isValidUserPass(String user, String pass) throws Exception {
+	public boolean isValidUserPassC(String user, String pass) throws Exception {
 		Cliente aux = cldao.getUserPass(user, pass);
 		if (aux != null) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public boolean isValidUserPassR(String user, String pass) throws Exception {
+		Rol aux = rdao.getUserPass(user, pass);
+		if (aux != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Cliente getCorreo(String user) throws Exception {
+		Cliente aux = cldao.getCorreo(user);
+		return aux;
 	}
 
 	public String getUser(Cliente cl) throws Exception {
@@ -259,9 +276,30 @@ public class gestionON implements DaoProyectoLocal {
 		}
 	}
 
-	public List<Cuenta> buscarCuenta(int id) throws Exception {
-		return cudao.getCuenta(id + "%");
+	public String numeroCuenta() throws Exception {
+		String numCuenta = "";
+		String IDENTIFICADOR = "C000";
+		int id = 0;
 
+		List<Cuenta> cuentas = cudao.getCuenta();
+
+		for (Cuenta cu : cuentas) {
+			id = cu.getId_cuenta();
+		}
+		id++;
+
+		return IDENTIFICADOR + id;
+	}
+	
+	public List<Cuenta> listarCuentas() throws Exception{
+		return cudao.getCuenta();
+	}
+
+
+	public Cuenta buscarCuenta(String numeroCuenta) throws Exception {
+		Cuenta aux = cudao.getCuenta(numeroCuenta);
+		return aux;
+		
 	}
 
 	public void eliminarCuenta(int id) throws Exception {
@@ -471,6 +509,10 @@ public class gestionON implements DaoProyectoLocal {
 			rdao.insert(r);
 		}
 	}
+	
+	public List<Rol> listarRol() throws Exception {
+		return rdao.getAutores();
+	}
 
 	public void actualizarRol(Rol r) throws Exception {
 
@@ -481,6 +523,46 @@ public class gestionON implements DaoProyectoLocal {
 		} else {
 			rdao.insert(r);
 		}
+	}
+
+	public String getUserRol(Rol rol) throws Exception {
+
+		String user = "";
+
+		Random r = new Random();
+		int num = r.nextInt(9999);
+
+		String nombre = rol.getPersona().getNombres();
+		String apellido = rol.getPersona().getApellidos();
+
+		String a = nombre.substring(0, 1).toLowerCase();
+		String b = apellido.substring(0, apellido.length()).toLowerCase();
+
+		user = a + b + num;
+
+		rol.setUsuario(user);
+
+		return user;
+	}
+
+	public String getPasswordRol(Rol rol) throws Exception {
+
+		String NUMEROS = "0123456789";
+
+		String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
+
+		String pass = "";
+
+		String key = NUMEROS + MAYUSCULAS + MINUSCULAS;
+
+		for (int i = 0; i < 8; i++) {
+			pass += (key.charAt((int) (Math.random() * key.length())));
+		}
+		rol.setContrasenia(pass);
+
+		return pass;
 	}
 
 	public List<Rol> buscarRol(int id) throws Exception {

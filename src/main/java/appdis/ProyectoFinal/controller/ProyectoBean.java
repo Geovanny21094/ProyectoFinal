@@ -1,11 +1,11 @@
 package appdis.ProyectoFinal.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.sound.midi.Soundbank;
@@ -28,6 +28,7 @@ import appdis.ProyectoFinal.modelo.Transferencia;
  * 
  *
  * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
  *
  */
 
@@ -81,7 +82,7 @@ public class ProyectoBean {
 		guardarDatosPersona();
 		// persona.agregarTelefono(new Telefonos());
 
-		// agregarPersona(persona);
+		agregarPersona(persona);
 		rol.agregarRol(rol, persona);
 		cliente.agregarCliente(cliente, persona);
 
@@ -106,25 +107,17 @@ public class ProyectoBean {
 	public String isValid() {
 		String pag = "";
 		try {
-			if (dalp.isValidUserPass(cliente.getUsuario(), cliente.getContrasenia()) == true) {
-				
-				/*
-				 * Arreglar parte esta seccion para enviar correo
-				 * cuando se inicia no se esta obteniendo el objeto 
-				 * persono o cliente y no se esta relacionando y no encuentra el correo  de la persona.
-				 
-				dalp.buscarCliente(cliente.getPersona().getCedula());
-				
-				java.util.Date fecha=new java.util.Date();
-				
-				dalp.enviarCorreo("Acceso a Cuenta",
-						"Se ingreso ingreso a la cuneta del correo a la Hora"+ fecha.getTime(),
-						cliente.getPersona().getCorreo());
-				 */
+//			String user=cliente.getUsuario();
+//			String pass=cliente.getContrasenia();
+			if (dalp.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == true) {
+				//cliente=dalp.getCorreo(cliente.getUsuario());
 				System.out.println("true");
+				//dalp.enviarCorreo("INGRESO A CUENTA","Se ingreso a la BANCA VIRTUAL", cliente.getPersona().getCorreo());
 				pag = "Accesos";
 			} else {
 				System.out.println("false");
+				//dalp.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL", "Se intento ingresar a la BANCA VIRTUAL \n"
+				//		+ "Estado FALLIDO", cliente.getPersona().getCorreo());
 				pag = "login";
 			}
 		} catch (Exception e) {
@@ -136,12 +129,12 @@ public class ProyectoBean {
 
 	public void agregarCliente() {
 		try {
-			dalp.getUser(cliente);
-			dalp.getPassword(cliente);
+			String user = dalp.getUser(cliente);
+			String pass = dalp.getPassword(cliente);
 			dalp.guardarCliente(cliente);
-			dalp.enviarCorreo("Creacion de Cuenta",
-					"Su usuario es: " + dalp.getUser(cliente) + " Su contraseña es: " + dalp.getPassword(cliente),
-					persona.getCorreo());
+			dalp.enviarCorreo("CREACION DE USUARIO ", " Bienvenido a la Cooperativa DMR,"
+					+ " le propocionarmos un Usuario y Contraseña con el cual puede ingresar a la BANCA VIRTUAL \n"
+					+ "Su usuario es: " + user + "\n Su contraseña es: " + pass, persona.getCorreo());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

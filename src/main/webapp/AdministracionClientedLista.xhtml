@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/template/template.xhtml">
+<ui:composition template="/template2/template.xhtml">
 
 	<ui:define name="titulo">
 		Lista de Usuarios 
@@ -14,55 +14,52 @@
 	<ui:define name="contenido">
 
 		<h:form>
-			<h:dataTable class="table" var="per" value="..">
-
-				<f:facet name="header">Personas Roles</f:facet>
+			<h:dataTable class="table" var="cue" value="#{administradorBean.listaCuenta}">
 
 				<h:column>
 					<f:facet name="header"># Cuenta</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.numeroCuenta}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Cedula</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.cliente.persona.nombres}" />
 
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Nombres</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.cliente.persona.nombres}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Apellidos</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.cliente.persona.apellidos}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Direcion</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.cliente.persona.direccion}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Telefono</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name"/>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Correo</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel class="co-name" value="#{cue.cliente.persona.correo}" />
 				</h:column>
 
 
 				<h:column>
 					<f:facet name="header">Opciones</f:facet>
 
-					<h:commandButton class="btn btn-success" action=".."
+					<h:commandButton class="btn btn-primary waves-effect waves-light mr-1"
 						value="Modificar" />
-
-
-					<h:commandButton class="btn btn-success" action=".."
+						
+					<h:commandButton class="btn btn-primary waves-effect waves-light mr-1" 
 						value="Eliminar" />
 
 				</h:column>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" lang="es">
+	
+<h:head>
+	<meta charset="utf-8" />
+	<title><ui:insert name="titulo"/></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta
+		content="A fully featured admin theme which can be used to build CRM, CMS, etc."
+		name="description" />
+	<meta content="Coderthemes" name="author" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- App favicon -->
+	<link rel="shortcut icon" href="template2/assets/images/favicon.ico"/>
+
+		<!-- Bootstrap select pluings -->
+	<link href="template2/assets/libs/bootstrap-select/bootstrap-select.min.css"
+		rel="stylesheet" type="text/css" />
+
+	<!-- App css -->
+	<link href="template2/assets/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css" id="bootstrap-stylesheet" />
+	<link href="template2/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="template2/assets/css/app.min.css" rel="stylesheet" type="text/css"
+		id="app-stylesheet" />
+
+</h:head>
+
+<body class="authentication-bg">
+	<div class="home-btn d-none d-sm-block">
+		<a href="template2/index.html"><i class="fas fa-home h2"></i></a>
+	</div>
+	<div class="account-pages my-5 pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-lg-6 col-xl-5">
+					<div>
+
+						<div class="text-center authentication-logo mb-4">
+							<a href="template2/index.html" class="logo-dark"> <span><img
+									src="template2/assets/images/logo-dark.png" alt="" height="30"/></span>
+							</a> <a href="template2/index.html" class="logo-light"> <span><img
+									src="template2/assets/images/logo-light.png" alt="" height="30"/></span>
+							</a>
+						</div>
+
+	
+						
+					
+					</div>
+					<!-- end card -->
+
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<ui:insert name="contenido">
+							</ui:insert>
+						</div>
+					</div>
+					<!-- end row -->
+
+				</div>
+				<!-- end col -->
+			</div>
+			<!-- end row -->
+		</div>
+		<!-- end container -->
+	</div>
+	<!-- end page -->
+
+
+	<!-- Vendor js -->
+	<script src="template2/assets/js/vendor.min.js"></script>
+
+	<!-- Bootstrap select plugin -->
+	<script src="template2/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+
+	<!-- App js -->
+	<script src="template2/assets/js/app.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head>
+
+</h:head>
+<ui:composition template="/template2/template2.xhtml">
+
+	<ui:define name="titulo">
+		Trasancciones
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Numero de Cuenta</label>
+						<h:inputText type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{cajeraBean.numeroCuenta}">
+							<f:ajax render="datos" execute="@form">
+							</f:ajax>
+						</h:inputText>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-12">.</label>
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1"
+							action="#{cajeraBean.obtenerDatosCuenta()}" value="Buscar" />
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+
+		<h:form>
+
+
+			<div class="form-group" id="datos">
+				<label for="col-md-12" class="col-md-12">Cedula</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="01005998793" disabled="true"
+						class="form-control form-control-line" value="#{cajeraBean.cuenta.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombres</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Perez Lopez" disabled="true"
+						class="form-control form-control-line" value="#{cajeraBean.cuenta.cliente.persona.nombres}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Apellidos</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Av. Americas" disabled="true"
+						class="form-control form-control-line" value="#{cajeraBean.cuenta.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Tipo de Transacción</label>
+				<div class="col-md-12">
+					<h:selectOneMenu class="form-control form-control-line" value="#{cajeraBean.tipo}">
+						<f:selectItem class="form-control form-control-line"
+							itemValue="Deposito" itemLabel="Deposito"></f:selectItem>
+						<f:selectItem class="form-control form-control-line"
+							itemValue="Retiro" itemLabel="Retiro"></f:selectItem>
+					</h:selectOneMenu>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Monto</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="400"
+						class="form-control form-control-line" value="#{cajeraBean.monto}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Fecha</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control"
+						placeholder="dd/mm/yyyy" data-provide="datepicker"
+						value="#{administradorBean.persona.fecha_nacimiento}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success" action="#{cajeraBean.guardarTrasaccion()}"
+						value="Guardar" />
+				</div>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+
+	<ui:define name="contenido2">
+		<h:dataTable class="table" var="per" value="..">
+
+			<f:facet name="header">Libreta</f:facet>
+
+
+			<h:column>
+				<f:facet name="header">Fecha</f:facet>
+				<h:outputLabel value="#{}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"># Cuenta</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Tipo Transacción</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Monto</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Saldo Actual</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Total</f:facet>
+				<h:outputLabel value=".." />
+			</h:column>
+
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+
+
+</html>

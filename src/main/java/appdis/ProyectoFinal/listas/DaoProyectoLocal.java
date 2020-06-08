@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.listas;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.Local;
 
@@ -42,10 +43,13 @@ public interface DaoProyectoLocal {
 	public void guardarCliente(Cliente cl) throws Exception;
 	public void actualizarCliente(Cliente cl) throws Exception;
 	public  List<Cliente> buscarCliente(int cedula) throws Exception; 
+	public List<Cliente> listarClinetes() throws Exception;
 	public Cliente buscarCliente(String cedula) throws Exception;
 	public void eliminarCliente(int id) throws Exception;
 	public String getUser(Cliente cl)throws Exception;
 	public String getPassword(Cliente cl)throws Exception;
+	public Cliente getCorreo(String user) throws Exception;
+
 	
 	
 	/*Credito*/
@@ -60,9 +64,11 @@ public interface DaoProyectoLocal {
 	/*Cuenta*/
 	public void guardarCuenta(Cuenta cu) throws Exception;
 	public void actualizarCuenta(Cuenta cu) throws Exception;
-	public  List<Cuenta> buscarCuenta(int id) throws Exception;
+	public List<Cuenta> listarCuentas() throws Exception;
+	public Cuenta buscarCuenta(String numeroCuenta) throws Exception;
 	public void eliminarCuenta(int id) throws Exception;
-	
+	public String numeroCuenta() throws Exception;
+
 	
 	
 	/*Intitucion Financiera*/
@@ -88,7 +94,6 @@ public interface DaoProyectoLocal {
 	public void actualizarPersona(Persona per) throws Exception;
 	public  List<Persona> buscarPersona(String cedula) throws Exception;
 	public void eliminarPersona(String cedula) throws Exception;
-	
 	public boolean validarCedula(String cedula) throws Exception;
 	
 	
@@ -129,10 +134,16 @@ public interface DaoProyectoLocal {
 	public void guardarRol(Rol r) throws Exception;
 	public void actualizarRol(Rol r) throws Exception;
 	public  List<Rol> buscarRol(int id) throws Exception;
+	public List<Rol> listarRol() throws Exception;
 	public void eliminarRol(int id) throws Exception;
+	public String getUserRol(Rol rol) throws Exception;
+	public String getPasswordRol(Rol rol) throws Exception;
+
+	
 	
 	/*Login*/
-	public boolean isValidUserPass(String user, String pass) throws Exception;
+	public boolean isValidUserPassC(String user, String pass) throws Exception;
+	public boolean isValidUserPassR(String user, String pass) throws Exception;
 
 	
 	

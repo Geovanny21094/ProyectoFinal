@@ -43,17 +43,33 @@ public class CuentaDao {
 			Cuenta cu = read(id);
 			em.remove(cu);
 		}
-
-	
-	 	
-		@SuppressWarnings("unchecked")
-		public List<Cuenta> getCuenta(String filtro) {
-			String jpql = " SELECT cu FROM cuenta cu WHERE id_cuenta LIKE :filtro";
+		
+	 	public Cuenta getCuenta(String numeroCuenta) {
+	 		String jpql = "SELECT cu FROM Cuenta cu WHERE numeroCuenta = :numeroCuenta";
 			Query q = em.createQuery(jpql, Cuenta.class);
-			q.setParameter("filtro", filtro);
+			q.setParameter("numeroCuenta", numeroCuenta);
+			
+			
+			return (Cuenta) q.getSingleResult();
+		}
+		
+		
+		public List<Cuenta> getCuenta() {
+			String jpql = "SELECT cu FROM Cuenta cu";
+			Query q = em.createQuery(jpql, Cuenta.class);
+//			q.setParameter("filtro", filtro);
 			return q.getResultList();
 		}
+	
 	 	
+//		@SuppressWarnings("unchecked")
+//		public List<Cuenta> getCuenta(String filtro) {
+//			String jpql = "SELECT cu FROM cuenta cu WHERE id_cuenta LIKE :filtro";
+//			Query q = em.createQuery(jpql, Cuenta.class);
+//			q.setParameter("filtro", filtro);
+//			return q.getResultList();
+//		}
+//	 	
 	 }
 
 	

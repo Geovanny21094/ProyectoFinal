@@ -1,5 +1,6 @@
 package appdis.ProyectoFinal.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.Cliente;
+import appdis.ProyectoFinal.modelo.Persona;
 
 /**
  * 
@@ -38,15 +40,30 @@ public class ClienteDao {
 		return em.find(Cliente.class, cedula);
 	}
 
-	
 	public void delete(int id_cliente) {
 		Cliente cl = read(id_cliente);
 		em.remove(cl);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cliente> getClientes() {
+		String jpql = " SELECT cl FROM Cliente cl";
+		Query q = em.createQuery(jpql, Cliente.class);
+		return  q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Cliente getCorreo(String usuario) {
+		String jpql = " SELECT cl FROM Cliente cl WHERE usuario = :usuario";
+		Query q = em.createQuery(jpql, Cliente.class);
+		q.setParameter("usuario", usuario);
+		return (Cliente) q.getSingleResult();
+	}
+
 	
 	@SuppressWarnings("unchecked")
 	public Cliente getUserPass(String user, String pass) {
-		String jpql = " SELECT cl FROM Cliente cl WHERE usuario = :user AND contrasenia = :pass";
+		String jpql = "SELECT cl FROM Cliente cl WHERE usuario = :user AND contrasenia = :pass";
 		Query q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("user", user);
 		q.setParameter("pass", pass);

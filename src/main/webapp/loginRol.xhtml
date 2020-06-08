@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/login.xhtml">
+
+
+
+	<ui:define name="titulo">
+		Login
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<div class="form-group mb-3">
+				<label>Usuario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese su Usuario"
+						value="#{loginBean.rol.usuario}" />
+				</div>
+			</div>
+
+			<div class="form-group mb-3">
+				<label for="password">Contraseña</label>
+				<div class="col-md-12">
+					<h:inputText class="form-control" type="password" required="true"
+						placeholder="Ingrese su Contraseña"
+						value="#{loginBean.rol.contrasenia}" />
+				</div>
+			</div>
+
+
+
+			<div class="form-group text-center mb-3">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-primary btn-lg width-lg btn-rounded"
+						action="#{loginBean.isValidRol()}" value="INGRESAR">
+					</h:commandButton>
+				</div>
+			</div>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Persona;
 
 /**
@@ -38,6 +39,7 @@ public class PersonaDao {
 		Persona pe = read(cedula);
 		em.remove(pe);
 	}
+	
 
 	public List<Persona> getPersona(String filtro) {
 		String jpql = " SELECT pe FROM persona pe WHERE cedula_persona LIKE :filtro";

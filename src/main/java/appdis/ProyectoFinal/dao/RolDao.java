@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Rol;
 
 /**
@@ -41,7 +42,23 @@ public class RolDao {
 			Rol rol = read(id);
 			em.remove(rol);
 		}
+		
+		public List<Rol> getAutores(){
+			String jpql = "SELECT r FROM Rol r";
+			
+			Query q = em.createQuery(jpql, Rol.class);
+			
+			return q.getResultList();
+		}
 
+		public Rol getUserPass(String user, String pass) {
+			String jpql = " SELECT r FROM Rol r WHERE usuario = :user AND contrasenia = :pass";
+			Query q = em.createQuery(jpql, Rol.class);
+			q.setParameter("user", user);
+			q.setParameter("pass", pass);
+
+			return (Rol) q.getSingleResult();
+		}
 	
 	 	
 		@SuppressWarnings("unchecked")

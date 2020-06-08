@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template2/template.xhtml">
+
+	<ui:define name="titulo">
+		Inicio
+	</ui:define>
+
+
+
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3">
+						<label class="col-md-12">Tipo Movimiento</label> <input
+							type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{cajeraBean.cuenta.numeroCuenta}" />
+					</div>
+					<div class="col-md-3">
+						<label class="col-md-12">Fecha Desde</label> <input type="text"
+							placeholder="C25001" class="form-control form-control-line"
+							value="#{cajeraBean.cuenta.numeroCuenta}" />
+					</div>
+					<div class="col-md-3">
+						<label class="col-md-12">Fecha Hasta</label> <input type="text"
+							placeholder="C25001" class="form-control form-control-line"
+							value="#{cajeraBean.cuenta.numeroCuenta}" />
+					</div>
+
+					<div class="col-md-3">
+						<label class="col-md-12">.</label> 
+						<h:commandButton class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "  value="Buscar" />
+					</div>
+
+				</div>
+			</div>
+
+
+			<h:dataTable class="table table-striped" var="per" value="..">
+
+				<h:column>
+					<f:facet name="header"># Cuenta</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Tipo Transacción</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Saldo Actual</f:facet>
+					<h:outputLabel value=".." />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

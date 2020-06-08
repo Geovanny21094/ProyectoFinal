@@ -2,54 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-
-
-
-
-<ui:composition template="/template/template.xhtml">
-
-	<ui:define name="user">
-	<!-- <h:inputText value="#{proyectoBean.cliente.usuario}" /> -->
-	</ui:define>
+<ui:composition template="/template2/login.xhtml">
 
 	<ui:define name="titulo">
-		LOGIN
+		Login
 	</ui:define>
 
 
 	<ui:define name="contenido">
 
 		<h:form>
-			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Usuario</label>
+			<div class="form-group mb-3">
+				<label>Usuario</label>
 				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{proyectoBean.cliente.usuario}" />
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese su Usuario"
+						value="#{loginBean.cliente.usuario}" />
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Contraseña</label>
+			<div class="form-group mb-3">
+				<label for="password">Contraseña</label>
 				<div class="col-md-12">
-					<h:inputText type="password" class="form-control form-control-line"
-						value="#{proyectoBean.cliente.contrasenia}" />
+					<h:inputText class="form-control" type="password" required="true"
+						placeholder="Ingrese su Contraseña"
+						value="#{loginBean.cliente.contrasenia}" />
 				</div>
 			</div>
 
-			<div class="form-group">
+
+
+			<div class="form-group text-center mb-3">
 				<div class="col-sm-12">
-					<h:commandButton class="btn btn-success"
-						action="#{proyectoBean.isValid()}" value="INGRESAR">
+					<h:commandButton class="btn btn-primary btn-lg width-lg btn-rounded"
+						action="#{loginBean.isValidCliente()}" value="INGRESAR">
 					</h:commandButton>
 				</div>
 			</div>
 
 		</h:form>
-
-
-
 	</ui:define>
 </ui:composition>
 

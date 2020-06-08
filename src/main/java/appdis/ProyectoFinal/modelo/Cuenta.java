@@ -1,9 +1,13 @@
 package appdis.ProyectoFinal.modelo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -19,16 +23,17 @@ import javax.persistence.OneToOne;
 public class Cuenta {
 	@Id
 	@Column (name = "id_cuenta")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_cuenta;
 	
 	@Column (name = "numeroCuenta")
 	private String numeroCuenta;
-	@Column (name = "tipoCuenta")
-	private String tipoCuenta;
 	@Column (name = "tipoOperacion")
 	private String tipoOperacion;
 	@Column (name = "saldo")
 	private double saldo;
+	
+	private Date fecha;
 	
 	
 	@OneToMany(mappedBy = "cuenta")
@@ -36,12 +41,27 @@ public class Cuenta {
 	
 	
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 	
 	
 	
+	public void agregarCliente(Cliente cl, Cuenta cu) {
+		if (cu == null)
+			cu = new Cuenta();
+		cu.setCliente(cl);
+	}
+
+	
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	public int getId_cuenta() {
 		return id_cuenta;
 	}
@@ -58,13 +78,6 @@ public class Cuenta {
 		this.numeroCuenta = numeroCuenta;
 	}
 	
-	public String getTipoCuenta() {
-		return tipoCuenta;
-	}
-	
-	public void setTipoCuenta(String tipoCuenta) {
-		this.tipoCuenta = tipoCuenta;
-	}
 	
 	public String getTipoOperacion() {
 		return tipoOperacion;
@@ -97,6 +110,17 @@ public class Cuenta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	@Override
+	public String toString() {
+		return "Cuenta [id_cuenta=" + id_cuenta + ", numeroCuenta=" + numeroCuenta + ", tipoOperacion=" + tipoOperacion
+				+ ", saldo=" + saldo + ", cliente=" + cliente + "]";
+	}
+
+	
+	
+
+	
+	
 	
 	
 	
