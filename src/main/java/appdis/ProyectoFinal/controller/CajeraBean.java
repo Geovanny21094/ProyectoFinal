@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +12,8 @@ import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Persona;
+import appdis.ProyectoFinal.modelo.Transaccion;
+import appdis.ProyectoFinal.modelo.Transferencia;
 
 @ManagedBean
 @ViewScoped
@@ -24,14 +27,32 @@ public class CajeraBean {
 	private String numeroCuenta;
 	private String tipo;
 	private double monto;
+	private Transaccion transaccion;
 
+	
+	private List<Transaccion> listatransacciones; 
+	
 	@PostConstruct
 	public void init() {
 		cuenta = new Cuenta();
 		cliente = new Cliente();
-
+		transaccion = new Transaccion();
+       
 	}
 
+	
+	
+	public void actTabla () {
+		
+		 try {
+			ejb.buscarTransaccion(transaccion.getCuenta().getId_cuenta());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void obtenerDatosCuenta() {
 		try {
 			this.numeroCuenta = numeroCuenta;
@@ -51,15 +72,24 @@ public class CajeraBean {
 	}
 
 	public String guardarTrasaccion() {
+		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
+
 		if (tipo.equalsIgnoreCase("Deposito")) {
 			double saldo = monto + cuenta.getSaldo();
-			cuenta.setSaldo(saldo);
-			cuenta.setTipoOperacion(tipo);
-			cuenta.setFecha(new Date());
+			newTransaccion.setCuenta(cuenta);
+			newTransaccion.setFecha(new Date());
+			newTransaccion.setTipo(tipo);
+            newTransaccion.setMonto(monto);
+            cuenta.setSaldo(saldo);
 			try {
 //				cuenta.agregarCliente(cliente, newCuenta);
+				cuenta.agregarTransaccion(newTransaccion);
+				ejb.guardarTransaccion(newTransaccion);
 				ejb.guardarCuenta(cuenta);
+				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
+				//actTabla();
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,14 +98,19 @@ public class CajeraBean {
 			double saldoAnterior = cuenta.getSaldo();
 			if (monto <= saldoAnterior) {
 				double saldoTotal = saldoAnterior - monto;
-				cuenta.setSaldo(saldoTotal);
-				cuenta.setTipoOperacion(tipo);
-				cuenta.setFecha(new Date());
-				newCuenta = cuenta;
+
+				newTransaccion.setFecha(new Date());
+				newTransaccion.setTipo(tipo);
+				 newTransaccion.setMonto(monto);
+				newTransaccion.setCuenta(cuenta);
 				
+				cuenta.setSaldo(saldoTotal);
 				try {
 //					cuenta.agregarCliente(cliente, newCuenta);
-					ejb.guardarCuenta(newCuenta);
+					cuenta.agregarTransaccion(newTransaccion);
+					ejb.guardarTransaccion(newTransaccion);
+					ejb.guardarCuenta(cuenta);
+					actTabla();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,7 +121,7 @@ public class CajeraBean {
 
 		}
 
-		monto=0;
+		monto = 0;
 		return null;
 	}
 
@@ -129,5 +164,40 @@ public class CajeraBean {
 	public void setNumeroCuenta(String numeroCuenta) {
 		this.numeroCuenta = numeroCuenta;
 	}
+
+
+
+	public Transaccion getTransaccion() {
+		return transaccion;
+	}
+
+
+
+	public void setTransaccion(Transaccion transaccion) {
+		this.transaccion = transaccion;
+	}
+
+
+
+	public List<Transaccion> getListatransacciones() {
+		return listatransacciones;
+	}
+
+
+
+	public void setListatransacciones(List<Transaccion> listatransacciones) {
+		this.listatransacciones = listatransacciones;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

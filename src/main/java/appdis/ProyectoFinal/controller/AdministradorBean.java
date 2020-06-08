@@ -63,7 +63,8 @@ public class AdministradorBean {
 	}
 	
 	public String modificarCliente() {
-		persona=ejb.buscarCliente(cedula)
+	//persona=ejb.buscarCliente(cedula)
+		return null;
 	}
 
 	/*

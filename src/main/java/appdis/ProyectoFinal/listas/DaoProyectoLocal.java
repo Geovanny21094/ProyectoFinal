@@ -15,6 +15,7 @@ import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
+import appdis.ProyectoFinal.modelo.Transaccion;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
 
@@ -139,6 +140,12 @@ public interface DaoProyectoLocal {
 	public String getUserRol(Rol rol) throws Exception;
 	public String getPasswordRol(Rol rol) throws Exception;
 
+	
+	/*Transsacion*/
+	public void guardarTransaccion(Transaccion tra) throws Exception;
+	public void actualizarTransaccion(Transaccion tra) throws Exception;
+	public List<Transaccion> buscarTransaccion(int id) throws Exception;
+	public void eliminarTransaccion(int id) throws Exception;
 	
 	
 	/*Login*/
