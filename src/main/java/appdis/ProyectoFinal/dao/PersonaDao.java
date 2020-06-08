@@ -31,8 +31,8 @@ public class PersonaDao {
 		em.merge(persona);
 	}
 
-	public Persona read(String cedula_persona)   {
- 		return em.find(Persona.class, cedula_persona);
+	public Persona read(String cedula)   {
+ 		return em.find(Persona.class, cedula);
  	}
 
 	public void delete(String cedula) {
