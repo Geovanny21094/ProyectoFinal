@@ -61,6 +61,10 @@ public class AdministradorBean {
 			persona = new Persona();
 		persona.setCedula(per.getCedula());
 	}
+	
+	public String modificarCliente() {
+		persona=ejb.buscarCliente(cedula)
+	}
 
 	/*
 	 * Metodo que Guarda el Rol de una Persona Creada
