@@ -105,7 +105,10 @@
 			<div class="form-group">
 				<div class="col-sm-12">
 					<h:commandButton class="btn btn-success" action="#{cajeraBean.guardarTrasaccion()}"
-						value="Guardar" />
+						value="Guardar">
+					<f:ajax render="tabla" execute="@form"></f:ajax>
+						</h:commandButton>
+						
 				</div>
 			</div>
 		</h:form>
@@ -114,38 +117,38 @@
 	</ui:define>
 
 	<ui:define name="contenido2">
-		<h:dataTable class="table" var="per" value="..">
+		<h:dataTable class="table" id="tabla" var="tra" value="#{cajeraBean.listatransacciones}">
 
 			<f:facet name="header">Libreta</f:facet>
 
 			<h:column>
 				<f:facet name="header">Fecha</f:facet>
-				<h:outputLabel value="" />
+				<h:outputLabel value="#{tra.fecha}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"># Cuenta</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.cuenta.numeroCuenta}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Tipo Transacción</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.tipo}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Monto</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.monto}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Saldo Actual</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.cuenta.saldo}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Total</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.cuenta.saldo}" />
 			</h:column>
 
 		</h:dataTable>

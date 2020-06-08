@@ -46,13 +46,13 @@ public class AdministradorBean {
 			listaRol = ejb.listarRol();
 			listaCliente = ejb.listarClinetes();
 			listaCliente = ejb.listarClinetes();
-			listaCuenta= ejb.listarCuentas();
+			listaCuenta = ejb.listarCuentas();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		this.listaCuenta=listaCuenta;
+		this.listaCuenta = listaCuenta;
 		this.listaRol = listaRol;
 		this.listaCliente = listaCliente;
 	}
@@ -62,17 +62,22 @@ public class AdministradorBean {
 			persona = new Persona();
 		persona.setCedula(per.getCedula());
 	}
-	
+
 	public String obtenerCliente(String cedula) {
 		System.out.println(cedula);
 		try {
-			
+
 //			persona=ejb.buscarPersonaa(cedula);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "AdministracionClientesModificar?faces-redirect=true&cedula="+cedula;
+		return "AdministracionClientesModificar?faces-redirect=true&cedula=" + cedula;
+	}
+
+	public String modificarCliente() {
+		// persona=ejb.buscarCliente(cedula)
+		return null;
 	}
 
 	/*
@@ -130,7 +135,6 @@ public class AdministradorBean {
 		}
 	}
 
-	
 	public String ModificarCliente() {
 		try {
 
@@ -141,19 +145,17 @@ public class AdministradorBean {
 		}
 		return "AdministracionClientedLista";
 	}
-	
-	
 
 	public String getCedula() {
 		return cedula;
 	}
 
 	public void setCedula(String cedula) {
-		System.out.println("Parametro"+ cedula);
+		System.out.println("Parametro" + cedula);
 		this.cedula = cedula;
-		if(cedula!=null) {
+		if (cedula != null) {
 			try {
-				persona=ejb.buscarPersonaa(cedula);
+				persona = ejb.buscarPersonaa(cedula);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

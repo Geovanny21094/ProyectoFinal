@@ -17,6 +17,7 @@ import appdis.ProyectoFinal.dao.PersonaDao;
 import appdis.ProyectoFinal.dao.RolDao;
 import appdis.ProyectoFinal.dao.SolicitudCreditoDao;
 import appdis.ProyectoFinal.dao.TelefonosDao;
+import appdis.ProyectoFinal.dao.TransaccionDao;
 import appdis.ProyectoFinal.dao.TransferenciaDao;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.BancaVirtual;
@@ -29,6 +30,7 @@ import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 import appdis.ProyectoFinal.modelo.Telefonos;
+import appdis.ProyectoFinal.modelo.Transaccion;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
 /**
@@ -76,6 +78,11 @@ public class gestionON implements DaoProyectoLocal {
 
 	@Inject
 	RolDao rdao;
+	
+	
+	@Inject
+	TransaccionDao tradao;
+	
 
 	/* Banca Virtual */
 	public void guardarBanca(BancaVirtual bv) throws Exception {
@@ -546,6 +553,49 @@ public class gestionON implements DaoProyectoLocal {
 		return user;
 	}
 
+	
+	
+	
+	/* Transaccion */
+	public void guardarTransaccion(Transaccion tra) throws Exception {
+
+		Transaccion aux = tradao.read(tra.getId_transaccion());
+
+		if (aux != null) {
+			tradao.update(tra);
+		} else {
+			tradao.insert(tra);
+		}
+	}
+
+	public void actualizarTransaccion(Transaccion tra) throws Exception {
+
+		Transaccion aux = tradao.read(tra.getId_transaccion());
+
+		if (aux != null) {
+			tradao.update(tra);
+		} else {
+			tradao.insert(tra);
+		}
+	}
+
+	public List<Transaccion> buscarTransaccion(int id) throws Exception {
+		return tradao.getTransaccion(id);
+
+	}
+
+	public void eliminarTransaccion(int id) throws Exception {
+		tradao.delete(id);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	public String getPasswordRol(Rol rol) throws Exception {
 
 		String NUMEROS = "0123456789";
