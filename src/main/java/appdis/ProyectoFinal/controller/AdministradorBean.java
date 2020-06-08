@@ -27,6 +27,7 @@ public class AdministradorBean {
 	private Cuenta cuenta;
 	private Rol rol;
 	private String numero;
+	private String cedula;
 
 	private List<Rol> listaRol;
 	private List<Cliente> listaCliente;
@@ -62,8 +63,16 @@ public class AdministradorBean {
 		persona.setCedula(per.getCedula());
 	}
 	
-	public String modificarCliente() {
-		persona=ejb.buscarCliente(cedula)
+	public String obtenerCliente(String cedula) {
+		System.out.println(cedula);
+		try {
+			
+//			persona=ejb.buscarPersonaa(cedula);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionClientesModificar?faces-redirect=true&cedula="+cedula;
 	}
 
 	/*
@@ -120,9 +129,37 @@ public class AdministradorBean {
 			e.printStackTrace();
 		}
 	}
+
+	
+	public String ModificarCliente() {
+		try {
+
+			ejb.guardarPersona(persona);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionClientedLista";
+	}
 	
 	
-	
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		System.out.println("Parametro"+ cedula);
+		this.cedula = cedula;
+		if(cedula!=null) {
+			try {
+				persona=ejb.buscarPersonaa(cedula);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public List<Cuenta> getListaCuenta() {
 		return listaCuenta;

@@ -14,7 +14,8 @@
 	<ui:define name="contenido">
 
 		<h:form>
-			<h:dataTable class="table" var="cue" value="#{administradorBean.listaCuenta}">
+			<h:dataTable class="table" var="cue"
+				value="#{administradorBean.listaCuenta}">
 
 				<h:column>
 					<f:facet name="header"># Cuenta</f:facet>
@@ -23,43 +24,52 @@
 
 				<h:column>
 					<f:facet name="header">Cedula</f:facet>
-					<h:outputLabel class="co-name" value="#{cue.cliente.persona.nombres}" />
+					<h:outputLabel class="co-name"
+						value="#{cue.cliente.persona.cedula}" />
 
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Nombres</f:facet>
-					<h:outputLabel class="co-name" value="#{cue.cliente.persona.nombres}" />
+					<h:outputLabel class="co-name"
+						value="#{cue.cliente.persona.nombres}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Apellidos</f:facet>
-					<h:outputLabel class="co-name" value="#{cue.cliente.persona.apellidos}" />
+					<h:outputLabel class="co-name"
+						value="#{cue.cliente.persona.apellidos}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Direcion</f:facet>
-					<h:outputLabel class="co-name" value="#{cue.cliente.persona.direccion}" />
+					<h:outputLabel class="co-name"
+						value="#{cue.cliente.persona.direccion}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Telefono</f:facet>
-					<h:outputLabel class="co-name"/>
+					<h:outputLabel class="co-name" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Correo</f:facet>
-					<h:outputLabel class="co-name" value="#{cue.cliente.persona.correo}" />
+					<h:outputLabel class="co-name"
+						value="#{cue.cliente.persona.correo}" />
 				</h:column>
 
 
 				<h:column>
 					<f:facet name="header">Opciones</f:facet>
 
-					<h:commandButton class="btn btn-primary waves-effect waves-light mr-1"
-						value="Modificar" />
-						
-					<h:commandButton class="btn btn-primary waves-effect waves-light mr-1" 
+					<h:commandButton class="btn btn-success"
+						action="#{administradorBean.obtenerCliente(cue.cliente.persona.cedula)}"
+						value="Modificar">
+						<!-- <f:ajax render="table"></f:ajax> -->
+					</h:commandButton>
+
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
 						value="Eliminar" />
 
 				</h:column>

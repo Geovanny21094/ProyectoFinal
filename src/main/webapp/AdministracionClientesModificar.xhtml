@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template.xhtml">
+
+	<h:head>
+		<f:metadata>
+			<f:viewParam name="cedula" value="#{administradorBean.cedula}"></f:viewParam>
+		</f:metadata>
+	</h:head>>
+
+
+	<ui:define name="titulo">
+		Crear Cliente
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{administradorBean.persona.cedula}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombres</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Nombres"
+						value="#{administradorBean.persona.nombres}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Apellidos</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Apellidos"
+						value="#{administradorBean.persona.apellidos}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Dirección</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese su Dirección"
+						value="#{administradorBean.persona.direccion}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Fecha Nacimiento</label>
+				<div class="col-md-12">
+
+					<h:inputText type="text" class="form-control"
+						placeholder="dd/mm/yyyy" data-provide="datepicker"
+						value="#{administradorBean.persona.fecha_nacimiento}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Fecha Registro</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control form-control-line"
+						value="#{administradorBean.cliente.fecha_registro}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Telefonos</label>
+				<div class="col-md-12">
+
+					<h:dataTable id="agregar"
+						value="#{administradorBean.persona.telefonos}" var="tel">
+
+
+						<h:column>
+							<f:facet name="header">
+								<label class="col-md-12">Num Numero</label>
+							</f:facet>
+							<h:inputText class="form-control form-control-line"
+								value="#{tel.persona}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<label class="col-md-12">Tipo</label>
+							</f:facet>
+							<h:selectOneMenu class="form-control form-control-line"
+								value="#{tel.tipo}">
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Celular" itemLabel="Celular"></f:selectItem>
+								<f:selectItem class="form-control form-control-line"
+									itemValue="Convencional" itemLabel="Convencional"></f:selectItem>
+							</h:selectOneMenu>
+						</h:column>
+
+					</h:dataTable>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Correo</label>
+				<div class="col-md-12">
+					<h:inputText type="email" class="form-control" required="true"
+						placeholder="Ingrese su Correo"
+						value="#{administradorBean.persona.correo}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Genero</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese Genero"
+						value="#{administradorBean.persona.genero}" />
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1" action=".."
+						value="+">
+						<f:ajax render="agregar" execute="agregar">
+						</f:ajax>
+					</h:commandButton>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{administradorBean.ModificarCliente()}" value="Guardar" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

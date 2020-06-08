@@ -41,6 +41,7 @@ public class PersonaDao {
 	}
 	
 
+
 	public List<Persona> getPersona(String filtro) {
 		String jpql = " SELECT pe FROM persona pe WHERE cedula_persona LIKE :filtro";
 		Query q = em.createQuery(jpql, Persona.class);

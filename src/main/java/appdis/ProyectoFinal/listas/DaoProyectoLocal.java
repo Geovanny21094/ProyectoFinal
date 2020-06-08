@@ -92,6 +92,7 @@ public interface DaoProyectoLocal {
 	/*Persona*/
 	public void guardarPersona(Persona per) throws Exception;
 	public void actualizarPersona(Persona per) throws Exception;
+	public Persona buscarPersonaa(String cedula) throws Exception;
 	public  List<Persona> buscarPersona(String cedula) throws Exception;
 	public void eliminarPersona(String cedula) throws Exception;
 	public boolean validarCedula(String cedula) throws Exception;

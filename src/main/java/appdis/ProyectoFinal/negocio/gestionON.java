@@ -385,12 +385,13 @@ public class gestionON implements DaoProyectoLocal {
 	public void actualizarPersona(Persona per) throws Exception {
 
 		Persona aux = pedao.read(per.getCedula());
-
-		if (aux != null) {
 			pedao.update(per);
-		} else {
-			pedao.insert(per);
-		}
+		
+	}
+	
+	public Persona buscarPersonaa(String cedula) throws Exception {
+		Persona aux =pedao.read(cedula);
+		return aux;
 	}
 
 	public List<Persona> buscarPersona(String cedula) throws Exception {
