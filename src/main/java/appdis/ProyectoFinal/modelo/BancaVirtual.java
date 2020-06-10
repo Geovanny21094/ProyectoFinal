@@ -25,9 +25,6 @@ public class BancaVirtual {
 	@Column(name = "fecha_ingreso")
 	private Date fecha_ingreso;
 
-	@Column(name = "notificaciones")
-	@OneToMany(mappedBy = "banca")
-	private List<Notificaciones> notificaciones;
 
 	@Column(name = "solcitud")
 	@OneToMany(mappedBy = "bancav")
@@ -52,13 +49,7 @@ public class BancaVirtual {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
-	public List<Notificaciones> getNotificaciones() {
-		return notificaciones;
-	}
 
-	public void setNotificaciones(List<Notificaciones> notificaciones) {
-		this.notificaciones = notificaciones;
-	}
 
 	public List<SolicitudCredito> getSolicitud() {
 		return solicitud;

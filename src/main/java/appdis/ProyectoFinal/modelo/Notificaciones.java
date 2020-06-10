@@ -1,9 +1,11 @@
 package appdis.ProyectoFinal.modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +22,7 @@ public class Notificaciones {
 	
 	@Id
 	@Column (name = "id_not")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_not;
 	
 	@Column (name = "mensaje_notificacion")
@@ -28,8 +31,8 @@ public class Notificaciones {
 	private Date fecha;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_banca")
-	private BancaVirtual banca;
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
 	
 	
 	public int getId_not() {
@@ -56,13 +59,16 @@ public class Notificaciones {
 		this.fecha = fecha;
 	}
 
-	public BancaVirtual getBanca() {
-		return banca;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setBanca(BancaVirtual banca) {
-		this.banca = banca;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
+
+	
+
 	
 	
 	

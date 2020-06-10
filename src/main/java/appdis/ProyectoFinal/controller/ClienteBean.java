@@ -27,11 +27,6 @@ public class ClienteBean {
 	public void init() {
 
 		cuenta = new Cuenta();
-//		cuenta = ejb.buscarCuenta(numeroCuenta);
-//		listatransacciones=ejb.buscarTransaccion(id);
-
-//		listaCuenta=ejb.buscarCuenta(numeroCuenta);
-//		this.listaCuenta=listaCuenta;
 
 	}
 

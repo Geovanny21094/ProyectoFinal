@@ -1,5 +1,6 @@
 package appdis.ProyectoFinal.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Cuenta;
+import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Rol;
 import appdis.ProyectoFinal.modelo.Transaccion;
@@ -29,6 +31,7 @@ public class LoginBean {
 	private Cliente cliente;
 	private int numeroCuenta;
 	private Transaccion newTransaccion;
+	private Notificaciones notificaciones;
 	private List<Transaccion> listatransacciones;
 	private String user;
 	private String clave;
@@ -44,24 +47,28 @@ public class LoginBean {
 		cuenta = new Cuenta();
 		envCorreo = new EnviarCorreo();
 		newTransaccion = new Transaccion();
+		notificaciones=new Notificaciones();
 
 	}
 
 	public String isValidCliente() {
 		String pag = "";
 		Cliente cl;
+
 		try {
 
-//			String user=cliente.getUsuario();
-//			String pass=cliente.getContrasenia();
-			System.out.println("msm1 ->"+user + clave);
 			cl = ejb.getCorreo(user);
-			System.out.println("msm2 ->"+cl.getUsuario() + cl.getContrasenia());
 			if (cl.getUsuario().equals(user) && (cl.getContrasenia().equals(clave))) {
 
-//				cl = ejb.getCorreo(cliente.getUsuario());
 				System.out.println("true");
 				ejb.enviarCorreo("INGRESO A CUENTA", "Se ingreso a la BANCA VIRTUAL", cl.getPersona().getCorreo());
+
+				notificaciones.setMensaje_notificacion("Ingreso Satisfactorio");
+				notificaciones.setFecha(new Date());
+				notificaciones.setCliente(cl);
+				cl.guardarNotificacion(notificaciones);
+
+				ejb.guardarNotificaciones(notificaciones);
 
 				cuenta = ejb.buscarCuenta(cl.getId_cliente());
 				numeroCuenta = cuenta.getId_cuenta();
@@ -75,13 +82,23 @@ public class LoginBean {
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
 						"Se intento ingresar a la BANCA VIRTUAL \n" + "Estado FALLIDO", cl.getPersona().getCorreo());
 
+				notificaciones.setMensaje_notificacion("Ingreso Erroneo");
+				notificaciones.setFecha(new Date());
+				notificaciones.setCliente(cl);
+				cl.guardarNotificacion(notificaciones);
+
+				ejb.guardarNotificaciones(notificaciones);
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		cliente = new Cliente();
+		cl = new Cliente();
+		notificaciones = new Notificaciones();
+		user = "";
+		clave = "";
 		return pag;
 	}
 
