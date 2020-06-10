@@ -378,7 +378,7 @@ public class gestionON implements DaoProyectoLocal {
 	}
 
 	public List<Notificaciones> buscarNotificaciones(int id) throws Exception {
-		return notdao.getNotificaciones(id + "%");
+		return notdao.getNotificaciones(id);
 
 	}
 
@@ -629,8 +629,8 @@ public class gestionON implements DaoProyectoLocal {
 
 	}
 
-	public void eliminarRol(int id) throws Exception {
-		rdao.delete(id);
+	public void eliminarRol(String cedula) throws Exception {
+		rdao.deleteRol(cedula);
 	}
 
 	@Override

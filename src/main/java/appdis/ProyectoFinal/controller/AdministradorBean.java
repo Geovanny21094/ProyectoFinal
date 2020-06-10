@@ -74,7 +74,7 @@ public class AdministradorBean {
 		}
 		return "AdministracionClientesModificar?faces-redirect=true&cedula=" + cedula;
 	}
-	
+
 	public String obtenerPersonaRol(String cedula) {
 		System.out.println(cedula);
 		try {
@@ -90,6 +90,17 @@ public class AdministradorBean {
 	public String modificarCliente() {
 		// persona=ejb.buscarCliente(cedula)
 		return null;
+	}
+
+	public void eliminarRol(String cedula) {
+		System.out.println(cedula);
+		try {
+//			persona = ejb.buscarPersonaa(cedula);
+			ejb.eliminarRol(cedula);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -158,7 +169,7 @@ public class AdministradorBean {
 		}
 		return "AdministracionClientedLista";
 	}
-	
+
 	public String ModificarRol() {
 		try {
 
