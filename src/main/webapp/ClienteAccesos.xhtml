@@ -12,26 +12,40 @@
 
 
 	<ui:define name="contenido">
+	
+<!-- 	<h:form> -->
+<!-- 				<div class="form-group text-center mb-3">
+				<div class="col-sm-12">
+					<h:commandButton
+						class="btn btn-primary btn-lg width-lg btn-rounded"
+						action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
+					</h:commandButton>
+				</div>
+			</div>
+						<div class="form-group text-center mb-3">
+				<div class="col-sm-12">
+					<h:commandButton
+						class="btn btn-primary btn-lg width-lg btn-rounded"
+						action="ClienteHome?faces-redirect=true" value="Cuenta">
+					</h:commandButton>
+				</div>
+			</div> -->
 
 	
-			<h:dataTable class="table table-striped" var="per" value="..">
+			<h:dataTable class="table table-striped" var="noti" value="#{clienteBean.listaNotificaciones}">
 
 				<h:column>
 					<f:facet name="header">Fecha</f:facet>
-					<h:outputLabel value=".." />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Hora</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel value="#{noti.fecha}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Estado</f:facet>
-					<h:outputLabel value=".." />
+					<h:outputLabel value="#{noti.mensaje_notificacion}" />
 				</h:column>
 				
 			</h:dataTable>
+			<!-- </h:form> -->
 			
 	</ui:define>
 </ui:composition>

@@ -138,7 +138,7 @@ public interface DaoProyectoLocal {
 	public void actualizarRol(Rol r) throws Exception;
 	public  List<Rol> buscarRol(int id) throws Exception;
 	public List<Rol> listarRol() throws Exception;
-	public void eliminarRol(int id) throws Exception;
+	public void eliminarRol(String cedula) throws Exception;
 	public String getUserRol(Rol rol) throws Exception;
 	public String getPasswordRol(Rol rol) throws Exception;
 

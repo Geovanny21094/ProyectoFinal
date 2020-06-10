@@ -43,6 +43,15 @@ public class RolDao {
 			em.remove(rol);
 		}
 		
+		public void deleteRol(String cedula) {
+			String jpql = "DELETE FROM Rol r WHERE r.persona.cedula =:cedula";
+			Query q = em.createQuery(jpql, Rol.class);
+			q.setParameter("cedula", cedula);
+			q.executeUpdate();
+			em.getTransaction().commit();
+
+		}
+		
 		public List<Rol> getAutores(){
 			String jpql = "SELECT r FROM Rol r";
 			
