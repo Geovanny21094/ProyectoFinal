@@ -15,12 +15,14 @@
 	<ui:define name="contenido">
 
 		<h:form>
+
+
 			<div class="form-group mb-3">
 				<label>Usuario</label>
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese su Usuario"
-						value="#{loginBean.cliente.usuario}" />
+						value="#{loginBean.user}" />
 				</div>
 			</div>
 
@@ -29,7 +31,7 @@
 				<div class="col-md-12">
 					<h:inputText class="form-control" type="password" required="true"
 						placeholder="Ingrese su Contraseña"
-						value="#{loginBean.cliente.contrasenia}" />
+						value="#{loginBean.clave}" />
 				</div>
 			</div>
 
@@ -37,7 +39,8 @@
 
 			<div class="form-group text-center mb-3">
 				<div class="col-sm-12">
-					<h:commandButton class="btn btn-primary btn-lg width-lg btn-rounded"
+					<h:commandButton
+						class="btn btn-primary btn-lg width-lg btn-rounded"
 						action="#{loginBean.isValidCliente()}" value="INGRESAR">
 					</h:commandButton>
 				</div>

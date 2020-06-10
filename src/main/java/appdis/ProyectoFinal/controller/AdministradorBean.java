@@ -27,6 +27,7 @@ public class AdministradorBean {
 	private Cuenta cuenta;
 	private Rol rol;
 	private String numero;
+	private String cedula;
 
 	private List<Rol> listaRol;
 	private List<Cliente> listaCliente;
@@ -45,13 +46,13 @@ public class AdministradorBean {
 			listaRol = ejb.listarRol();
 			listaCliente = ejb.listarClinetes();
 			listaCliente = ejb.listarClinetes();
-			listaCuenta= ejb.listarCuentas();
+			listaCuenta = ejb.listarCuentas();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		this.listaCuenta=listaCuenta;
+		this.listaCuenta = listaCuenta;
 		this.listaRol = listaRol;
 		this.listaCliente = listaCliente;
 	}
@@ -61,9 +62,33 @@ public class AdministradorBean {
 			persona = new Persona();
 		persona.setCedula(per.getCedula());
 	}
+
+	public String obtenerCliente(String cedula) {
+		System.out.println(cedula);
+		try {
+
+//			persona=ejb.buscarPersonaa(cedula);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionClientesModificar?faces-redirect=true&cedula=" + cedula;
+	}
 	
+	public String obtenerPersonaRol(String cedula) {
+		System.out.println(cedula);
+		try {
+
+//			persona=ejb.buscarPersonaa(cedula);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionRolesModificar?faces-redirect=true&cedula=" + cedula;
+	}
+
 	public String modificarCliente() {
-	//persona=ejb.buscarCliente(cedula)
+		// persona=ejb.buscarCliente(cedula)
 		return null;
 	}
 
@@ -95,7 +120,7 @@ public class AdministradorBean {
 	/*
 	 * Metodo que Guarda un Cliente a partir de una Persona
 	 */
-	public void agregarCliente() {
+	public String agregarCliente() {
 		try {
 
 			cliente.agregarCliente(cliente, persona);
@@ -120,10 +145,47 @@ public class AdministradorBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "AdministracionClientedLista";
+	}
+
+	public String ModificarCliente() {
+		try {
+
+			ejb.guardarPersona(persona);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionClientedLista";
 	}
 	
-	
-	
+	public String ModificarRol() {
+		try {
+
+			ejb.guardarPersona(persona);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "AdministracionRolesLista";
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		System.out.println("Parametro" + cedula);
+		this.cedula = cedula;
+		if (cedula != null) {
+			try {
+				persona = ejb.buscarPersonaa(cedula);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public List<Cuenta> getListaCuenta() {
 		return listaCuenta;

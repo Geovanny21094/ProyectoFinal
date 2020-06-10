@@ -49,25 +49,24 @@ public class ClienteDao {
 	public List<Cliente> getClientes() {
 		String jpql = " SELECT cl FROM Cliente cl";
 		Query q = em.createQuery(jpql, Cliente.class);
-		return  q.getResultList();
+		return q.getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Cliente getCorreo(String usuario) {
-		String jpql = " SELECT cl FROM Cliente cl WHERE usuario = :usuario";
+		String jpql = " SELECT cl FROM Cliente cl WHERE cl.usuario =:usuario";
 		Query q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("usuario", usuario);
 		return (Cliente) q.getSingleResult();
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public Cliente getUserPass(String user, String pass) {
 		String jpql = "SELECT cl FROM Cliente cl WHERE usuario = :user AND contrasenia = :pass";
 		Query q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("user", user);
 		q.setParameter("pass", pass);
-		
+
 		return (Cliente) q.getSingleResult();
 	}
 

@@ -40,15 +40,16 @@ public class Cliente {
 	@Column (name = "contrasenia")
 	private String contrasenia;
 	
-	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Persona persona;
-	
-
 	
 	@Column (name = "credito")
 	@OneToMany(mappedBy = "cliente")
 	private List<Credito> credito;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Notificaciones> notificaciones;
+	
 	
 	
 	public void agregarCliente(Cliente cl, Persona per) {
@@ -57,6 +58,13 @@ public class Cliente {
 			cl = new Cliente();
 		cl.setPersona(per);
 		
+	}
+	
+	public void guardarNotificacion(Notificaciones not) {
+		if(notificaciones==null) {
+			notificaciones=new ArrayList<Notificaciones>();
+			notificaciones.add(not);
+		}
 	}
 	
 	
@@ -105,6 +113,16 @@ public class Cliente {
 
 	public void setCredito(List<Credito> credito) {
 		this.credito = credito;
+	}
+
+
+	public List<Notificaciones> getNotificaciones() {
+		return notificaciones;
+	}
+
+
+	public void setNotificaciones(List<Notificaciones> notificaciones) {
+		this.notificaciones = notificaciones;
 	}
 
 	

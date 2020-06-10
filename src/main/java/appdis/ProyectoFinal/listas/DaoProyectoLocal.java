@@ -66,6 +66,7 @@ public interface DaoProyectoLocal {
 	public void guardarCuenta(Cuenta cu) throws Exception;
 	public void actualizarCuenta(Cuenta cu) throws Exception;
 	public List<Cuenta> listarCuentas() throws Exception;
+	public Cuenta buscarCuenta(int idCliente) throws Exception;
 	public Cuenta buscarCuenta(String numeroCuenta) throws Exception;
 	public void eliminarCuenta(int id) throws Exception;
 	public String numeroCuenta() throws Exception;
@@ -93,6 +94,7 @@ public interface DaoProyectoLocal {
 	/*Persona*/
 	public void guardarPersona(Persona per) throws Exception;
 	public void actualizarPersona(Persona per) throws Exception;
+	public Persona buscarPersonaa(String cedula) throws Exception;
 	public  List<Persona> buscarPersona(String cedula) throws Exception;
 	public void eliminarPersona(String cedula) throws Exception;
 	public boolean validarCedula(String cedula) throws Exception;

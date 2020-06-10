@@ -44,12 +44,17 @@ public class CuentaDao {
 			em.remove(cu);
 		}
 		
+	 	public Cuenta getCuentaL(int idCliente) {
+	 		String jpql = "SELECT cu FROM Cuenta cu WHERE cu.cliente.id_cliente = :idCliente";
+			Query q = em.createQuery(jpql, Cuenta.class);
+			q.setParameter("idCliente", idCliente);
+			return (Cuenta) q.getSingleResult();
+		}
+		
 	 	public Cuenta getCuenta(String numeroCuenta) {
 	 		String jpql = "SELECT cu FROM Cuenta cu WHERE numeroCuenta = :numeroCuenta";
 			Query q = em.createQuery(jpql, Cuenta.class);
 			q.setParameter("numeroCuenta", numeroCuenta);
-			
-			
 			return (Cuenta) q.getSingleResult();
 		}
 		

@@ -146,6 +146,9 @@ public class gestionON implements DaoProyectoLocal {
 			cldao.insert(cl);
 		}
 	}
+	
+
+
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
@@ -283,6 +286,12 @@ public class gestionON implements DaoProyectoLocal {
 		}
 	}
 
+	public Cuenta buscarCuenta(int idCliente) throws Exception{
+		Cuenta aux = cudao.getCuentaL(idCliente);
+		return aux;
+		
+	}
+
 	public String numeroCuenta() throws Exception {
 		String numCuenta = "";
 		String IDENTIFICADOR = "C000";
@@ -392,12 +401,13 @@ public class gestionON implements DaoProyectoLocal {
 	public void actualizarPersona(Persona per) throws Exception {
 
 		Persona aux = pedao.read(per.getCedula());
-
-		if (aux != null) {
 			pedao.update(per);
-		} else {
-			pedao.insert(per);
-		}
+		
+	}
+	
+	public Persona buscarPersonaa(String cedula) throws Exception {
+		Persona aux =pedao.read(cedula);
+		return aux;
 	}
 
 	public List<Persona> buscarPersona(String cedula) throws Exception {
@@ -580,7 +590,6 @@ public class gestionON implements DaoProyectoLocal {
 
 	public List<Transaccion> buscarTransaccion(int id) throws Exception {
 		return tradao.getTransaccion(id);
-
 	}
 
 	public void eliminarTransaccion(int id) throws Exception {
@@ -668,5 +677,6 @@ public class gestionON implements DaoProyectoLocal {
 		}
 		return cedulaValida;
 	}
+
 
 }

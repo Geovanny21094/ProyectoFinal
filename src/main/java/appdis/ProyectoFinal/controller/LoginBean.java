@@ -1,18 +1,25 @@
 package appdis.ProyectoFinal.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cliente;
+import appdis.ProyectoFinal.modelo.Cuenta;
+import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Rol;
+import appdis.ProyectoFinal.modelo.Transaccion;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class LoginBean {
 
 	@Inject
@@ -20,8 +27,15 @@ public class LoginBean {
 
 	private EnviarCorreo envCorreo;
 	private Persona persona;
+	private Cuenta cuenta;
 	private Cliente cliente;
-	
+	private int numeroCuenta;
+	private Transaccion newTransaccion;
+	private Notificaciones notificaciones;
+	private List<Transaccion> listatransacciones;
+	private String user;
+	private String clave;
+
 	private Rol rol;
 
 	@PostConstruct
@@ -30,32 +44,61 @@ public class LoginBean {
 		persona = new Persona();
 		rol = new Rol();
 		cliente = new Cliente();
+		cuenta = new Cuenta();
 		envCorreo = new EnviarCorreo();
+		newTransaccion = new Transaccion();
+		notificaciones=new Notificaciones();
 
 	}
 
 	public String isValidCliente() {
 		String pag = "";
-		try {
-//			String user=cliente.getUsuario();
-//			String pass=cliente.getContrasenia();
-			Cliente cl = new Cliente();
-			if (ejb.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == true) {
+		Cliente cl;
 
-				cl = ejb.getCorreo(cliente.getUsuario());
+		try {
+
+			cl = ejb.getCorreo(user);
+			if (cl.getUsuario().equals(user) && (cl.getContrasenia().equals(clave))) {
+
 				System.out.println("true");
 				ejb.enviarCorreo("INGRESO A CUENTA", "Se ingreso a la BANCA VIRTUAL", cl.getPersona().getCorreo());
-				pag = "ClienteHome";
-			} else if (ejb.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == false) {
+
+				notificaciones.setMensaje_notificacion("Ingreso Satisfactorio");
+				notificaciones.setFecha(new Date());
+				notificaciones.setCliente(cl);
+				cl.guardarNotificacion(notificaciones);
+
+				ejb.guardarNotificaciones(notificaciones);
+
+				cuenta = ejb.buscarCuenta(cl.getId_cliente());
+				numeroCuenta = cuenta.getId_cuenta();
+				System.out.println("cedula-> " + cuenta.getId_cuenta());
+				pag = "ClienteHome?faces-redirect=true&numeroCuenta=" + numeroCuenta;
+
+				listatransacciones = ejb.buscarTransaccion(numeroCuenta);
+
+			} else {
 				System.out.println("false");
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
 						"Se intento ingresar a la BANCA VIRTUAL \n" + "Estado FALLIDO", cl.getPersona().getCorreo());
-				pag = "login";
+
+				notificaciones.setMensaje_notificacion("Ingreso Erroneo");
+				notificaciones.setFecha(new Date());
+				notificaciones.setCliente(cl);
+				cl.guardarNotificacion(notificaciones);
+
+				ejb.guardarNotificaciones(notificaciones);
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		cl = new Cliente();
+		notificaciones = new Notificaciones();
+		user = "";
+		clave = "";
 		return pag;
 	}
 
@@ -82,6 +125,10 @@ public class LoginBean {
 			e.printStackTrace();
 		}
 		return pag;
+	}
+
+	public void cargarCuenta() {
+
 	}
 
 	public EnviarCorreo getEnvCorreo() {
@@ -114,6 +161,54 @@ public class LoginBean {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public int getNumeroCuenta() {
+		return numeroCuenta;
+	}
+
+	public void setNumeroCuenta(int numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
+	}
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	public Transaccion getNewTransaccion() {
+		return newTransaccion;
+	}
+
+	public void setNewTransaccion(Transaccion newTransaccion) {
+		this.newTransaccion = newTransaccion;
+	}
+
+	public List<Transaccion> getListatransacciones() {
+		return listatransacciones;
+	}
+
+	public void setListatransacciones(List<Transaccion> listatransacciones) {
+		this.listatransacciones = listatransacciones;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 }

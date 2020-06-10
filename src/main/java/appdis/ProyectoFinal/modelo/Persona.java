@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,7 +44,7 @@ public class Persona {
 	private String direccion;
 	
 	
-	@OneToMany(mappedBy = "persona")
+	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
 	private List<Telefonos> telefonos;
 	
 	
