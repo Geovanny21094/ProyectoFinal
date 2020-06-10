@@ -66,6 +66,7 @@ public interface DaoProyectoLocal {
 	public void guardarCuenta(Cuenta cu) throws Exception;
 	public void actualizarCuenta(Cuenta cu) throws Exception;
 	public List<Cuenta> listarCuentas() throws Exception;
+	public Cuenta buscarCuenta(int idCliente) throws Exception;
 	public Cuenta buscarCuenta(String numeroCuenta) throws Exception;
 	public void eliminarCuenta(int id) throws Exception;
 	public String numeroCuenta() throws Exception;

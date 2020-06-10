@@ -120,7 +120,7 @@ public class AdministradorBean {
 	/*
 	 * Metodo que Guarda un Cliente a partir de una Persona
 	 */
-	public void agregarCliente() {
+	public String agregarCliente() {
 		try {
 
 			cliente.agregarCliente(cliente, persona);
@@ -145,6 +145,7 @@ public class AdministradorBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "AdministracionClientedLista";
 	}
 
 	public String ModificarCliente() {

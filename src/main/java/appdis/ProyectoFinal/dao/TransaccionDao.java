@@ -34,7 +34,7 @@ public class TransaccionDao {
 	 	}
 
 	 	
-	 	public Transaccion read(int id) {
+		public Transaccion read(int id) {
 			return em.find(Transaccion.class, id);
 		}
 
@@ -43,12 +43,11 @@ public class TransaccionDao {
 			em.remove(tra);
 		}
 
-	
 	 	
 		@SuppressWarnings("unchecked")
 		public List<Transaccion> getTransaccion(int filtro) {
-			String jpql = "SELECT tra FROM Transaccion tra WHERE cuenta.id_cuenta LIKE :filtro";
-			Query q = em.createQuery(jpql, Transferencia.class);
+			String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
+			Query q = em.createQuery(jpql, Transaccion.class);
 			q.setParameter("filtro", filtro);
 			return q.getResultList();
 		}

@@ -13,7 +13,6 @@ import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Transaccion;
-import appdis.ProyectoFinal.modelo.Transferencia;
 
 @ManagedBean
 @ViewScoped

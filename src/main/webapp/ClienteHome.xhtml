@@ -1,43 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-      
-      <ui:composition template="/template2/template.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template2/template.xhtml">
+
+	<h:head>
+		<f:metadata>
+			<f:viewParam name="cedula" value="#{loginBean.cuenta.numeroCuenta}"></f:viewParam>
+		</f:metadata>
+	</h:head>>
 
       	<ui:define name="titulo">
 		Inicio
 	</ui:define>
-     
-      
-      
-      <ui:define name="contenido">
-		<h:dataTable  class="table table-striped"  var="per" value="..">
+
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group text-center mb-3">
+				<div class="col-sm-12">
+					<h:commandButton
+						class="btn btn-primary btn-lg width-lg btn-rounded"
+						action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
+					</h:commandButton>
+				</div>
+			</div>
+
+		</h:form>
+
+		<h:dataTable class="table table-striped" var="tra"
+			value="#{loginBean.listatransacciones}">
 
 
 			<h:column>
 				<f:facet name="header"># Cuenta</f:facet>
-				<h:outputLabel value="" />
+				<h:outputLabel value="#{tra.cuenta.numeroCuenta}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Tipo Transacción</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.tipo}" />
 			</h:column>
-			
+
+			<h:column>
+				<f:facet name="header">Monto</f:facet>
+				<h:outputLabel value="#{tra.monto}" />
+			</h:column>
+
+
 			<h:column>
 				<f:facet name="header">Fecha</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.fecha}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Saldo Actual</f:facet>
-				<h:outputLabel value=".." />
+				<h:outputLabel value="#{tra.cuenta.saldo}" />
 			</h:column>
 
 		</h:dataTable>
 	</ui:define>
- </ui:composition>
+</ui:composition>
 
 </html>

@@ -1,18 +1,23 @@
 package appdis.ProyectoFinal.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cliente;
+import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Persona;
 import appdis.ProyectoFinal.modelo.Rol;
+import appdis.ProyectoFinal.modelo.Transaccion;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class LoginBean {
 
 	@Inject
@@ -20,8 +25,13 @@ public class LoginBean {
 
 	private EnviarCorreo envCorreo;
 	private Persona persona;
+	private Cuenta cuenta;
 	private Cliente cliente;
+	private int numeroCuenta;
+	private Transaccion newTransaccion;
+	private List<Transaccion> listatransacciones;
 	
+
 	private Rol rol;
 
 	@PostConstruct
@@ -30,7 +40,11 @@ public class LoginBean {
 		persona = new Persona();
 		rol = new Rol();
 		cliente = new Cliente();
+		cuenta=new Cuenta();
 		envCorreo = new EnviarCorreo();
+		newTransaccion=new Transaccion();
+		
+
 
 	}
 
@@ -45,7 +59,21 @@ public class LoginBean {
 				cl = ejb.getCorreo(cliente.getUsuario());
 				System.out.println("true");
 				ejb.enviarCorreo("INGRESO A CUENTA", "Se ingreso a la BANCA VIRTUAL", cl.getPersona().getCorreo());
-				pag = "ClienteHome";
+				
+				
+				cuenta=ejb.buscarCuenta(cl.getId_cliente());
+				numeroCuenta=cuenta.getId_cuenta();
+				System.out.println("cedula-> "+cuenta.getId_cuenta());
+				pag = "ClienteHome?faces-redirect=true&numeroCuenta=" + numeroCuenta;
+				
+				try {
+					listatransacciones = ejb.buscarTransaccion(numeroCuenta);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 			} else if (ejb.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == false) {
 				System.out.println("false");
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
@@ -56,6 +84,8 @@ public class LoginBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		cliente=new Cliente();
 		return pag;
 	}
 
@@ -83,7 +113,12 @@ public class LoginBean {
 		}
 		return pag;
 	}
-
+	
+	public void cargarCuenta(){
+		
+		
+		
+	}
 	public EnviarCorreo getEnvCorreo() {
 		return envCorreo;
 	}
@@ -115,5 +150,42 @@ public class LoginBean {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
+
+	public int getNumeroCuenta() {
+		return numeroCuenta;
+	}
+
+	public void setNumeroCuenta(int numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
+	}
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	public Transaccion getNewTransaccion() {
+		return newTransaccion;
+	}
+
+	public void setNewTransaccion(Transaccion newTransaccion) {
+		this.newTransaccion = newTransaccion;
+	}
+
+	public List<Transaccion> getListatransacciones() {
+		return listatransacciones;
+	}
+
+	public void setListatransacciones(List<Transaccion> listatransacciones) {
+		this.listatransacciones = listatransacciones;
+	}
+
+		
+
+	
+	
 
 }
