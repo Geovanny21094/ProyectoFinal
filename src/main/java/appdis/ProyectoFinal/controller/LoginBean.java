@@ -30,7 +30,8 @@ public class LoginBean {
 	private int numeroCuenta;
 	private Transaccion newTransaccion;
 	private List<Transaccion> listatransacciones;
-	
+	private String user;
+	private String clave;
 
 	private Rol rol;
 
@@ -40,52 +41,47 @@ public class LoginBean {
 		persona = new Persona();
 		rol = new Rol();
 		cliente = new Cliente();
-		cuenta=new Cuenta();
+		cuenta = new Cuenta();
 		envCorreo = new EnviarCorreo();
-		newTransaccion=new Transaccion();
-		
-
+		newTransaccion = new Transaccion();
 
 	}
 
 	public String isValidCliente() {
 		String pag = "";
+		Cliente cl;
 		try {
+
 //			String user=cliente.getUsuario();
 //			String pass=cliente.getContrasenia();
-			Cliente cl = new Cliente();
-			if (ejb.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == true) {
+			System.out.println("msm1 ->"+user + clave);
+			cl = ejb.getCorreo(user);
+			System.out.println("msm2 ->"+cl.getUsuario() + cl.getContrasenia());
+			if (cl.getUsuario().equals(user) && (cl.getContrasenia().equals(clave))) {
 
-				cl = ejb.getCorreo(cliente.getUsuario());
+//				cl = ejb.getCorreo(cliente.getUsuario());
 				System.out.println("true");
 				ejb.enviarCorreo("INGRESO A CUENTA", "Se ingreso a la BANCA VIRTUAL", cl.getPersona().getCorreo());
-				
-				
-				cuenta=ejb.buscarCuenta(cl.getId_cliente());
-				numeroCuenta=cuenta.getId_cuenta();
-				System.out.println("cedula-> "+cuenta.getId_cuenta());
+
+				cuenta = ejb.buscarCuenta(cl.getId_cliente());
+				numeroCuenta = cuenta.getId_cuenta();
+				System.out.println("cedula-> " + cuenta.getId_cuenta());
 				pag = "ClienteHome?faces-redirect=true&numeroCuenta=" + numeroCuenta;
-				
-				try {
-					listatransacciones = ejb.buscarTransaccion(numeroCuenta);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
-			} else if (ejb.isValidUserPassC(cliente.getUsuario(), cliente.getContrasenia()) == false) {
+
+				listatransacciones = ejb.buscarTransaccion(numeroCuenta);
+
+			} else {
 				System.out.println("false");
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
 						"Se intento ingresar a la BANCA VIRTUAL \n" + "Estado FALLIDO", cl.getPersona().getCorreo());
-				pag = "login";
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		cliente=new Cliente();
+
+		cliente = new Cliente();
 		return pag;
 	}
 
@@ -113,12 +109,11 @@ public class LoginBean {
 		}
 		return pag;
 	}
-	
-	public void cargarCuenta(){
-		
-		
-		
+
+	public void cargarCuenta() {
+
 	}
+
 	public EnviarCorreo getEnvCorreo() {
 		return envCorreo;
 	}
@@ -183,9 +178,20 @@ public class LoginBean {
 		this.listatransacciones = listatransacciones;
 	}
 
-		
+	public String getUser() {
+		return user;
+	}
 
-	
-	
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
 
 }

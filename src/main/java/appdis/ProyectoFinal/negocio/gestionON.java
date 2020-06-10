@@ -146,6 +146,9 @@ public class gestionON implements DaoProyectoLocal {
 			cldao.insert(cl);
 		}
 	}
+	
+
+
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
@@ -674,5 +677,6 @@ public class gestionON implements DaoProyectoLocal {
 		}
 		return cedulaValida;
 	}
+
 
 }
