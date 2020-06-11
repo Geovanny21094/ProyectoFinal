@@ -109,7 +109,8 @@ public class CajeraBean {
 					cuenta.agregarTransaccion(newTransaccion);
 					ejb.guardarTransaccion(newTransaccion);
 					ejb.guardarCuenta(cuenta);
-					actTabla();
+//					actTabla();
+					listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

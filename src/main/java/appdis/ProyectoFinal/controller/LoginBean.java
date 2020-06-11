@@ -88,6 +88,8 @@ public class LoginBean {
 				cl.guardarNotificacion(notificaciones);
 
 				ejb.guardarNotificaciones(notificaciones);
+				
+				listatransacciones = ejb.buscarTransaccion(numeroCuenta);
 
 			}
 		} catch (Exception e) {
@@ -112,13 +114,12 @@ public class LoginBean {
 				System.out.println("true");
 				// dalp.enviarCorreo("INGRESO A CUENTA","Se ingreso a la BANCA VIRTUAL",
 				// cliente.getPersona().getCorreo());
-				pag = "Accesos";
+				pag = "AdministracionRolesLista?faces-redirect=true";
 			} else {
 				System.out.println("false");
 				// dalp.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL", "Se intento
 				// ingresar a la BANCA VIRTUAL \n"
 				// + "Estado FALLIDO", cliente.getPersona().getCorreo());
-				pag = "login";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

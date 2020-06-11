@@ -12,41 +12,39 @@
 
 
 	<ui:define name="contenido">
-	
-<!-- 	<h:form> -->
-<!-- 				<div class="form-group text-center mb-3">
-				<div class="col-sm-12">
-					<h:commandButton
-						class="btn btn-primary btn-lg width-lg btn-rounded"
-						action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
-					</h:commandButton>
-				</div>
-			</div>
-						<div class="form-group text-center mb-3">
-				<div class="col-sm-12">
-					<h:commandButton
-						class="btn btn-primary btn-lg width-lg btn-rounded"
-						action="ClienteHome?faces-redirect=true" value="Cuenta">
-					</h:commandButton>
-				</div>
-			</div> -->
 
-	
-			<h:dataTable class="table table-striped" var="noti" value="#{clienteBean.listaNotificaciones}">
-
-				<h:column>
-					<f:facet name="header">Fecha</f:facet>
-					<h:outputLabel value="#{noti.fecha}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Estado</f:facet>
-					<h:outputLabel value="#{noti.mensaje_notificacion}" />
-				</h:column>
+		<h:form>
+			<div class="form-group">
 				
-			</h:dataTable>
-			<!-- </h:form> -->
-			
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="ClienteHome?faces-redirect=true" value="Cuenta">
+				</h:commandButton>
+				
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
+				</h:commandButton>
+			</div>
+		</h:form>
+
+		<h:dataTable class="table table-striped" var="noti"
+			value="#{clienteBean.listaNotificaciones}">
+
+			<h:column>
+				<f:facet name="header">Fecha</f:facet>
+				<h:outputLabel value="#{noti.fecha}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				<h:outputLabel value="#{noti.mensaje_notificacion}" />
+			</h:column>
+
+		</h:dataTable>
+
+
 	</ui:define>
 </ui:composition>
 </html>

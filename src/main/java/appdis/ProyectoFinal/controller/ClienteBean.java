@@ -32,6 +32,8 @@ public class ClienteBean {
 	public void init() {
 //		cl=new Cliente();
 		cuenta = new Cuenta();
+		
+		
 
 	}
 
@@ -40,7 +42,7 @@ public class ClienteBean {
 		return "login?faces-redirect=true";
 	}
 
-	public String accesoCliente(String numeroCuenta) {
+	public String accesoCliente(int numeroCuenta) {
 //		cl = ejb.getCorreo(user);
 		try {
 			cuenta = ejb.buscarCuenta(numeroCuenta);
@@ -50,10 +52,27 @@ public class ClienteBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		cuenta=new Cuenta();
-	
-		return "ClienteAccesos";
-		
+		cuenta = new Cuenta();
+
+		return "ClienteAccesos?faces-redirect=true";
+
+	}
+
+	public String datosCliente(int numeroCuenta) {
+		try {
+			cl=new Cliente();
+			System.out.println("Cuneta num-> "+numeroCuenta);
+			cuenta = ejb.buscarCuenta(numeroCuenta);
+			
+			cl = ejb.buscarCliente(cuenta.getCliente().getPersona().getCedula());
+			
+			System.out.println("Cedula-> "+ cl.getPersona().getCedula());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "ClientePerfil";
 	}
 
 	public Cuenta getCuenta() {
