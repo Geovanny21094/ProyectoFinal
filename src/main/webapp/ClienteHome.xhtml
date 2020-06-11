@@ -25,16 +25,22 @@
 			<div class="form-group">
 
 
-					<h:commandButton
-						class="btn btn-primary waves-effect waves-light mr-1"
-						action="#{clienteBean.accesoCliente(loginBean.cuenta.id_cuenta)}" value="Estado Accesos">
-					</h:commandButton>
-					
-										<h:commandButton
-						class="btn btn-primary waves-effect waves-light mr-1"
-						action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
-					</h:commandButton>
-					
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.accesoCliente(loginBean.cuenta.id_cuenta)}"
+					value="Estado Accesos">
+				</h:commandButton>
+				
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.trasacionesFecha(loginBean.cuenta.numeroCuenta)}" value="Ultimas Trasacciones">
+				</h:commandButton>
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
+				</h:commandButton>
+
 
 			</div>
 

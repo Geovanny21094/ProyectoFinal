@@ -2,6 +2,7 @@ package appdis.ProyectoFinal.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +28,15 @@ public class ClienteBean {
 	private Cliente cl;
 	private List<Transaccion> listaTransacciones;
 	private List<Notificaciones> listaNotificaciones;
+	private List<Transaccion> listaTrans;
+	private Date fechaIni;
+	private Date fechaFin;
+	
 
 	@PostConstruct
 	public void init() {
 //		cl=new Cliente();
 		cuenta = new Cuenta();
-		
-		
 
 	}
 
@@ -60,19 +63,57 @@ public class ClienteBean {
 
 	public String datosCliente(int numeroCuenta) {
 		try {
-			cl=new Cliente();
-			System.out.println("Cuneta num-> "+numeroCuenta);
+			cl = new Cliente();
+			System.out.println("Cuneta num-> " + numeroCuenta);
 			cuenta = ejb.buscarCuenta(numeroCuenta);
-			
+
 			cl = ejb.buscarCliente(cuenta.getCliente().getPersona().getCedula());
-			
-			System.out.println("Cedula-> "+ cl.getPersona().getCedula());
+
+			System.out.println("Cedula-> " + cl.getPersona().getCedula());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "ClientePerfil";
+	}
+
+	public String trasacionesFecha(String numeroCuenta) {
+
+		try {
+			System.out.println(numeroCuenta);
+			listaTrans = ejb.buscarTransaccionDias(numeroCuenta);
+
+			for (Transaccion tra : listaTrans) {
+				System.out.println(tra.getFecha());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return "ClientePerfil";
+		return "ClienteFiltro?faces-redirect=true";
+
+	}
+	
+	public String trasacionesFecha2(String numeroCuenta) {
+
+		try {
+			
+			System.out.println(numeroCuenta);
+
+			listaTrans=new ArrayList<Transaccion>();
+			listaTrans = ejb.buscarTransaccionDias2(numeroCuenta,fechaIni,fechaFin);
+
+			for (Transaccion tra : listaTrans) {
+				System.out.println(tra.getFecha());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "ClienteFiltro?faces-redirect=true";
+
 	}
 
 	public Cuenta getCuenta() {
@@ -107,4 +148,30 @@ public class ClienteBean {
 		this.listaNotificaciones = listaNotificaciones;
 	}
 
+	public List<Transaccion> getListaTrans() {
+		return listaTrans;
+	}
+
+	public void setListaTrans(List<Transaccion> listaTrans) {
+		this.listaTrans = listaTrans;
+	}
+
+	public Date getFechaIni() {
+		return fechaIni;
+	}
+
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+
+	
 }
