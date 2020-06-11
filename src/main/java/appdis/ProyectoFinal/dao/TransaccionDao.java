@@ -47,13 +47,24 @@ public class TransaccionDao {
 		@SuppressWarnings("unchecked")
 		public List<Transaccion> getTransaccion(int filtro) {
 			String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
-<<<<<<< HEAD
-			Query q = em.createQuery(jpql, Transferencia.class);
-=======
+
+		//	Query q = em.createQuery(jpql, Transferencia.class);
+
 			Query q = em.createQuery(jpql, Transaccion.class);
->>>>>>> 0d571859de75c2bf77a83291ee6a0fd7950b1966
+
 			q.setParameter("filtro", filtro);
 			return q.getResultList();
 		}
 	 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
+
