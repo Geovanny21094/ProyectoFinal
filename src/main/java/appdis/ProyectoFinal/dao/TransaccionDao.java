@@ -48,7 +48,10 @@ public class TransaccionDao {
 		public List<Transaccion> getTransaccion(int filtro) {
 			String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
 
+<<<<<<< HEAD
 		//	Query q = em.createQuery(jpql, Transferencia.class);
+=======
+>>>>>>> 37f59b178b53d8a3dff46d18f969a154da3344f0
 
 			Query q = em.createQuery(jpql, Transaccion.class);
 
