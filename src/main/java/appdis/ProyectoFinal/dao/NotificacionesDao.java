@@ -48,7 +48,7 @@ public class NotificacionesDao {
 	 	
 		@SuppressWarnings("unchecked")
 		public List<Notificaciones> getNotificaciones(int filtro) {
-			String jpql = "SELECT nt FROM Notificaciones nt WHERE id_not = :filtro";
+			String jpql = "SELECT nt FROM Notificaciones nt WHERE nt.cliente.id_cliente = :filtro";
 			Query q = em.createQuery(jpql, Notificaciones.class);
 			q.setParameter("filtro", filtro);
 			return q.getResultList();

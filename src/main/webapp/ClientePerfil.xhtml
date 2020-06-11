@@ -2,21 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:h="http://java.sun.com/jsf/html">
 
+
+<h:head>
+
+</h:head>
 <ui:composition template="/template2/template.xhtml">
 
-	<h:head>
-		<f:metadata>
-			<f:viewParam name="cedula" value="#{administradorBean.cedula}"></f:viewParam>
-		</f:metadata>
-	</h:head>>
-
-
 	<ui:define name="titulo">
-		Modificar Cliente
+		Datos Cliente
 	</ui:define>
+
 
 	<ui:define name="contenido">
 
@@ -28,7 +25,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" disabled="true"
 						placeholder="Ingrese la Cedula"
-						value="#{administradorBean.persona.cedula}" />
+						value="" />
 				</div>
 			</div>
 
@@ -37,7 +34,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese sus Nombres"
-						value="#{administradorBean.persona.nombres}" />
+						value="#{clienteBean.cl.persona.nombres}" />
 				</div>
 			</div>
 
@@ -46,7 +43,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese sus Apellidos"
-						value="#{administradorBean.persona.apellidos}" />
+						value="#{clienteBean.cl.persona.apellidos}" />
 				</div>
 			</div>
 
@@ -55,7 +52,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese su Dirección"
-						value="#{administradorBean.persona.direccion}" />
+						value="#{clienteBean.cl.persona.direccion}" />
 				</div>
 			</div>
 
@@ -65,18 +62,7 @@
 
 					<h:inputText type="text" class="form-control"
 						placeholder="dd/mm/yyyy" data-provide="datepicker"
-						value="#{administradorBean.persona.fecha_nacimiento}">
-						<f:convertDateTime pattern="dd/mm/yyyy" />
-					</h:inputText>
-
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="col-md-12" class="col-md-12">Fecha Registro</label>
-				<div class="col-md-12">
-					<h:inputText type="text" class="form-control form-control-line"
-						value="#{administradorBean.cliente.fecha_registro}">
+						value="#{clienteBean.cl.persona.fecha_nacimiento}">
 						<f:convertDateTime pattern="dd/mm/yyyy" />
 					</h:inputText>
 
@@ -84,7 +70,8 @@
 			</div>
 
 
-			<div class="form-group">
+
+			<!-- <div class="form-group">
 				<label class="col-md-12">Telefonos</label>
 				<div class="col-md-12">
 
@@ -116,14 +103,14 @@
 					</h:dataTable>
 
 				</div>
-			</div>
+			</div> -->
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Correo</label>
 				<div class="col-md-12">
 					<h:inputText type="email" class="form-control" required="true"
 						placeholder="Ingrese su Correo"
-						value="#{administradorBean.persona.correo}" />
+						value="#{clienteBean.cl.persona.correo}" />
 				</div>
 			</div>
 
@@ -132,7 +119,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese Genero"
-						value="#{administradorBean.persona.genero}" />
+						value="#{clienteBean.cl.persona.genero}" />
 				</div>
 			</div>
 
@@ -157,9 +144,8 @@
 		</h:form>
 
 	</ui:define>
-
+	
 </ui:composition>
 
+
 </html>
-
-

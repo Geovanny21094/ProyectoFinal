@@ -8,7 +8,7 @@
 
 	<h:head>
 		<f:metadata>
-			<f:viewParam name="cedula" value="#{loginBean.cuenta.numeroCuenta}"></f:viewParam>
+			<f:viewParam name="cedula" value="#{loginBean.cuenta.id_cuenta}"></f:viewParam>
 		</f:metadata>
 	</h:head>>
 
@@ -22,21 +22,20 @@
 
 		<h:form>
 
-			<div class="form-group text-center mb-3">
-				<div class="col-sm-12">
+			<div class="form-group">
+
+
 					<h:commandButton
-						class="btn btn-primary btn-lg width-lg btn-rounded"
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{clienteBean.accesoCliente(loginBean.cuenta.id_cuenta)}" value="Estado Accesos">
+					</h:commandButton>
+					
+										<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
 						action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
 					</h:commandButton>
-				</div>
-			</div>
-						<div class="form-group text-center mb-3">
-				<div class="col-sm-12">
-					<h:commandButton
-						class="btn btn-primary btn-lg width-lg btn-rounded"
-						action="#{clienteBean.accesoCliente(loginBean.cuenta.numeroCuenta)}" value="Estado Accesos">
-					</h:commandButton>
-				</div>
+					
+
 			</div>
 
 		</h:form>

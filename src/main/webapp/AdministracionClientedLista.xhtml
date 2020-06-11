@@ -14,17 +14,27 @@
 	<ui:define name="contenido">
 
 		<h:form>
-		
-					<div class="form-group">
+
+			<div class="form-group">
+
+
 				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					value="Crear Usuario" action="AdministracionClientes"/>
+					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
+					action="AdministracionRolesLista" />
+
+				
 
 				<h:commandButton
 					class="btn btn-primary waves-effect waves-light mr-1"
 					value="Crear Rol" action="AdministracionRoles" />
+					
+					<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Usuario" action="AdministracionClientes" />
+
+
 			</div>
-			
+
 			<h:dataTable class="table" var="cue"
 				value="#{administradorBean.listaCuenta}">
 
