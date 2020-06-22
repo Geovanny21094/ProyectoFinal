@@ -44,16 +44,11 @@ public class TransaccionDao {
 	@SuppressWarnings("unchecked")
 	public List<Transaccion> getTransaccion(int filtro) {
 
-
 		String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
 
+		// Query q = em.createQuery(jpql, Transferencia.class);
 
-
-		//	Query q = em.createQuery(jpql, Transferencia.class);
-
-
-		//	Query q = em.createQuery(jpql, Transferencia.class);
-
+		// Query q = em.createQuery(jpql, Transferencia.class);
 
 		Query q = em.createQuery(jpql, Transaccion.class);
 
@@ -70,35 +65,24 @@ public class TransaccionDao {
 		String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN '2020-05-10' AND '2020-06-29' order by e.Fecha";
 		Query q = em.createQuery(jpql, Transaccion.class);
 
-			q.setParameter("numeroCuenta", numeroCuenta);
+		q.setParameter("numeroCuenta", numeroCuenta);
 		return q.getResultList();
 	}
-	
+
 	public List<Transaccion> getTransaccioFiltron2(String numeroCuenta, Date fechaIni, Date fechaFin) {
 //		String jpql = "SELECT s FROM Transaccion s WHERE s.cuenta.numeroCuenta= :numeroCuenta AND s.Fecha = CURRENT_DATE() -30";
-	String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN :fechaIni AND :fechaFin";
-	Query q = em.createQuery(jpql, Transaccion.class);
+		String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN :fechaIni AND :fechaFin";
+		Query q = em.createQuery(jpql, Transaccion.class);
 
-	q.setParameter("numeroCuenta", numeroCuenta);
-	q.setParameter("fechaIni", fechaIni);
-	q.setParameter("fechaFin", fechaFin);
-	return q.getResultList();
-
-
+		q.setParameter("numeroCuenta", numeroCuenta);
+		q.setParameter("fechaIni", fechaIni);
+		q.setParameter("fechaFin", fechaFin);
+		return q.getResultList();
 
 //			q.setParameter("filtro", filtro);
 //			return q.getResultList();
 //		}
-	 	
-		
-}	
-		
-		
-		
-		
-		
-		
-		
-		
-}
 
+	}
+
+}
