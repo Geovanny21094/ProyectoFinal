@@ -47,7 +47,13 @@ public class TransaccionDao {
 
 		String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
 
+
+
 		//	Query q = em.createQuery(jpql, Transferencia.class);
+
+
+		//	Query q = em.createQuery(jpql, Transferencia.class);
+
 
 		Query q = em.createQuery(jpql, Transaccion.class);
 
@@ -77,7 +83,7 @@ public class TransaccionDao {
 	q.setParameter("fechaIni", fechaIni);
 	q.setParameter("fechaFin", fechaFin);
 	return q.getResultList();
-}
+
 
 
 //			q.setParameter("filtro", filtro);
@@ -85,7 +91,7 @@ public class TransaccionDao {
 //		}
 	 	
 		
-		
+}	
 		
 		
 		
