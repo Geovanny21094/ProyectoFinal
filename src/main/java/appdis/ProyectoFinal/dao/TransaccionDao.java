@@ -88,7 +88,7 @@ public class TransaccionDao {
 
 			q.setParameter("filtro", filtro);
 			return q.getResultList();
-		}
+	}
 	 	
 		
 }	
