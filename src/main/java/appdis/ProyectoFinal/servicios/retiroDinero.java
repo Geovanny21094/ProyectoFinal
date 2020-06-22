@@ -12,7 +12,6 @@ import javax.jws.WebService;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Transaccion;
-import ec.edu.ups.deberMaven.modelo.Persona;
 
 @WebService
 public class retiroDinero {

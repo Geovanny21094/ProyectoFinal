@@ -29,9 +29,9 @@ public class InstitucionFinanciera {
 	
 	
 	
-	@OneToMany(mappedBy = "institucion")
-	private List<Transferencia> transferencia;
-	
+//	@OneToMany(mappedBy = "institucion")
+//	private List<Transferencia> transferencia;
+//	
 	
 	
 	public int getId_inst() {
@@ -66,13 +66,13 @@ public class InstitucionFinanciera {
 		this.correo = correo;
 	}
 
-	public List<Transferencia> getTransferencia() {
-		return transferencia;
-	}
-
-	public void setTransferencia(List<Transferencia> transferencia) {
-		this.transferencia = transferencia;
-	}
+//	public List<Transferencia> getTransferencia() {
+//		return transferencia;
+//	}
+//
+//	public void setTransferencia(List<Transferencia> transferencia) {
+//		this.transferencia = transferencia;
+//	}
 	
 	
 	
