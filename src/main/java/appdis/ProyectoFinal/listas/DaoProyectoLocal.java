@@ -1,5 +1,6 @@
 package appdis.ProyectoFinal.listas;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -147,6 +148,8 @@ public interface DaoProyectoLocal {
 	public void guardarTransaccion(Transaccion tra) throws Exception;
 	public void actualizarTransaccion(Transaccion tra) throws Exception;
 	public List<Transaccion> buscarTransaccion(int id) throws Exception;
+	public List<Transaccion> buscarTransaccionDias(String numeroCuenta) throws Exception;
+	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin) throws Exception;
 	public void eliminarTransaccion(int id) throws Exception;
 	
 	

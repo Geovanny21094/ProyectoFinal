@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.controller;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,8 +28,12 @@ public class CajeraBean {
 	private String tipo;
 	private double monto;
 	private Transaccion transaccion;
+	Calendar calendar = Calendar.getInstance();
+	int anio;
+	int mes;
+	int dia;
 
-	
+
 	private List<Transaccion> listatransacciones; 
 	
 	@PostConstruct
@@ -63,7 +68,11 @@ public class CajeraBean {
 	}
 
 	public void agregarCuenta(Cuenta c) {
-
+//
+//		 anio=new java.util.Date().getYear();
+//		 mes=new  java.util.Date().getMonth();
+//		 dia=new  java.util.Date().getDay();
+//		
 		if (cuenta == null)
 			cuenta = new Cuenta();
 		cuenta.setNumeroCuenta(c.getNumeroCuenta());
@@ -77,7 +86,7 @@ public class CajeraBean {
 		if (tipo.equalsIgnoreCase("Deposito")) {
 			double saldo = monto + cuenta.getSaldo();
 			newTransaccion.setCuenta(cuenta);
-			newTransaccion.setFecha(new Date());
+			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 			newTransaccion.setTipo(tipo);
             newTransaccion.setMonto(monto);
             cuenta.setSaldo(saldo);
@@ -98,7 +107,7 @@ public class CajeraBean {
 			if (monto <= saldoAnterior) {
 				double saldoTotal = saldoAnterior - monto;
 
-				newTransaccion.setFecha(new Date());
+				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 				newTransaccion.setTipo(tipo);
 				 newTransaccion.setMonto(monto);
 				newTransaccion.setCuenta(cuenta);

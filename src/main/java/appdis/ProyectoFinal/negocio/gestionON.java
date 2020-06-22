@@ -1,5 +1,6 @@
 package appdis.ProyectoFinal.negocio;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -78,11 +79,9 @@ public class gestionON implements DaoProyectoLocal {
 
 	@Inject
 	RolDao rdao;
-	
-	
+
 	@Inject
 	TransaccionDao tradao;
-	
 
 	/* Banca Virtual */
 	public void guardarBanca(BancaVirtual bv) throws Exception {
@@ -146,9 +145,6 @@ public class gestionON implements DaoProyectoLocal {
 			cldao.insert(cl);
 		}
 	}
-	
-
-
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
 		return cldao.getCliente(id + "%");
@@ -159,7 +155,7 @@ public class gestionON implements DaoProyectoLocal {
 		return cldao.readCedula(cedula);
 
 	}
-	
+
 	public List<Cliente> listarClinetes() throws Exception {
 		return cldao.getClientes();
 	}
@@ -286,10 +282,10 @@ public class gestionON implements DaoProyectoLocal {
 		}
 	}
 
-	public Cuenta buscarCuenta(int idCliente) throws Exception{
+	public Cuenta buscarCuenta(int idCliente) throws Exception {
 		Cuenta aux = cudao.getCuentaL(idCliente);
 		return aux;
-		
+
 	}
 
 	public String numeroCuenta() throws Exception {
@@ -306,16 +302,15 @@ public class gestionON implements DaoProyectoLocal {
 
 		return IDENTIFICADOR + id;
 	}
-	
-	public List<Cuenta> listarCuentas() throws Exception{
+
+	public List<Cuenta> listarCuentas() throws Exception {
 		return cudao.getCuenta();
 	}
-
 
 	public Cuenta buscarCuenta(String numeroCuenta) throws Exception {
 		Cuenta aux = cudao.getCuenta(numeroCuenta);
 		return aux;
-		
+
 	}
 
 	public void eliminarCuenta(int id) throws Exception {
@@ -401,12 +396,12 @@ public class gestionON implements DaoProyectoLocal {
 	public void actualizarPersona(Persona per) throws Exception {
 
 		Persona aux = pedao.read(per.getCedula());
-			pedao.update(per);
-		
+		pedao.update(per);
+
 	}
-	
+
 	public Persona buscarPersonaa(String cedula) throws Exception {
-		Persona aux =pedao.read(cedula);
+		Persona aux = pedao.read(cedula);
 		return aux;
 	}
 
@@ -526,7 +521,7 @@ public class gestionON implements DaoProyectoLocal {
 			rdao.insert(r);
 		}
 	}
-	
+
 	public List<Rol> listarRol() throws Exception {
 		return rdao.getAutores();
 	}
@@ -562,9 +557,6 @@ public class gestionON implements DaoProyectoLocal {
 		return user;
 	}
 
-	
-	
-	
 	/* Transaccion */
 	public void guardarTransaccion(Transaccion tra) throws Exception {
 
@@ -588,6 +580,14 @@ public class gestionON implements DaoProyectoLocal {
 		}
 	}
 
+	public List<Transaccion> buscarTransaccionDias(String numeroCuenta) throws Exception {
+		return tradao.getTransaccioFiltron(numeroCuenta);
+	}
+
+	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin)throws Exception {
+		return tradao.getTransaccioFiltron2(numeroCuenta, fechaIni, fechaFin);
+	}
+
 	public List<Transaccion> buscarTransaccion(int id) throws Exception {
 		return tradao.getTransaccion(id);
 	}
@@ -596,14 +596,6 @@ public class gestionON implements DaoProyectoLocal {
 		tradao.delete(id);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	public String getPasswordRol(Rol rol) throws Exception {
 
 		String NUMEROS = "0123456789";
@@ -677,6 +669,5 @@ public class gestionON implements DaoProyectoLocal {
 		}
 		return cedulaValida;
 	}
-
 
 }
