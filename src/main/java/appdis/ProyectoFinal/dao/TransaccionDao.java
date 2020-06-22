@@ -86,15 +86,15 @@ public class TransaccionDao {
 
 
 
-<<<<<<< HEAD
+
 		//	q.setParameter("filtro", filtro);
-			return q.getResultList();
+			//return q.getResultList();
 		}
-=======
+
 //			q.setParameter("filtro", filtro);
 //			return q.getResultList();
 //		}
->>>>>>> 557a18322c9594bd9e6dce748286a6b719467b55
+
 	 	
 		
 	
