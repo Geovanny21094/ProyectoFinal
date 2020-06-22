@@ -73,11 +73,11 @@ public class retiroDinero {
 	
 	
 	@WebMethod
-	public List<Transaccion> listaTransacciones(){
+	public List<Transaccion> listaTransacciones(int id){
 		List<Transaccion> listadoTransacciones = new ArrayList<Transaccion>();
 		
 		try {
-			//listadoTransacciones = ejb.buscarTransaccion(id);	
+			listadoTransacciones = ejb.buscarTransaccion(id);	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

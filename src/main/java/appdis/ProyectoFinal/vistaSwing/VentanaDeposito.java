@@ -26,6 +26,7 @@ public class VentanaDeposito extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VentanaDeposito() {
+		setTitle("Depositos");
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);

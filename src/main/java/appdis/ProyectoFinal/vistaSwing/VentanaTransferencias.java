@@ -26,6 +26,10 @@ public class VentanaTransferencias extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VentanaTransferencias() {
+		setTitle("Transferencias");
+		setMaximizable(true);
+		setIconifiable(true);
+		setClosable(true);
 		setBounds(100, 100, 450, 300);
 
 	}
