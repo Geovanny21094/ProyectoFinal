@@ -5,11 +5,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Transaccion;
 
+@WebService
 public class ingresoDinero {
 
 	@Inject
@@ -17,6 +20,7 @@ public class ingresoDinero {
 	private Cuenta cuenta;
 	private List<Transaccion> listatransacciones; 
 	
+	@WebMethod
 	public void ingreso(double monto) {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
