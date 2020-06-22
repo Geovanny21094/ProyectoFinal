@@ -17,11 +17,11 @@ public class ingresoDinero {
 
 	@Inject
 	DaoProyectoLocal ejb;
-	private Cuenta cuenta;
+	
 	private List<Transaccion> listatransacciones; 
 	
 	@WebMethod
-	public void ingreso(double monto) {
+	public void ingreso(double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
 		String tipo = "Depósito";

@@ -11,6 +11,6 @@ public class transferenciaDinero {
 	
 	@WebMethod
 	public void transferirDinero(Cuenta cuentaDestino, Cuenta cuentaOrigen, Double monto) {
-		
+		 
 	}
 }
