@@ -2,6 +2,7 @@ package appdis.ProyectoFinal.servicios;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -14,6 +15,7 @@ public class ingresoDinero {
 	@Inject
 	DaoProyectoLocal ejb;
 	private Cuenta cuenta;
+	private List<Transaccion> listatransacciones; 
 	
 	public void ingreso(double monto) {
 		Transaccion newTransaccion = new Transaccion();
