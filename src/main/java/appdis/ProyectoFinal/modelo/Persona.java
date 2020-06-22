@@ -44,7 +44,7 @@ public class Persona {
 	private String direccion;
 	
 	
-	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "persona")
 	private List<Telefonos> telefonos;
 	
 	
