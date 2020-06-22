@@ -80,9 +80,9 @@ public class TransaccionDao {
 }
 
 
-			q.setParameter("filtro", filtro);
-			return q.getResultList();
-		}
+//			q.setParameter("filtro", filtro);
+//			return q.getResultList();
+//		}
 	 	
 		
 		
