@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 
-public class VentanaDeposito extends JInternalFrame {
+public class VentanaRetiros extends JInternalFrame {
 
 	/**
 	 * Launch the application.
@@ -13,7 +13,7 @@ public class VentanaDeposito extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaDeposito frame = new VentanaDeposito();
+					VentanaRetiros frame = new VentanaRetiros();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -25,12 +25,12 @@ public class VentanaDeposito extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDeposito() {
+	public VentanaRetiros() {
+		setTitle("Retiros");
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 563, 353);
-		getContentPane().setLayout(null);
+		setBounds(100, 100, 450, 300);
 
 	}
 
