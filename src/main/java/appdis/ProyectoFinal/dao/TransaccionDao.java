@@ -86,6 +86,11 @@ public class TransaccionDao {
 
 
 
+<<<<<<< HEAD
+		}
+
+	 
+=======
 
 		//	q.setParameter("filtro", filtro);
 //			return q.getResultList();
@@ -98,6 +103,7 @@ public class TransaccionDao {
 		
 	
 		
+>>>>>>> 7c0bd16821f8b037c2fd9faa6cc9edfc45251464
 		
 }		
 		
