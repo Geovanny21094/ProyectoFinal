@@ -31,6 +31,9 @@ public class VentanaDeposito extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VentanaDeposito() {
+		setMaximizable(true);
+		setIconifiable(true);
+		setClosable(true);
 		setBounds(100, 100, 563, 353);
 		getContentPane().setLayout(null);
 		
