@@ -25,19 +25,21 @@ public class CajeroServiceSOAP {
 	private List<Transaccion> listatransacciones;
 
 	@WebMethod
-	public void obtenerDatosCuenta(String numeroCuenta) {
+	public Cuenta obtenerDatosCuenta(String numeroCuenta) {
 		try {
 //			this.numeroCuenta = numeroCuenta;
 			Cuenta cuenta = new Cuenta();
 			cuenta = ejb.buscarCuenta(numeroCuenta);
+			return cuenta;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 	}
 
 	@WebMethod
-	public String Deposito(String tipo, double monto, Cuenta cuenta) {
+	public String guardarTransaccion(String tipo, double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
 
@@ -61,22 +63,9 @@ public class CajeroServiceSOAP {
 				e.printStackTrace();
 			}
 		}
-		
-
-		monto = 0;
-		return null;
-	}
 	
 	
-	
-	
-	
-	
-	public String Retiro(String tipo, double monto, Cuenta cuenta) {
-		Transaccion newTransaccion = new Transaccion();
-		Cuenta newCuenta = new Cuenta();
-
-		 if (tipo.equalsIgnoreCase("Retiro")) {
+	else if (tipo.equalsIgnoreCase("Retiro")) {
 			double saldoAnterior = cuenta.getSaldo();
 			if (monto <= saldoAnterior) {
 				double saldoTotal = saldoAnterior - monto;

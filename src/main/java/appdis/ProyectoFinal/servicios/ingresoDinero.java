@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.servicios;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,8 +21,24 @@ public class ingresoDinero {
 	
 	private List<Transaccion> listatransacciones; 
 	
+	
+	
 	@WebMethod
-	public void ingreso(double monto, Cuenta cuenta) {
+	public void obtenerDatosCuenta(String numeroCuenta) {
+		try {
+//			this.numeroCuenta = numeroCuenta;
+			Cuenta cuenta = new Cuenta();
+			cuenta = ejb.buscarCuenta(numeroCuenta);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+	@WebMethod
+	public void deposito(double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
 		String tipo = "Depósito";
@@ -48,4 +65,26 @@ public class ingresoDinero {
 			}
 		
 	}
+	
+	
+	
+	
+	
+	@WebMethod
+	public List<Transaccion> listaTransacciones(int id){
+		List<Transaccion> listadoTransacciones = new ArrayList<Transaccion>();
+		
+		try {
+			listadoTransacciones = ejb.buscarTransaccion(id);	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listadoTransacciones;		
+	}
+	
+	
+	
+	
+	
 }
