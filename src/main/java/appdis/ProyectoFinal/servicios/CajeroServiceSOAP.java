@@ -67,15 +67,6 @@ public class CajeroServiceSOAP {
 		return null;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@WebMethod
 	public String Retiro(String tipo, double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
