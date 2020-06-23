@@ -37,7 +37,7 @@ public class CajeroServiceSOAP {
 	}
 
 	@WebMethod
-	public String guardarTrasaccion(String tipo, double monto, Cuenta cuenta) {
+	public String Deposito(String tipo, double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta newCuenta = new Cuenta();
 
@@ -60,7 +60,23 @@ public class CajeroServiceSOAP {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (tipo.equalsIgnoreCase("Retiro")) {
+		}
+		
+
+		monto = 0;
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	public String Retiro(String tipo, double monto, Cuenta cuenta) {
+		Transaccion newTransaccion = new Transaccion();
+		Cuenta newCuenta = new Cuenta();
+
+		 if (tipo.equalsIgnoreCase("Retiro")) {
 			double saldoAnterior = cuenta.getSaldo();
 			if (monto <= saldoAnterior) {
 				double saldoTotal = saldoAnterior - monto;
@@ -90,5 +106,12 @@ public class CajeroServiceSOAP {
 		monto = 0;
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }
