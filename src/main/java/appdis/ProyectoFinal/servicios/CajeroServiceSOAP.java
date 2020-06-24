@@ -109,7 +109,6 @@ public class CajeroServiceSOAP {
 				ejb.guardarTransaccion(newTransaccion);
 				ejb.guardarCuenta(cuenta);
 				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
-				return "Si entra";
 				// actTabla();
 
 			} catch (Exception e) {

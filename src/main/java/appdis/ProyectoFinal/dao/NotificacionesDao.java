@@ -9,6 +9,8 @@ import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.Notificaciones;
 
+
+
 /**
  * 
  *
@@ -20,37 +22,36 @@ import appdis.ProyectoFinal.modelo.Notificaciones;
 public class NotificacionesDao {
 
 	@PersistenceContext(name = "testjpaPersistenceUnit")
-	private EntityManager em;
+	 private EntityManager em;
 
-	public void insert(Notificaciones notificaciones) {
-		em.persist(notificaciones);
-	}
+	    
+	 	public void insert(Notificaciones notificaciones) {
+	 em.persist(notificaciones);
+	 	}
 
-	public void update(Notificaciones notificaciones) {
-		em.merge(notificaciones);
-	}
+	 	
+	 	public void update(Notificaciones notificaciones)   {
+	 em.merge(notificaciones);
+	 	}
 
-	public void guardarNotificacion(Notificaciones not) {
+	 	
+	 	public Notificaciones read(int id) {
+			return em.find(Notificaciones.class, id);
+		}
 
-		em.persist(not);
+		public void delete(int id) {
+			Notificaciones nt = read(id);
+			em.remove(nt);
+		}
 
-	}
-
-	public Notificaciones read(int id) {
-		return em.find(Notificaciones.class, id);
-	}
-
-	public void delete(int id) {
-		Notificaciones nt = read(id);
-		em.remove(nt);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Notificaciones> getNotificaciones(int filtro) {
-		String jpql = "SELECT nt FROM Notificaciones nt WHERE nt.cliente.id_cliente = :filtro";
-		Query q = em.createQuery(jpql, Notificaciones.class);
-		q.setParameter("filtro", filtro);
-		return q.getResultList();
-	}
-
-}
+	
+	 	
+		@SuppressWarnings("unchecked")
+		public List<Notificaciones> getNotificaciones(int filtro) {
+			String jpql = "SELECT nt FROM Notificaciones nt WHERE nt.cliente.id_cliente = :filtro";
+			Query q = em.createQuery(jpql, Notificaciones.class);
+			q.setParameter("filtro", filtro);
+			return q.getResultList();
+		}
+	 	
+	 }

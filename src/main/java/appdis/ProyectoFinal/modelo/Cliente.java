@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import appdis.ProyectoFinal.dao.NotificacionesDao;
-
 
 
 /**
@@ -65,10 +63,6 @@ public class Cliente {
 		}
 	}*/
 	
-	public void guardarNotificacion(Notificaciones not) {
-		NotificacionesDao nd = new NotificacionesDao();
-		nd.guardarNotificacion(not);
-	}
 	
 	public int getId_cliente() {
 		return id_cliente;

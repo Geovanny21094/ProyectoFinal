@@ -1,7 +1,6 @@
 package appdis.ProyectoFinal.dao;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -35,10 +34,6 @@ public class TransaccionDao {
 
 	public Transaccion read(int id) {
 		return em.find(Transaccion.class, id);
-	}
-	
-	public void guardarTransacción(Transaccion tra) {
-		em.persist(tra);
 	}
 
 	public void delete(int id) {
