@@ -48,9 +48,6 @@ public class Cuenta {
 	private Cliente cliente;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "numeroCuenta")
-	private List<Transaccion> transaccion;
 	
 	
 	public void agregarCliente(Cliente cl, Cuenta cu) {
@@ -59,13 +56,13 @@ public class Cuenta {
 		cu.setCliente(cl);
 	}
 
-	
+	/*
 	public void agregarTransaccion(Transaccion tra) {
 		if (transaccion == null)
 			transaccion = new ArrayList<Transaccion>();	
 		transaccion.add(tra);
 	}
-	
+	*/
 	
 	
 	public Date getFecha() {
@@ -125,7 +122,7 @@ public class Cuenta {
 		this.cliente = cliente;
 	}
 
-
+/*
 	public List<Transaccion> getTransaccion() {
 		return transaccion;
 	}
@@ -133,7 +130,7 @@ public class Cuenta {
 	public void setTransaccion(Transaccion tra) {
 		this.transaccion = (List<Transaccion>) tra;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Cuenta [id_cuenta=" + id_cuenta + ", numeroCuenta=" + numeroCuenta + ", tipoOperacion=" + tipoOperacion
