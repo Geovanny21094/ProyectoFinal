@@ -80,7 +80,10 @@ public class CajeroServiceSOAP {
 //			this.numeroCuenta = numeroCuenta;
 			Cuenta cuenta = new Cuenta();
 			cuenta = ejb.buscarCuenta(numeroCuenta);
+			System.out.println("entra: " + cuenta);
 			return cuenta;
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,6 +109,7 @@ public class CajeroServiceSOAP {
 				ejb.guardarTransaccion(newTransaccion);
 				ejb.guardarCuenta(cuenta);
 				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
+				return "Si entra";
 				// actTabla();
 
 			} catch (Exception e) {
@@ -114,7 +118,7 @@ public class CajeroServiceSOAP {
 			}
 		}
 		monto = 0;
-		return null;
+		return "false";
 	}
 	
 	@WebMethod

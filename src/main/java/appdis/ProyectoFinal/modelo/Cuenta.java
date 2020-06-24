@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import appdis.ProyectoFinal.dao.TransaccionDao;
+
 /**
  * 
  *
@@ -37,21 +39,15 @@ public class Cuenta {
 	
 	private Date fecha;
 	
-	
-	@OneToMany(mappedBy = "cuenta")
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "numeroCuenta")
 	private List<Transferencia> transferencia;
-	
 	
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
-	
-	
-	@OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Transaccion> transaccion;
-	
-	
+		
 	public void agregarCliente(Cliente cl, Cuenta cu) {
 		if (cu == null)
 			cu = new Cuenta();
@@ -60,9 +56,8 @@ public class Cuenta {
 
 	
 	public void agregarTransaccion(Transaccion tra) {
-		if (transaccion == null)
-			transaccion = new ArrayList<Transaccion>();	
-		transaccion.add(tra);
+		TransaccionDao td = new TransaccionDao();
+		td.guardarTransacción(tra);
 	}
 	
 	
@@ -124,7 +119,7 @@ public class Cuenta {
 		this.cliente = cliente;
 	}
 
-
+/*
 	public List<Transaccion> getTransaccion() {
 		return transaccion;
 	}
@@ -132,7 +127,7 @@ public class Cuenta {
 	public void setTransaccion(Transaccion tra) {
 		this.transaccion = (List<Transaccion>) tra;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Cuenta [id_cuenta=" + id_cuenta + ", numeroCuenta=" + numeroCuenta + ", tipoOperacion=" + tipoOperacion

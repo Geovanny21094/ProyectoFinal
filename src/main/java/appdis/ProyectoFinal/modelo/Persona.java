@@ -49,7 +49,6 @@ public class Persona {
 	
 	
 	
-	
 	public String getCedula() {
 		return cedula;
 	}

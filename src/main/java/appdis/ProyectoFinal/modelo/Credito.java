@@ -2,6 +2,7 @@ package appdis.ProyectoFinal.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +29,7 @@ public class Credito {
 	
 	
 	
-	@ManyToOne
+	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	

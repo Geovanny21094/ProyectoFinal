@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,10 +28,11 @@ public class Notificaciones {
 	
 	@Column (name = "mensaje_notificacion")
 	private String mensaje_notificacion;
+	
 	@Column (name = "fecha")
 	private Date fecha;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	

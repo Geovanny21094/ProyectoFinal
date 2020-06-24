@@ -66,7 +66,7 @@ public class LoginBean {
 				notificaciones.setMensaje_notificacion("Ingreso Satisfactorio");
 				notificaciones.setFecha(new Date());
 				notificaciones.setCliente(cl);
-				cl.guardarNotificacion(notificaciones);
+				//cl.guardarNotificacion(notificaciones);
 
 				ejb.guardarNotificaciones(notificaciones);
 
@@ -85,7 +85,7 @@ public class LoginBean {
 				notificaciones.setMensaje_notificacion("Ingreso Erroneo");
 				notificaciones.setFecha(new Date());
 				notificaciones.setCliente(cl);
-				cl.guardarNotificacion(notificaciones);
+				//cl.guardarNotificacion(notificaciones);
 
 				ejb.guardarNotificaciones(notificaciones);
 				

@@ -25,9 +25,6 @@ public class Transferencia {
 	private String cuenta_destino;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "id_cuenta")
-	private Cuenta cuenta;
 	
 //	@ManyToOne
 //	@JoinColumn(name = "id_inst")
@@ -50,13 +47,7 @@ public class Transferencia {
 		this.cuenta_destino = cuenta_destino;
 	}
 
-	public Cuenta getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
+	
 
 //	public InstitucionFinanciera getInstitucion() {
 //		return institucion;
