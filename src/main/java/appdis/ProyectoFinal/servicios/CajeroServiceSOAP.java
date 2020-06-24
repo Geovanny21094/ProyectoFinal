@@ -11,6 +11,7 @@ import javax.jws.WebService;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Transaccion;
+import appdis.ProyectoFinal.modelo.Transferencia;
 
 @WebService
 public class CajeroServiceSOAP {
@@ -23,6 +24,55 @@ public class CajeroServiceSOAP {
 //	private Cuenta cuenta;
 //	private String numeroCuenta;
 	private List<Transaccion> listatransacciones;
+	
+	
+
+	public void tranferirDineroCuenta(Cuenta cuOrigen, Cuenta cuDestino, String tipo, double monto) {
+
+			Transferencia tra=new Transferencia();
+
+			Transaccion newTransaccion = new Transaccion();
+			double saldoAnterior = cuOrigen.getSaldo();
+			if (monto <= saldoAnterior) {
+				double saldoTotal = saldoAnterior - monto;
+
+				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
+				newTransaccion.setTipo(tipo);
+				newTransaccion.setMonto(monto);
+				newTransaccion.setCuenta(cuOrigen);
+
+				cuOrigen.setSaldo(saldoTotal);
+				try {
+					cuOrigen.agregarTransaccion(newTransaccion);
+					ejb.guardarTransaccion(newTransaccion);
+					ejb.guardarCuenta(cuOrigen);
+					
+					
+					double saldo = monto + cuDestino.getSaldo();
+					newTransaccion.setCuenta(cuDestino);
+					newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
+					newTransaccion.setTipo(tipo);
+					newTransaccion.setMonto(monto);
+					cuDestino.setSaldo(saldo);
+					
+//						cuenta.agregarCliente(cliente, newCuenta);
+						cuDestino.agregarTransaccion(newTransaccion);
+						ejb.guardarTransaccion(newTransaccion);
+						ejb.guardarCuenta(cuDestino);
+						
+						tra.setCuenta(cuOrigen);
+						tra.setCuenta_destino(cuDestino.getNumeroCuenta());
+						ejb.guardarTransferencia(tra);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Saldo Insuficinete");
+			}
+		}
+	
 
 	@WebMethod
 	public Cuenta obtenerDatosCuenta(String numeroCuenta) {
