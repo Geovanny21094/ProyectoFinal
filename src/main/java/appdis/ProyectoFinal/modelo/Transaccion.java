@@ -2,6 +2,7 @@ package appdis.ProyectoFinal.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Transaccion {
 	private double monto;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_cuenta")
 	private Cuenta cuenta;
 	
