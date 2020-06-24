@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import appdis.ProyectoFinal.dao.TransaccionDao;
+
 /**
  * 
  *
@@ -52,13 +54,12 @@ public class Cuenta {
 		cu.setCliente(cl);
 	}
 
-	/*
+	
 	public void agregarTransaccion(Transaccion tra) {
-		if (transaccion == null)
-			transaccion = new ArrayList<Transaccion>();	
-		transaccion.add(tra);
+		TransaccionDao td = new TransaccionDao();
+		td.guardarTransacción(tra);
 	}
-	*/
+	
 	
 	
 	public Date getFecha() {
