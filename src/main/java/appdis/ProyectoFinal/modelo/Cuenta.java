@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import appdis.ProyectoFinal.dao.TransaccionDao;
+
 /**
  * 
  *
@@ -59,7 +61,6 @@ public class Cuenta {
 		transaccion.add(tra);
 	}
 	*/
-	
 	
 	public Date getFecha() {
 		return fecha;
