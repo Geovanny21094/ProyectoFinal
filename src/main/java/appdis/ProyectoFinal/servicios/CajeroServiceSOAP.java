@@ -104,10 +104,13 @@ public class CajeroServiceSOAP {
 			newTransaccion.setMonto(monto);
 			cuenta.setSaldo(saldo);
 			try {
+				System.out.println("Si entra para enviar");
 //				cuenta.agregarCliente(cliente, newCuenta);
-				cuenta.agregarTransaccion(newTransaccion);
+				//cuenta.agregarTransaccion(newTransaccion);
 				ejb.guardarTransaccion(newTransaccion);
+				System.out.println("Paso el guardar Transaccion");
 				ejb.guardarCuenta(cuenta);
+				System.out.println("Paso el guardar Cuenta");
 				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
 				return "true";
 				// actTabla();
@@ -139,7 +142,7 @@ public class CajeroServiceSOAP {
 				cuenta.setSaldo(saldoTotal);
 				try {
 //					cuenta.agregarCliente(cliente, newCuenta);
-					cuenta.agregarTransaccion(newTransaccion);
+					//cuenta.agregarTransaccion(newTransaccion);
 					ejb.guardarTransaccion(newTransaccion);
 					ejb.guardarCuenta(cuenta);
 //					actTabla();
