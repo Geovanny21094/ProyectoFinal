@@ -115,10 +115,11 @@ public class CajeroServiceSOAP {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return "false";
 			}
 		}
 		monto = 0;
-		return "false";
+		return null;
 	}
 	
 	@WebMethod
