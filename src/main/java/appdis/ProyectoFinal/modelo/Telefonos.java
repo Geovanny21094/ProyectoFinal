@@ -25,6 +25,7 @@ public class Telefonos {
 	@Column (name = "tipo")
 	private String tipo;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_cedula")
 	private Persona persona;

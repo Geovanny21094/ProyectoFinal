@@ -37,7 +37,6 @@ public class Cuenta {
 	
 	private Date fecha;
 	
-	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "numeroCuenta")
 	private List<Transferencia> transferencia;
@@ -46,10 +45,7 @@ public class Cuenta {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
-	
-	
-	
-	
+		
 	public void agregarCliente(Cliente cl, Cuenta cu) {
 		if (cu == null)
 			cu = new Cuenta();
