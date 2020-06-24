@@ -38,9 +38,9 @@ public class Cuenta {
 	private Date fecha;
 	
 	
-	@OneToMany(mappedBy = "cuenta")
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "numeroCuenta")
 	private List<Transferencia> transferencia;
-	
 	
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -48,7 +48,8 @@ public class Cuenta {
 	private Cliente cliente;
 	
 	
-	@OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "numeroCuenta")
 	private List<Transaccion> transaccion;
 	
 	

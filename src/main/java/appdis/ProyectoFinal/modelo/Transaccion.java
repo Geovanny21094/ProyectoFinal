@@ -31,10 +31,7 @@ public class Transaccion {
 	
 	private double monto;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "id_cuenta")
-	private Cuenta cuenta;
+
 	
 	
 	public int getId_transaccion() {
@@ -67,14 +64,7 @@ public class Transaccion {
 	}
 
 
-	public Cuenta getCuenta() {
-		return cuenta;
-	}
-
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
+	
 
 
 	public double getMonto() {

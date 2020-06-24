@@ -30,7 +30,10 @@ public class CajeroServiceSOAP {
 //			this.numeroCuenta = numeroCuenta;
 			Cuenta cuenta = new Cuenta();
 			cuenta = ejb.buscarCuenta(numeroCuenta);
+			System.out.println("entra: " + cuenta);
 			return cuenta;
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
