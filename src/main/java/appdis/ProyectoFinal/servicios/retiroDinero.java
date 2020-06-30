@@ -46,7 +46,7 @@ public class retiroDinero {
 				cuenta.setSaldo(saldoTotal);
 				try {
 //					cuenta.agregarCliente(cliente, newCuenta);
-					cuenta.agregarTransaccion(newTransaccion);
+				//	cuenta.agregarTransaccion(newTransaccion);
 					ejb.guardarTransaccion(newTransaccion);
 					ejb.guardarCuenta(cuenta);
 //					actTabla();

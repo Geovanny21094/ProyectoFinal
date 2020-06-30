@@ -53,7 +53,7 @@ public class ingresoDinero {
             cuenta.setSaldo(saldo);
 			try {
 //				cuenta.agregarCliente(cliente, newCuenta);
-				cuenta.agregarTransaccion(newTransaccion);
+				//cuenta.agregarTransaccion(newTransaccion);
 				ejb.guardarTransaccion(newTransaccion);
 				ejb.guardarCuenta(cuenta);
 				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());

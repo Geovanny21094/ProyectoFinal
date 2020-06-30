@@ -26,7 +26,12 @@ public class CuentaDao {
 
 	    
 	 	public void insert(Cuenta cuenta) {
-	 		em.persist(cuenta);
+	 		if(read(cuenta.getId_cuenta())!=null) {
+	 			em.persist(cuenta);
+	 		}else {
+	 			update(cuenta);
+	 		}
+	 		
 	 	}
 
 	 	

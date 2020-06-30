@@ -7,14 +7,19 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Transaccion;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
-@WebService
-public class CajeroServiceSOAP {
+@Path("/cliente")
+public class CajeroServiceREST {
 
 	@Inject
 	DaoProyectoLocal ejb;
@@ -25,41 +30,65 @@ public class CajeroServiceSOAP {
 //	private String numeroCuenta;
 	private List<Transaccion> listatransacciones;
 
-	public void tranferirDineroCuenta(String numCuentaOrigen, String numCuentaDestino, double monto) throws Exception {
+	
 
-		Transferencia tranferencia = new Transferencia();
+	@GET
+	@Path("/listado")
+	@Produces("application/json")
+	public String saludar(@QueryParam ("x") String nombre) {
+		return "hola" + nombre;	
+	}
+	
+	
+	
+	@GET
+	@Path("/listado/{name}/{usr}")
+	@Produces("application/json")
+	public String saludar2(@PathParam("name") String nombre, @PathParam ("usr") String usuario) {
+		return "hola" + nombre;	
+	}
+	
+	
+	
+	
+	
+	public void tranferirDineroCuenta(Cuenta cuOrigen, Cuenta cuDestino, String tipo, double monto) {
+
+		Transferencia tra = new Transferencia();
+
 		Transaccion newTransaccion = new Transaccion();
-		Cuenta cuentaOrigen = ejb.buscarCuenta(numCuentaOrigen);
-		Cuenta cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
-
-		double saldoAnterior = cuentaOrigen.getSaldo();
+		double saldoAnterior = cuOrigen.getSaldo();
 		if (monto <= saldoAnterior) {
+			double saldoTotal = saldoAnterior - monto;
+
 			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
-			newTransaccion.setTipo("Retiro");
+			newTransaccion.setTipo(tipo);
 			newTransaccion.setMonto(monto);
+			newTransaccion.setCuenta(cuOrigen);
+
+			cuOrigen.setSaldo(saldoTotal);
 			try {
-				System.out.println(cuentaOrigen.getNumeroCuenta());
-				newTransaccion.setCuenta(cuentaOrigen);
-				cuentaOrigen.setSaldo(saldoAnterior - monto);
-				ejb.actualizarCuenta(cuentaOrigen);
+//					cuOrigen.agregarTransaccion(newTransaccion);
 				ejb.guardarTransaccion(newTransaccion);
+				ejb.guardarCuenta(cuOrigen);
 
-				
-				double saldo = monto + cuentaDestino.getSaldo();
-
+				double saldo = monto + cuDestino.getSaldo();
+				newTransaccion.setCuenta(cuDestino);
 				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
-				newTransaccion.setTipo("Deposito");
+				newTransaccion.setTipo(tipo);
 				newTransaccion.setMonto(monto);
+				cuDestino.setSaldo(saldo);
 
-				cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
-				newTransaccion.setCuenta(cuentaDestino);
-				cuentaDestino.setSaldo(saldo);
-				ejb.actualizarCuenta(cuentaDestino);
+//						cuenta.agregarCliente(cliente, newCuenta);
+//						cuDestino.agregarTransaccion(newTransaccion);
 				ejb.guardarTransaccion(newTransaccion);
-				
-			} catch (
+				ejb.guardarCuenta(cuDestino);
 
-			Exception e) {
+//						tra.setCuenta(cuOrigen);
+				tra.setCuenta_destino(cuDestino.getNumeroCuenta());
+				ejb.guardarTransferencia(tra);
+
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -68,7 +97,7 @@ public class CajeroServiceSOAP {
 		}
 	}
 
-	@WebMethod
+	
 	public Cuenta obtenerDatosCuenta(String numeroCuenta) {
 		try {
 //			this.numeroCuenta = numeroCuenta;
@@ -84,36 +113,35 @@ public class CajeroServiceSOAP {
 		}
 	}
 
-	@WebMethod
-	public String Deposito(String tipo, double monto, String numeroCuenta) {
-
+	
+	public String Deposito(String tipo, double monto,String numeroCuenta) {
+		
 		Transaccion newTransaccion = new Transaccion();
-		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta=new Cuenta(); 
 
 		if (tipo.equalsIgnoreCase("Deposito")) {
 			double saldo = monto + cuenta.getSaldo();
-
+			
 			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 			newTransaccion.setTipo(tipo);
-			newTransaccion.setMonto(monto);
+			newTransaccion.setMonto(monto);		
+			cuenta.setSaldo(saldo);
 			try {
 				cuenta = ejb.buscarCuenta(numeroCuenta);
-				System.out.println(cuenta.getNumeroCuenta());
 				newTransaccion.setCuenta(cuenta);
 				System.out.println("Si entra para enviar 1 ");
 //				cuenta.agregarCliente(cliente, newCuenta);
 				// cuenta.agregarTransaccion(newTransaccion);
-				cuenta.setSaldo(cuenta.getSaldo() + saldo);
-				ejb.actualizarCuenta(cuenta);
+			newTransaccion.agregarCuenta(cuenta);
+			ejb.guardarCuenta(cuenta);
 				System.out.println("Si entra para enviar 2");
 
-				ejb.guardarTransaccion(newTransaccion);
+			//	ejb.guardarTransaccion(newTransaccion);
 				System.out.println("Paso el guardar Transaccion");
 
 				System.out.println("Paso el guardar Cuenta");
-				// listatransacciones =
-				// ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
-				// return "true";
+				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
+				return "true";
 				// actTabla();
 
 			} catch (Exception e) {
@@ -121,52 +149,45 @@ public class CajeroServiceSOAP {
 				e.printStackTrace();
 			}
 		}
-		// monto = 0;
-		return null;
+		monto = 0;
+		return "false";
 	}
 
-	@WebMethod
-	public String Retiro(String tipo, double monto, String numeroCuenta) throws Exception {
+	
+	public String Retiro(String tipo, double monto, Cuenta cuenta) {
 		Transaccion newTransaccion = new Transaccion();
-		Cuenta cuenta = ejb.buscarCuenta(numeroCuenta);
+		Cuenta newCuenta = new Cuenta();
 
 		if (tipo.equalsIgnoreCase("Retiro")) {
 			double saldoAnterior = cuenta.getSaldo();
 			if (monto <= saldoAnterior) {
+				double saldoTotal = saldoAnterior - monto;
 
 				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 				newTransaccion.setTipo(tipo);
 				newTransaccion.setMonto(monto);
+				newTransaccion.setCuenta(cuenta);
+
+				cuenta.setSaldo(saldoTotal);
 				try {
-					System.out.println(cuenta.getNumeroCuenta());
-					newTransaccion.setCuenta(cuenta);
-					System.out.println("Si entra para enviar 1 ");
 //					cuenta.agregarCliente(cliente, newCuenta);
 					// cuenta.agregarTransaccion(newTransaccion);
-					cuenta.setSaldo(saldoAnterior - monto);
-					ejb.actualizarCuenta(cuenta);
-					System.out.println("Si entra para enviar 2");
-
 					ejb.guardarTransaccion(newTransaccion);
-					System.out.println("Paso el guardar Transaccion");
-
-					System.out.println("Paso el guardar Cuenta");
-					// listatransacciones =
-					// ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
-					// return "true";
-					// actTabla();
-
+					ejb.guardarCuenta(cuenta);
+//					actTabla();
+					listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				System.out.println("Saldo Insuficinete");
 
 				System.out.println("");
 			}
 		}
+
+		monto = 0;
 		return null;
 
 	}

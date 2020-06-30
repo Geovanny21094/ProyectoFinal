@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -27,8 +28,8 @@ public class Telefonos {
 	private String tipo;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "id_cedula")
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="cedula_persona")
 	private Persona persona;
 	
 	

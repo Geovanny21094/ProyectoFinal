@@ -200,11 +200,7 @@ public class ProyectoBean {
 		}
 	}
 
-	public String agregarTelefono() {
-		persona.agregarTelefono(new Telefonos());
-		return null;
-
-	}
+	
 
 	public BancaVirtual getBanca() {
 		return banca;

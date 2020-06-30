@@ -43,9 +43,7 @@ public class Persona {
 	@Column (name = "direccion")
 	private String direccion;
 	
-	
-	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
-	private List<Telefonos> telefonos;
+
 	
 	
 	
@@ -98,13 +96,7 @@ public class Persona {
 
 
 
-	public List<Telefonos> getTelefonos() {
-		return telefonos;
-	}
-
-	public void setTelefonos(List<Telefonos> telefonos) {
-		this.telefonos = telefonos;
-	}
+	
 	
 	 public String getDireccion() {
 		return direccion;
@@ -118,11 +110,6 @@ public class Persona {
 	
 	
 
-	public void agregarTelefono(Telefonos telf) {
-	    	if (telefonos == null)
-	    		telefonos = new ArrayList<Telefonos>();
-	    	telefonos.add(telf);
-	    }
 
 	
 	

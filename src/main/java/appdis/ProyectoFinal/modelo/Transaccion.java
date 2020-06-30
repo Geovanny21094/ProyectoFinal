@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import appdis.ProyectoFinal.dao.CuentaDao;
+
 
 /**
  * 
@@ -32,11 +34,17 @@ public class Transaccion {
 	
 	private double monto;
 	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_cuenta")
 	private Cuenta cuenta;
 	
+	
+	/*public void agregarCuenta(Cuenta cue) {
+		if (cuenta == null)
+			cuenta = new Cuenta();	
+		CuentaDao cdDao=new CuentaDao();
+		cdDao.insert(cue);
+	}*/
 	
 	public int getId_transaccion() {
 		return id_transaccion;
