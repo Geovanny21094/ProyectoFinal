@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
@@ -28,9 +29,9 @@ public class CajeroServiceREST {
 	private List<Transaccion> listatransacciones;
 
 	@GET
-	@Path("/transferencia")
+	@Path("/transferencia/{numCuentaOrigen}/{numCuentaDestino}/{monto}")
 	@Produces("application/json")
-	public void tranferirDineroCuenta(String numCuentaOrigen, String numCuentaDestino, double monto) throws Exception {
+	public void tranferirDineroCuenta(@PathParam("numCuentaOrigen")String numCuentaOrigen, @PathParam("numCuentaDestino")String numCuentaDestino, @PathParam("monto")double monto) throws Exception {
 
 		Transferencia tranferencia = new Transferencia();
 		Transaccion newTransaccion = new Transaccion();
@@ -74,7 +75,10 @@ public class CajeroServiceREST {
 	}
 
 	
-	public Cuenta obtenerDatosCuenta(String numeroCuenta) {
+	@GET
+	@Path("/transferencia/{numeroCuenta}")
+	@Produces("application/json")
+	public Cuenta obtenerDatosCuenta(@PathParam("numeroCuenta")String numeroCuenta) {
 		try {
 //			this.numeroCuenta = numeroCuenta;
 			Cuenta cuenta = new Cuenta();
@@ -89,8 +93,10 @@ public class CajeroServiceREST {
 		}
 	}
 
-	
-	public String Deposito(String tipo, double monto, String numeroCuenta) {
+	@GET
+	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}")
+	@Produces("application/json")
+	public String Deposito(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) {
 
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta cuenta = new Cuenta();
@@ -130,8 +136,11 @@ public class CajeroServiceREST {
 		return null;
 	}
 
-	
-	public String Retiro(String tipo, double monto, String numeroCuenta) throws Exception {
+
+	@GET
+	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}")
+	@Produces("application/json")
+	public String Retiro(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) throws Exception {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta cuenta = ejb.buscarCuenta(numeroCuenta);
 
