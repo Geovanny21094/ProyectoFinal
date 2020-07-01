@@ -119,9 +119,9 @@ public class CajeroServiceREST {
 				System.out.println("Si entra para enviar 2");
 
 				ejb.guardarTransaccion(newTransaccion);
-				System.out.println("Paso el guardar Transaccion");
+				
 
-				System.out.println("Paso el guardar Cuenta");
+				return "Exito";
 				// listatransacciones =
 				// ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
 				// return "true";
@@ -138,9 +138,9 @@ public class CajeroServiceREST {
 
 
 	@GET
-	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}")
+	@Path("/transferencia/retiro/{tipoRetiro}/{monto}/{numeroCuenta}")
 	@Produces("application/json")
-	public String Retiro(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) throws Exception {
+	public String Retiro(@PathParam("tipoRetiro")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) throws Exception {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta cuenta = ejb.buscarCuenta(numeroCuenta);
 
