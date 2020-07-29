@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template.xhtml">
+
+
+
+	<ui:define name="titulo">
+
+	</ui:define>
+	Registro de Cuenta
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Tipo de Cuenta de
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:selectOneMenu class="form-control form-control-line" value="">
+						<f:selectItem class="form-control" itemValue="Cuenta Corriente"
+							itemLabel="Cuenta Corriente"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cuenta Ahorros"
+							itemLabel="Cuenta Ahorros"></f:selectItem>
+
+					</h:selectOneMenu>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+			<h:dataTable id="agregar" value="#{cajeraBean.nombresInstituciones()}"
+				var="lst">
+				<h:column>
+				<label for="col-md-12" class="col-md-12">Institucion
+					Financiera</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{lst.listIntituciones}">
+						<f:selectItems value="">
+						</f:selectItems>
+					</h:selectOneMenu>
+				</div>
+				</h:column>
+				</h:dataTable>
+			</div>
+
+			
+			
+
+			<div class="form-group">
+				<label class="col-md-12">Numero De Cuenta del Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula" value="" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula del Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese la Cedula"
+						value="#{administradorBean.persona.cedula}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombre del
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Nombres" value="" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Correo del
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Apellidos" value="" />
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{administradorBean.agregarCliente()}"
+						value="Agregar Cuenta" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

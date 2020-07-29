@@ -67,38 +67,9 @@
 			</div>
 
 
-			<div class="form-group">
-				<label class="col-md-12">Telefonos</label>
-				<div class="col-md-12">
+			
 
-					<h:dataTable id="agregar" value="#{administradorBean.persona.telefonos}"
-						var="tel">
-
-
-						<h:column>
-							<f:facet name="header">
-								<label class="col-md-12">Num Numero</label>
-							</f:facet>
-							<h:inputText class="form-control form-control-line"
-								value="#{tel.persona}" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">
-								<label class="col-md-12">Tipo</label>
-							</f:facet>
-							<h:selectOneMenu class="form-control" value="#{tel.tipo}">
-								<f:selectItem class="form-control" itemValue="Celular"
-									itemLabel="Celular"></f:selectItem>
-								<f:selectItem class="form-control" itemValue="Convencional"
-									itemLabel="Convencional"></f:selectItem>
-							</h:selectOneMenu>
-						</h:column>
-
-					</h:dataTable>
-					<!-- 	kk -->
-				</div>
-			</div>
+		
 
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Correo</label>

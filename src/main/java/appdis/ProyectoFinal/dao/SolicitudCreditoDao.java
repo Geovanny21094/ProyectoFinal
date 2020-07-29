@@ -9,8 +9,6 @@ import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.SolicitudCredito;
 
-
-
 /**
  * 
  *
@@ -22,36 +20,31 @@ import appdis.ProyectoFinal.modelo.SolicitudCredito;
 public class SolicitudCreditoDao {
 
 	@PersistenceContext(name = "testjpaPersistenceUnit")
-	 private EntityManager em;
+	private EntityManager em;
 
-	    
-	 	public void insert(SolicitudCredito solicitud) {
-	 em.persist(solicitud);
-	 	}
+	public void insert(SolicitudCredito solicitud) {
+		em.persist(solicitud);
+	}
 
-	 	
-	 	public void update(SolicitudCredito solicitud)   {
-	 em.merge(solicitud);
-	 	}
+	public void update(SolicitudCredito solicitud) {
+		em.merge(solicitud);
+	}
 
-	 	
-	 	public SolicitudCredito read(int id) {
-			return em.find(SolicitudCredito.class, id);
-		}
+	public SolicitudCredito read(int id) {
+		return em.find(SolicitudCredito.class, id);
+	}
 
-		public void delete(int id) {
-			SolicitudCredito sc = read(id);
-			em.remove(sc);
-		}
+	public void delete(int id) {
+		SolicitudCredito sc = read(id);
+		em.remove(sc);
+	}
 
-	
-	 	
-		@SuppressWarnings("unchecked")
-		public List<SolicitudCredito> getSolicitud(String filtro) {
-			String jpql = " SELECT sc FROM SolicitudCredito sc WHERE id_sol LIKE :filtro";
-			Query q = em.createQuery(jpql, SolicitudCredito.class);
-			q.setParameter("filtro", filtro);
-			return q.getResultList();
-		}
-	 	
-	 }
+	@SuppressWarnings("unchecked")
+	public List<SolicitudCredito> getSolicitud(String filtro) {
+		String jpql = " SELECT sc FROM SolicitudCredito sc WHERE id_sol LIKE :filtro";
+		Query q = em.createQuery(jpql, SolicitudCredito.class);
+		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
+
+}

@@ -1,6 +1,7 @@
 package appdis.ProyectoFinal.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -33,30 +34,26 @@ public class CajeraBean {
 	int mes;
 	int dia;
 
+	private List<Transaccion> listatransacciones;
 
-	private List<Transaccion> listatransacciones; 
-	
 	@PostConstruct
 	public void init() {
 		cuenta = new Cuenta();
 		cliente = new Cliente();
 		transaccion = new Transaccion();
-       
+
 	}
 
-	
-	
-	public void actTabla () {
-		
-		 try {
+	public void actTabla() {
+
+		try {
 			ejb.buscarTransaccion(transaccion.getCuenta().getId_cuenta());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void obtenerDatosCuenta() {
 		try {
 			this.numeroCuenta = numeroCuenta;
@@ -88,16 +85,16 @@ public class CajeraBean {
 			newTransaccion.setCuenta(cuenta);
 			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 			newTransaccion.setTipo(tipo);
-            newTransaccion.setMonto(monto);
-            cuenta.setSaldo(saldo);
+			newTransaccion.setMonto(monto);
+			cuenta.setSaldo(saldo);
 			try {
 //				cuenta.agregarCliente(cliente, newCuenta);
-				
-				//cuenta.agregarTransaccion(newTransaccion);
+
+				// cuenta.agregarTransaccion(newTransaccion);
 				ejb.guardarTransaccion(newTransaccion);
 				ejb.guardarCuenta(cuenta);
 				listatransacciones = ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
-				//actTabla();
+				// actTabla();
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -110,13 +107,13 @@ public class CajeraBean {
 
 				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 				newTransaccion.setTipo(tipo);
-				 newTransaccion.setMonto(monto);
+				newTransaccion.setMonto(monto);
 				newTransaccion.setCuenta(cuenta);
-				
+
 				cuenta.setSaldo(saldoTotal);
 				try {
 //					cuenta.agregarCliente(cliente, newCuenta);
-				//	cuenta.agregarTransaccion(newTransaccion);
+					// cuenta.agregarTransaccion(newTransaccion);
 					ejb.guardarTransaccion(newTransaccion);
 					ejb.guardarCuenta(cuenta);
 //					actTabla();
@@ -134,6 +131,7 @@ public class CajeraBean {
 		monto = 0;
 		return null;
 	}
+
 
 	public Cliente getCliente() {
 		return cliente;
@@ -175,39 +173,20 @@ public class CajeraBean {
 		this.numeroCuenta = numeroCuenta;
 	}
 
-
-
 	public Transaccion getTransaccion() {
 		return transaccion;
 	}
-
-
 
 	public void setTransaccion(Transaccion transaccion) {
 		this.transaccion = transaccion;
 	}
 
-
-
 	public List<Transaccion> getListatransacciones() {
 		return listatransacciones;
 	}
 
-
-
 	public void setListatransacciones(List<Transaccion> listatransacciones) {
 		this.listatransacciones = listatransacciones;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

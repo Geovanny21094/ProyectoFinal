@@ -25,6 +25,7 @@ public class CajeroServiceSOAP {
 //	private String numeroCuenta;
 	private List<Transaccion> listatransacciones;
 
+	@WebMethod
 	public void tranferirDineroCuenta(String numCuentaOrigen, String numCuentaDestino, double monto) throws Exception {
 
 		Transferencia tranferencia = new Transferencia();
