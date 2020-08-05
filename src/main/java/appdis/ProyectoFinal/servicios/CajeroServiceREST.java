@@ -1,5 +1,7 @@
 package appdis.ProyectoFinal.servicios;
 
+
+
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -16,6 +18,16 @@ import appdis.ProyectoFinal.modelo.Cuenta;
 import appdis.ProyectoFinal.modelo.Transaccion;
 import appdis.ProyectoFinal.modelo.Transferencia;
 
+
+/**
+ * 
+ *
+ * @author Geovanny Duchitanga, Diego Rodriguez, Italo Mendieta
+ *
+ */
+
+
+
 @Path("/transaccion")
 public class CajeroServiceREST {
 
@@ -27,7 +39,6 @@ public class CajeroServiceREST {
 //	private Cuenta cuenta;
 //	private String numeroCuenta;
 	private List<Transaccion> listatransacciones;
-
 	@GET
 	@Path("/transferencia/{numCuentaOrigen}/{numCuentaDestino}/{monto}")
 	@Produces("application/json")
@@ -73,7 +84,7 @@ public class CajeroServiceREST {
 			System.out.println("Saldo Insuficinete");
 		}
 	}
-
+	
 	
 	@GET
 	@Path("/transferencia/{numeroCuenta}")
@@ -94,9 +105,9 @@ public class CajeroServiceREST {
 	}
 
 	@GET
-	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}")
+	@Path("/transferencia/{tipo}/{numeroCuenta}/{monto}")
 	@Produces("application/json")
-	public String Deposito(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) {
+	public String Deposito(@PathParam("tipo")String tipo,  @PathParam("numeroCuenta")String numeroCuenta,@PathParam("monto")double monto) {
 
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta cuenta = new Cuenta();
@@ -119,9 +130,9 @@ public class CajeroServiceREST {
 				System.out.println("Si entra para enviar 2");
 
 				ejb.guardarTransaccion(newTransaccion);
-				
+				System.out.println("Paso el guardar Transaccion");
 
-				return "Exito";
+				System.out.println("Paso el guardar Cuenta");
 				// listatransacciones =
 				// ejb.buscarTransaccion(newTransaccion.getCuenta().getId_cuenta());
 				// return "true";
@@ -138,9 +149,9 @@ public class CajeroServiceREST {
 
 
 	@GET
-	@Path("/transferencia/retiro/{tipoRetiro}/{monto}/{numeroCuenta}")
+	@Path("/transferencia/{tipo}/{numeroCuenta}/{monto}/{num}")
 	@Produces("application/json")
-	public String Retiro(@PathParam("tipoRetiro")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) throws Exception {
+	public String Retiro(@PathParam("tipo")String tipo, @PathParam("numeroCuenta")String numeroCuenta, @PathParam("monto")double monto,@PathParam("num") String num) throws Exception {
 		Transaccion newTransaccion = new Transaccion();
 		Cuenta cuenta = ejb.buscarCuenta(numeroCuenta);
 
