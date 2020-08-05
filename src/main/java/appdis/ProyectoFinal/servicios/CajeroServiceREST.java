@@ -137,11 +137,11 @@ public class CajeroServiceREST {
 	}
 
 
+//	@GET
+//	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}/{num}")
+//	@Produces("application/json")
+//	public String Retiro(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta,@PathParam("num") String num) throws Exception {
 	@GET
-	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}/{num}")
-	@Produces("application/json")
-	public String Retiro(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta,@PathParam("num") String num) throws Exception {
-
 	@Path("/transferencia/retiro/{tipoRetiro}/{monto}/{numeroCuenta}")
 	@Produces("application/json")
 	public String Retiro(@PathParam("tipoRetiro")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta) throws Exception {

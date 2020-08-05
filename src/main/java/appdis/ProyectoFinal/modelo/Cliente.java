@@ -43,10 +43,7 @@ public class Cliente {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Persona persona;
 		
-	/*@OneToMany(mappedBy = "cliente")
-	private List<Notificaciones> notificaciones;*/
-	
-	
+
 	
 	public void agregarCliente(Cliente cl, Persona per) {
 
@@ -56,13 +53,7 @@ public class Cliente {
 		
 	}
 	
-	/*public void guardarNotificacion(Notificaciones not) {
-		if(notificaciones==null) {
-			notificaciones=new ArrayList<Notificaciones>();
-			notificaciones.add(not);
-		}
-	}*/
-	
+
 	
 	public int getId_cliente() {
 		return id_cliente;
@@ -103,45 +94,7 @@ public class Cliente {
 		this.persona = persona;
 	}
 
-	/*public List<Credito> getCredito() {
-		return credito;
-	}
 
-	public void setCredito(List<Credito> credito) {
-		this.credito = credito;
-	}*/
-
-
-	/*public List<Notificaciones> getNotificaciones() {
-		return notificaciones;
-	}
-
-
-	public void setNotificaciones(List<Notificaciones> notificaciones) {
-		this.notificaciones = notificaciones;
-	}*/
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
 

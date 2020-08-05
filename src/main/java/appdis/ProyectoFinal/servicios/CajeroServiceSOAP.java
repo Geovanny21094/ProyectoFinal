@@ -55,8 +55,15 @@ public class CajeroServiceSOAP {
 				cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
 				newTransaccion.setCuenta(cuentaDestino);
 				cuentaDestino.setSaldo(saldo);
+				
+				tranferencia.setCuenta(cuentaOrigen);
+				tranferencia.setCuenta_destino(cuentaDestino.getNumeroCuenta());
+				tranferencia.setFechaTranferencia(new java.util.Date());
+				tranferencia.setMonto(monto);
+				
 				ejb.actualizarCuenta(cuentaDestino);
 				ejb.guardarTransaccion(newTransaccion);
+				ejb.guardarTransferencia(tranferencia);
 				
 			} catch (
 

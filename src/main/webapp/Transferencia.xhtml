@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head>
+
+</h:head>
+<ui:composition template="/template2/template3.xhtml">
+
+	<ui:define name="titulo">
+		Transferencia
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Cuenta Origen</label>
+						<h:inputText type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{clienteBean.cuenta.numeroCuenta}" disabled="true" />
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Cuenta Destino</label>
+
+						<h:selectOneMenu class="form-control form-control-line"
+							value="#{clienteBean.cadenaCuenta}">
+
+							<f:selectItem class="form-control" itemValue="" itemLabel=""></f:selectItem>
+
+							<f:selectItems class="form-control"
+								value="#{clienteBean.nombreCuentas}">
+							</f:selectItems>
+
+							<f:ajax render="formulario" execute="@form:formulario"
+								listener="#{clienteBean.cargarDatosCuenta()}" />
+
+						</h:selectOneMenu>
+
+
+					</div>
+
+				</div>
+			</div>
+		</h:form>
+
+		<h:form id="formulario">
+
+
+			<div class="form-group" id="datos">
+				<label for="col-md-12" class="col-md-12">Institucion
+					Financiera</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="01005998793" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cueDes.institucionFinanciera}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombre Propietario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Perez Lopez" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cueDes.nombreBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Cedula Destinatario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Av. Americas" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cueDes.cedulaBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Email Destinatario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Av. Americas" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cueDes.correoBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Monto</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="400"
+						class="form-control form-control-line" value="#{clienteBean.tranferencia.monto}" />
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success"
+						action="#{clienteBean.tranferirDineroCuenta()}" value="Guardar">
+					</h:commandButton>
+
+				</div>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>
+
+
+</html>

@@ -24,16 +24,37 @@
 
 			<div class="form-group">
 
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.actualizarTransacciones()}"
+					value="Actualizar Transacciones">
+				</h:commandButton>
 
 				<h:commandButton
 					class="btn btn-primary waves-effect waves-light mr-1"
-					action="#{clienteBean.accesoCliente(loginBean.cuenta.id_cuenta)}"
+					action="#{clienteBean.accesoCliente(clienteBean.cuenta.id_cuenta)}"
 					value="Estado Accesos">
+				</h:commandButton>
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.trasacionesFecha(clienteBean.cuenta.numeroCuenta)}"
+					value="Ultimas Trasacciones">
+				</h:commandButton>
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.registrarCuenta()}" value="Registrar Cuenta">
+				</h:commandButton>
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					action="#{clienteBean.tranferencia()}" value="Transferencia">
 				</h:commandButton>
 				
 				<h:commandButton
 					class="btn btn-primary waves-effect waves-light mr-1"
-					action="#{clienteBean.trasacionesFecha(loginBean.cuenta.numeroCuenta)}" value="Ultimas Trasacciones">
+					action="#{clienteBean.credito}" value="Solicitud Credito">
 				</h:commandButton>
 
 				<h:commandButton
@@ -47,7 +68,7 @@
 		</h:form>
 
 		<h:dataTable class="table table-striped" var="tra"
-			value="#{loginBean.listatransacciones}">
+			value="#{clienteBean.listaTransacciones}">
 
 
 			<h:column>

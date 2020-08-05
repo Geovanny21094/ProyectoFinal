@@ -9,8 +9,6 @@ import javax.persistence.Query;
 
 import appdis.ProyectoFinal.modelo.Credito;
 
-
-
 /**
  * 
  *
@@ -22,45 +20,40 @@ import appdis.ProyectoFinal.modelo.Credito;
 public class CreditoDao {
 
 	@PersistenceContext(name = "testjpaPersistenceUnit")
-	 private EntityManager em;
+	private EntityManager em;
 
-	    
-	 	public void insert(Credito credito) {
-	 em.persist(credito);
-	 	}
+	public void insert(Credito credito) {
+			em.persist(credito);
 
-	 	
-	 	public void update(Credito credito)   {
-	 em.merge(credito);
-	 	}
+	}
 
-	 	
-	 	public Credito read(int id) {
-			return em.find(Credito.class, id);
-		}
+	public void update(Credito credito) {
+		em.merge(credito);
+	}
 
-		public void delete(int id) {
-			Credito cr = read(id);
-			em.remove(cr);
-		}
+	public Credito read(int id) {
+		return em.find(Credito.class, id);
+	}
 
+	public void delete(int id) {
+		Credito cr = read(id);
+		em.remove(cr);
+	}
 	
-	 	
-		@SuppressWarnings("unchecked")
-		public List<Credito> getCredito(String filtro) {
-			String jpql = " SELECT cr FROM credito cr WHERE id_credito LIKE :filtro";
-			Query q = em.createQuery(jpql, Credito.class);
-			q.setParameter("filtro", filtro);
-			return q.getResultList();
-		}
-	 	
-	 }
+	@SuppressWarnings("unchecked")
+	public List<Credito> getCreditos() {
+		String jpql = " SELECT cr FROM Credito cr";
+		Query q = em.createQuery(jpql, Credito.class);
+//		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
+	@SuppressWarnings("unchecked")
+	public List<Credito> getCredito(String filtro) {
+		String jpql = " SELECT cr FROM Credito cr WHERE id_credito LIKE :filtro";
+		Query q = em.createQuery(jpql, Credito.class);
+		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
+
+}
