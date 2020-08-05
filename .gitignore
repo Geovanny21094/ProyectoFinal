@@ -102,3 +102,4 @@ derby.log
 ######################
 
 .factorypath
+src/main/webapp/.xhtml

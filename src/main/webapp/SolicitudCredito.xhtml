@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template3.xhtml">
+
+
+
+	<ui:define name="titulo">
+
+	</ui:define>
+	Solicitud de Credito
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material"
+			enctype="multipart/form-data" prependId="false">
+
+			<div>
+				<label class="header-title mt-3">Numero de Cuenta</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.cuenta.numeroCuenta}" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Cedula</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.cuenta.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Monto a Solicitar</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.credito.monto}" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Plazo (Meses)</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.credito.cuotas}" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Avaluo Vivienda</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.credito.avaluo}" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Edad (Años)</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula" value="#{clienteBean.edad}"/>
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Creditos Existentes</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula" />
+				</div>
+			</div>
+
+
+			<div>
+				<label for="col-md-12" class="header-title mt-4 mb-3">Correo
+					del Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						disabled="true" placeholder="Ingrese sus Apellidos"
+						value="#{clienteBean.cuenta.cliente.persona.correo}" />
+				</div>
+			</div>
+
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Proposito del Credito</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.propositoCredito}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Inmuebles"
+							itemLabel="&nbsp;&nbsp;&nbsp;Inmuebles (casa, finca, etc)&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Automovil"
+							itemLabel="&nbsp;&nbsp;&nbsp;Automovil&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Tecnologia"
+							itemLabel="&nbsp;&nbsp;&nbsp;Tecnologia&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Electrodomesticos"
+							itemLabel="&nbsp;&nbsp;&nbsp;Electrodomesticos&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Reparaciones"
+							itemLabel="&nbsp;&nbsp;&nbsp;Reparaciones&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Educacion"
+							itemLabel="&nbsp;&nbsp;&nbsp;Educacion&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Vacaciones"
+							itemLabel="&nbsp;&nbsp;&nbsp;Vacaciones&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Capacitacion"
+							itemLabel="&nbsp;&nbsp;&nbsp;Capacitacion&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Negocios"
+							itemLabel="&nbsp;&nbsp;&nbsp;Negocios&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Otros"
+							itemLabel="&nbsp;&nbsp;&nbsp;Otros&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+			<div>
+				<label class="header-title mt-4 mb-3">Estado Civil</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.estadoCivil}">
+
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Divorciado/Separado"
+							itemLabel="&nbsp;Masculino: Divorciado/Separado&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Soltero"
+							itemLabel="&nbsp;&nbsp;&nbsp;Masculino: Soltero&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Casado/Viudo"
+							itemLabel="&nbsp;&nbsp;&nbsp;Masculino: Casado/Viudo&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Divorciado/Separado"
+							itemLabel="&nbsp;Femenino: Divorciado/Separado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Soltero"
+							itemLabel="&nbsp;&nbsp;&nbsp;Femenino: Soltero&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Casado/Viudo"
+							itemLabel="&nbsp;&nbsp;&nbsp;Femenino: Casado/Viudo&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+
+				</h:selectOneRadio>
+
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Activos</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.activos}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Bienes Inmuebles"
+							itemLabel="&nbsp;&nbsp;&nbsp;Bienes Inmuebles&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2"
+							itemValue="Seguro de vida y plan de construccion"
+							itemLabel="&nbsp;&nbsp;&nbsp;Seguro de vida y plan de construccion&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Automovil u otros"
+							itemLabel="&nbsp;&nbsp;&nbsp;Automovil u otros&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Desconocidos / sin propiedad"
+							itemLabel="&nbsp;&nbsp;&nbsp;Desconocidos / sin propiedad&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Tiempo de Empleo</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.tipoEmpleo}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Desempleado"
+							itemLabel="&nbsp;&nbsp;&nbsp;Desempleado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Menos de 1 año"
+							itemLabel="&nbsp;&nbsp;&nbsp;Menos de 1 año&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="De 1 año a 4 años"
+							itemLabel="&nbsp;&nbsp;&nbsp;De 1 año a 4 años&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="De 4  a 7 años"
+							itemLabel="&nbsp;&nbsp;&nbsp;De 4  a 7 años&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline4" itemValue="Mas de 7 años"
+							itemLabel="&nbsp;&nbsp;&nbsp;Mas de 7 años&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Empleo</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.empleo}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline5" itemValue="Desempleado"
+							itemLabel="&nbsp;&nbsp;&nbsp;Desempleado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline6" itemValue="Empleado"
+							itemLabel="&nbsp;&nbsp;&nbsp;Empleado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline7" itemValue="Jubilado"
+							itemLabel="&nbsp;&nbsp;&nbsp;Jubilado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline8" itemValue="Autonomo"
+							itemLabel="&nbsp;&nbsp;&nbsp;Autonomo&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Vivienda</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.vivienda}">
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Gratis"
+							itemLabel="&nbsp;&nbsp;&nbsp;Gratis&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline2" itemValue="Alquilada"
+							itemLabel="&nbsp;&nbsp;&nbsp;Alquilada&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="Propia"
+							itemLabel="&nbsp;&nbsp;&nbsp;Propia&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Trabajador Extranjero</label>
+
+				<h:selectOneRadio
+					value="#{clienteBean.credito.trabajodorExtranjero}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline5" itemValue="Si"
+							itemLabel="&nbsp;&nbsp;&nbsp;Si&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline6" itemValue="No"
+							itemLabel="&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+
+			<div class="form-group">
+				<label for="col-md-12" class="header-title mt-4 mb-3">Documentos
+					- Planillas</label>
+				<div class="col-md-12">
+					<h:inputFile value="#{jefeCredito.file}" class="filestyle"
+						id="filestyleicon" />
+				</div>
+			</div>
+
+			<div>
+				<label class="header-title mt-3">Tipo Cliente</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.numeroCuenta}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{jefeCredito.upload()}" value="Guardar Archivo" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{clienteBean.agregarCuentaDestino()}"
+						value="Agregar Cuenta" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

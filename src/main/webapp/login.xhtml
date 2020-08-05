@@ -22,7 +22,7 @@
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" required="true"
 						placeholder="Ingrese su Usuario"
-						value="#{loginBean.user}" />
+						value="#{clienteBean.user}" />
 				</div>
 			</div>
 
@@ -31,7 +31,7 @@
 				<div class="col-md-12">
 					<h:inputSecret class="form-control"  type="password" id="password" required="true"
 						placeholder="Ingrese su Contraseña"
-						value="#{loginBean.clave}" />
+						value="#{clienteBean.clave}" />
 				</div>
 			</div>
 
@@ -41,7 +41,7 @@
 				<div class="col-sm-12">
 					<h:commandButton
 						class="btn btn-primary btn-lg width-lg btn-rounded"
-						action="#{loginBean.isValidCliente()}" value="INGRESAR">
+						action="#{clienteBean.isValidCliente()}" value="INGRESAR">
 					</h:commandButton>
 				</div>
 			</div>

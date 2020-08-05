@@ -4,10 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/template/template.xhtml">
+<ui:composition template="/template2/template.xhtml">
 
 	<ui:define name="titulo">
-		Solicitudes de Credito
+		Creditos
 	</ui:define>
 
 
@@ -16,71 +16,72 @@
 		<h:form>
 
 			<div class="form-group">
-				<div class="col-sm-12">
-					<h:outputLabel value="Buscar" />
-					<h:inputText value="" />
-					<h:commandButton class="btn btn-success" action=".." value="Buscar" />
-				</div>
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
+					action="AdministracionRolesLista" />
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Rol" action="AdministracionRoles" />
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Usuario" action="AdministracionClientes" />
+
 			</div>
 
-			<h:dataTable class="table" var="per" value="..">
-
-				<f:facet name="header">Creditos</f:facet>
-
+			<h:dataTable class="table" var="cre"
+				value="#{jefeCredito.listCreditos}">
 
 				<h:column>
-					<f:facet name="header">Cedula</f:facet>
-					<h:outputLabel value=".." />
+					<f:facet name="header">Numero Cuenta</f:facet>
+					<h:outputLabel class="co-name" value="#{cre.cuenta.numeroCuenta}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Nombres</f:facet>
-					<h:outputLabel value=".." />
+					<f:facet name="header">Nombre Propietario</f:facet>
+					<h:outputLabel class="co-name"
+						value="#{cre.cuenta.cliente.persona.nombres}" />
+					<h:outputLabel class="co-name"
+						value="&nbsp;#{cre.cuenta.cliente.persona.apellidos}" />
+				</h:column>
+
+			
+
+				<h:column>
+					<f:facet name="header">Cuotas</f:facet>
+					<h:outputLabel class="co-name" value="#{cre.cuotas}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Apellidos</f:facet>
-					<h:outputLabel value=".." />
+					<f:facet name="header">Monto Credito</f:facet>
+					<h:outputLabel class="co-name" value="#{cre.monto}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Direcion</f:facet>
-					<h:outputLabel value=".." />
+					<f:facet name="header">Correo </f:facet>
+					<h:outputLabel class="co-name"
+						value="#{cre.cuenta.cliente.persona.correo}" />
 				</h:column>
 
-				<h:column>
-					<f:facet name="header">Telefono</f:facet>
-					<h:outputLabel value=".." />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Correo</f:facet>
-					<h:outputLabel value=".." />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Rol</f:facet>
-					<h:outputLabel value=".." />
-				</h:column>
 
 				<h:column>
 					<f:facet name="header">Opciones</f:facet>
 
-					<h:commandButton class="btn btn-success" action=".."
-						value="Aprobar" />
+					<h:commandButton class="btn btn-success" value="Aprobar">
+						<!-- <f:ajax render="table"></f:ajax> -->
+					</h:commandButton>
 
-
-					<h:commandButton class="btn btn-success" action=".."
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
 						value="Rechazar" />
 
 				</h:column>
-
-
-
 			</h:dataTable>
 
-		</h:form>
 
+		</h:form>
 
 	</ui:define>
 </ui:composition>

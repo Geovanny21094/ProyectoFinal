@@ -40,9 +40,9 @@ public class CajeroServiceREST {
 //	private String numeroCuenta;
 	private List<Transaccion> listatransacciones;
 	@GET
-	@Path("/transferencia/{numCuentaOrigen}/{numCuentaDestino}/{monto}")
+	@Path("/transferencia/{montoTra}/{numCuentaOrigen}/{numCuentaDestino}")
 	@Produces("application/json")
-	public void tranferirDineroCuenta(@PathParam("numCuentaOrigen")String numCuentaOrigen, @PathParam("numCuentaDestino")String numCuentaDestino, @PathParam("monto")double monto) throws Exception {
+	public void tranferirDineroCuenta( @PathParam("montoTra")double montoTra, @PathParam("numCuentaOrigen")String numCuentaOrigen, @PathParam("numCuentaDestino")String numCuentaDestino) throws Exception {
 
 		Transferencia tranferencia = new Transferencia();
 		Transaccion newTransaccion = new Transaccion();
@@ -50,23 +50,23 @@ public class CajeroServiceREST {
 		Cuenta cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
 
 		double saldoAnterior = cuentaOrigen.getSaldo();
-		if (monto <= saldoAnterior) {
+		if (montoTra <= saldoAnterior) {
 			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 			newTransaccion.setTipo("Retiro");
-			newTransaccion.setMonto(monto);
+			newTransaccion.setMonto(montoTra);
 			try {
 				System.out.println(cuentaOrigen.getNumeroCuenta());
 				newTransaccion.setCuenta(cuentaOrigen);
-				cuentaOrigen.setSaldo(saldoAnterior - monto);
+				cuentaOrigen.setSaldo(saldoAnterior - montoTra);
 				ejb.actualizarCuenta(cuentaOrigen);
 				ejb.guardarTransaccion(newTransaccion);
 
 				
-				double saldo = monto + cuentaDestino.getSaldo();
+				double saldo = montoTra + cuentaDestino.getSaldo();
 
 				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 				newTransaccion.setTipo("Deposito");
-				newTransaccion.setMonto(monto);
+				newTransaccion.setMonto(montoTra);
 
 				cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
 				newTransaccion.setCuenta(cuentaDestino);
@@ -148,6 +148,10 @@ public class CajeroServiceREST {
 	}
 
 
+//	@GET
+//	@Path("/transferencia/{tipo}/{monto}/{numeroCuenta}/{num}")
+//	@Produces("application/json")
+//	public String Retiro(@PathParam("tipo")String tipo, @PathParam("monto")double monto, @PathParam("numeroCuenta")String numeroCuenta,@PathParam("num") String num) throws Exception {
 	@GET
 	@Path("/transferencia/{tipo}/{numeroCuenta}/{monto}/{num}")
 	@Produces("application/json")

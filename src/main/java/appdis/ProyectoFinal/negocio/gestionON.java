@@ -8,10 +8,12 @@ import java.util.Random;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import appdis.ProyectoFinal.dao.AmortizacionDao;
 import appdis.ProyectoFinal.dao.BancaVirtualDao;
 import appdis.ProyectoFinal.dao.ClienteDao;
 import appdis.ProyectoFinal.dao.CreditoDao;
 import appdis.ProyectoFinal.dao.CuentaDao;
+import appdis.ProyectoFinal.dao.CuentasDestinoDao;
 import appdis.ProyectoFinal.dao.EnviarCorreo;
 import appdis.ProyectoFinal.dao.InstitucionFinancieraDao;
 import appdis.ProyectoFinal.dao.NotificacionesDao;
@@ -22,10 +24,12 @@ import appdis.ProyectoFinal.dao.TelefonosDao;
 import appdis.ProyectoFinal.dao.TransaccionDao;
 import appdis.ProyectoFinal.dao.TransferenciaDao;
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
+import appdis.ProyectoFinal.modelo.Amortizacion;
 import appdis.ProyectoFinal.modelo.BancaVirtual;
 import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Credito;
 import appdis.ProyectoFinal.modelo.Cuenta;
+import appdis.ProyectoFinal.modelo.CuentasDestino;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
@@ -84,6 +88,12 @@ public class gestionON implements DaoProyectoLocal {
 	@Inject
 	TransaccionDao tradao;
 
+	@Inject
+	CuentasDestinoDao cueDesDao;
+
+	@Inject
+	AmortizacionDao AmoDao;
+
 	/* Banca Virtual */
 	public void guardarBanca(BancaVirtual bv) throws Exception {
 
@@ -111,6 +121,14 @@ public class gestionON implements DaoProyectoLocal {
 
 		if (asunto != "" && mensaje != "" && correoDestino != "") {
 			enviarCorreo.enviarMail(asunto, mensaje, correoDestino);
+		}
+
+	}
+
+	public void enviarCorreo1(String asunto, String mensaje, String correoDestino, String archivo) throws Exception {
+
+		if (asunto != "" && mensaje != "" && correoDestino != "") {
+			enviarCorreo.enviarMail1(asunto, mensaje, correoDestino, archivo);
 		}
 
 	}
@@ -249,6 +267,11 @@ public class gestionON implements DaoProyectoLocal {
 		} else {
 			crdao.insert(cr);
 		}
+	}
+
+	public List<Credito> buscarCreditos() throws Exception {
+		return crdao.getCreditos();
+
 	}
 
 	public List<Credito> buscarCredito(int id) throws Exception {
@@ -585,7 +608,8 @@ public class gestionON implements DaoProyectoLocal {
 		return tradao.getTransaccioFiltron(numeroCuenta);
 	}
 
-	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin)throws Exception {
+	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin)
+			throws Exception {
 		return tradao.getTransaccioFiltron2(numeroCuenta, fechaIni, fechaFin);
 	}
 
@@ -595,6 +619,59 @@ public class gestionON implements DaoProyectoLocal {
 
 	public void eliminarTransaccion(int id) throws Exception {
 		tradao.delete(id);
+	}
+
+	public void guardarCuentaDestino(CuentasDestino cuenDes) throws Exception {
+		CuentasDestino aux = cueDesDao.read(cuenDes.getId());
+
+		if (aux != null) {
+			cueDesDao.update(cuenDes);
+		} else {
+			cueDesDao.insert(cuenDes);
+		}
+	}
+
+	public void actualizarCuentaDestino(CuentasDestino cuenDes) throws Exception {
+		CuentasDestino aux = cueDesDao.read(cuenDes.getId());
+
+		if (aux != null) {
+			cueDesDao.update(cuenDes);
+		} else {
+			cueDesDao.insert(cuenDes);
+		}
+	}
+
+	public CuentasDestino buscarCuentaDestino(String numeroCuentaDestinatario) throws Exception {
+		CuentasDestino aux = cueDesDao.getCuenta(numeroCuentaDestinatario);
+		return aux;
+	}
+
+	public List<CuentasDestino> buscarCuentasDestino(String cuentaOrigen) throws Exception {
+		return cueDesDao.getCuentas(cuentaOrigen);
+	}
+
+	public void guardarAmortizacion(Amortizacion amortizacion) throws Exception {
+		Amortizacion aux = AmoDao.read(amortizacion.getId_Amoritizacion());
+
+		if (aux != null) {
+			AmoDao.update(amortizacion);
+		} else {
+			AmoDao.insert(amortizacion);
+		}
+	}
+
+	public void actualizarAmortizacion(Amortizacion amortizacion) throws Exception {
+		Amortizacion aux = AmoDao.read(amortizacion.getId_Amoritizacion());
+
+		if (aux != null) {
+			AmoDao.update(amortizacion);
+		} else {
+			AmoDao.insert(amortizacion);
+		}
+	}
+
+	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception {
+		return AmoDao.getAmortizaciones(id_credito);
 	}
 
 	public String getPasswordRol(Rol rol) throws Exception {

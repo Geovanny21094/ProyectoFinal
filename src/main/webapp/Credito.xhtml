@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template3.xhtml">
+
+
+
+	<ui:define name="titulo">
+
+	</ui:define>
+	Solicitar Credito
+	<ui:define name="contenido">
+
+		<h:form>
+
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Asignar Credito a Cuenta</label>
+						<h:inputText type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{jefeCredito.cuenta.numeroCuenta}">
+							<f:ajax render="datos" execute="@form">
+							</f:ajax>
+						</h:inputText>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-12">.</label>
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1"
+							action="#{jefeCredito.cargarDatosCuenta()}" value="Buscar Cuenta" />
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+
+		<h:form class="form-horizontal form-material" id="datos">
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula Cliente</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.cuenta.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Nombre</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.cuenta.cliente.persona.nombres}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Apellido</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.cuenta.cliente.persona.apellidos}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Direccion</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.cuenta.cliente.persona.direccion}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Saldo en la Cuenta</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.cuenta.saldo}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Monto a Solicitar</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.credito.monto}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Cuotas</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{jefeCredito.credito.cuotas}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{jefeCredito.generarCredito()}" value="Agregar Cuenta" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

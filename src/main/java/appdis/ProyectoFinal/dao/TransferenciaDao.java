@@ -23,7 +23,11 @@ public class TransferenciaDao {
 	private EntityManager em;
 
 	public void insert(Transferencia transferencia) {
-		em.persist(transferencia);
+		if (read(transferencia.getId_transferencia()) != null) {
+			em.persist(transferencia);
+		} else {
+			update(transferencia);
+		}
 	}
 
 	public void update(Transferencia transferencia) {

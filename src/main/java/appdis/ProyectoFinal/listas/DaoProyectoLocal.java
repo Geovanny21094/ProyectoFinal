@@ -6,10 +6,12 @@ import java.util.Random;
 
 import javax.ejb.Local;
 
+import appdis.ProyectoFinal.modelo.Amortizacion;
 import appdis.ProyectoFinal.modelo.BancaVirtual;
 import appdis.ProyectoFinal.modelo.Cliente;
 import appdis.ProyectoFinal.modelo.Credito;
 import appdis.ProyectoFinal.modelo.Cuenta;
+import appdis.ProyectoFinal.modelo.CuentasDestino;
 import appdis.ProyectoFinal.modelo.InstitucionFinanciera;
 import appdis.ProyectoFinal.modelo.Notificaciones;
 import appdis.ProyectoFinal.modelo.Persona;
@@ -57,6 +59,7 @@ public interface DaoProyectoLocal {
 	/*Credito*/
 	public void guardarCredito(Credito cr) throws Exception;
 	public void actualizarCredito(Credito cr) throws Exception;
+	public List<Credito> buscarCreditos() throws Exception;
 	public  List<Credito> buscarCredito(int id) throws Exception;
 	public void eliminarCredito(int id) throws Exception;
 	
@@ -88,6 +91,7 @@ public interface DaoProyectoLocal {
 	public  List<Notificaciones> buscarNotificaciones(int id) throws Exception;
 	public void eliminarNotificaciones(int id) throws Exception;
 	public void enviarCorreo(String asunto, String mensaje, String correoDestino) throws Exception;
+	public void enviarCorreo1(String asunto, String mensaje, String correoDestino, String archivo) throws Exception;
 	
 	
 	
@@ -158,6 +162,16 @@ public interface DaoProyectoLocal {
 	public boolean isValidUserPassR(String user, String pass) throws Exception;
 
 	
+	/*CuentaDestino*/
+	public void guardarCuentaDestino(CuentasDestino cuenDes) throws Exception;
+	public void actualizarCuentaDestino(CuentasDestino cuenDes) throws Exception;
+	public CuentasDestino buscarCuentaDestino(String numeroCuentaDestinatario) throws Exception;
+	public List<CuentasDestino> buscarCuentasDestino(String cuentaOrigen) throws Exception;
+	
+	/*Credito*/
+	public void guardarAmortizacion(Amortizacion amortizacion) throws Exception;
+	public void actualizarAmortizacion(Amortizacion amortizacion) throws Exception;
+	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception;
 	
 	
 	

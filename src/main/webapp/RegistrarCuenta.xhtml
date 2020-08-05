@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template3.xhtml">
+
+
+
+	<ui:define name="titulo">
+
+	</ui:define>
+	Registro de Cuenta
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Tipo de Cuenta de
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:selectOneMenu class="form-control form-control-line"
+						value="#{clienteBean.cueDes.tipoCuenta}">
+						<f:selectItem class="form-control" itemValue="" itemLabel=""></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cuenta Corriente"
+							itemLabel="Cuenta Corriente"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cuenta Ahorros"
+							itemLabel="Cuenta Ahorros"></f:selectItem>
+					</h:selectOneMenu>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Institucion
+					Financiera</label>
+				<div class="col-md-12">
+					<h:selectOneMenu class="form-control form-control-line"
+						value="#{clienteBean.cueDes.institucionFinanciera}">
+						<f:selectItem class="form-control" itemValue="" itemLabel=""></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Banco Produbanco"
+							itemLabel="Banco Produbanco"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Banco del Austro"
+							itemLabel="Banco del Austro"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Banco Guayaquil"
+							itemLabel="Banco Guayaquil"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Banco Pichincha"
+							itemLabel="Banco Pichincha"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Banco Pacifico"
+							itemLabel="Banco Pacifico"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cooperativa JEP"
+							itemLabel="Cooperativa JEP"></f:selectItem>
+						<f:selectItem class="form-control" itemValue="Cooperativa ERCO"
+							itemLabel="Cooperativa ERCO"></f:selectItem>
+						<f:selectItem class="form-control"
+							itemValue="Cooperativa Jardin Azuayo"
+							itemLabel="Cooperativa Jardin Azuayo"></f:selectItem>
+					</h:selectOneMenu>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Numero De Cuenta Origen</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.cuenta.numeroCuenta}" />
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<label class="col-md-12">Numero De Cuenta del Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.cueDes.numeroCuentaBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula del Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.cueDes.cedulaBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombre del
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Nombres"
+						value="#{clienteBean.cueDes.nombreBeneficiario}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Correo del
+					Beneficiario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" required="true"
+						placeholder="Ingrese sus Apellidos"
+						value="#{clienteBean.cueDes.correoBeneficiario}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{clienteBean.agregarCuentaDestino()}"
+						value="Agregar Cuenta" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

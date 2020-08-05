@@ -39,9 +39,9 @@ public class Cuenta {
 	
 	private Date fecha;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "numeroCuenta")
-	private List<Transferencia> transferencia;
+//	@OneToMany(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "numeroCuenta")
+//	private List<Transferencia> transferencia;
 	
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -103,13 +103,13 @@ public class Cuenta {
 		this.saldo = saldo;
 	}
 
-	public List<Transferencia> getTransferencia() {
-		return transferencia;
-	}
-
-	public void setTransferencia(List<Transferencia> transferencia) {
-		this.transferencia = transferencia;
-	}
+//	public List<Transferencia> getTransferencia() {
+//		return transferencia;
+//	}
+//
+//	public void setTransferencia(List<Transferencia> transferencia) {
+//		this.transferencia = transferencia;
+//	}
 
 	public Cliente getCliente() {
 		return cliente;
