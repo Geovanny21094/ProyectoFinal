@@ -136,7 +136,7 @@ public class JefeCredito {
 		try (InputStream input = file.getInputStream()) {
 			String fileName = file.getName();
 			System.out.println(fileName);
-			Files.copy(input, new File(folder + "F001" + ".pdf").toPath());
+			Files.copy(input, new File(folder + cuenta.getNumeroCuenta() + ".pdf").toPath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

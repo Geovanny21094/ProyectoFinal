@@ -47,18 +47,23 @@ public class ClienteBean {
 
 	private String numeroCuenta;
 	private String cadenaCuenta;
+	private double saldoCuenta;
 
 	private int numeroCuenta1;
 	private int edad;
+	private int creditosExistentes;
 
 	private Date fechaIni;
 	private Date fechaFin;
 
 	private String user;
 	private String clave;
+	private String passwordOld;
+	private String passwordNew;
 
 	@PostConstruct
 	public void init() throws Exception {
+		cl = new Cliente();
 		cuenta = new Cuenta();
 		credito = new Credito();
 		cueDes = new CuentasDestino();
@@ -69,6 +74,8 @@ public class ClienteBean {
 
 		this.nombreCuentas = nombreCuentas;
 		this.edad = edad;
+		this.creditosExistentes = creditosExistentes;
+
 	}
 
 	public String isValidCliente() {
@@ -280,9 +287,28 @@ public class ClienteBean {
 	 * Redirigue hacia la pagina Tranferencia con el numero de cuenta
 	 * correspondiente
 	 */
-	public String credito() {
+	public String credito() throws Exception {
 //		nombresCuentas();
 		numeroCuenta1 = cuenta.getId_cuenta();
+
+		cuenta = ejb.buscarCuenta(numeroCuenta1);
+
+		double saldoCuenta = cuenta.getSaldo();
+
+		List<Credito> listCredito = ejb.buscarCreditoCuenta(cuenta.getId_cuenta());
+
+		creditosExistentes = listCredito.size();
+
+		String fechaNac = cuenta.getCliente().getPersona().getFecha_nacimiento().toString();
+		String fechaAct = new java.util.Date().toLocaleString();
+		String anioActual = fechaAct.substring(6, 10);
+
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy");
+		java.util.Date date = sdf1.parse(fechaNac);
+		String anioNacimineto = sdf2.format(date);
+
+		edad = Integer.parseInt(anioActual) - Integer.parseInt(anioNacimineto);
 
 		return "SolicitudCredito?faces-redirect=true&numeroCuenta=" + numeroCuenta1;
 	}
@@ -338,38 +364,76 @@ public class ClienteBean {
 	 * 
 	 */
 	public void solicitudCredito() throws Exception {
-		numeroCuenta1 = cuenta.getId_cuenta();
 
-		cuenta = ejb.buscarCuenta(numeroCuenta1);
+		credito.setCreditosExistentes(creditosExistentes);
 
-		credito.setCuenta(cuenta);
+		credito.setSaldo(saldoCuenta);
 
-		credito.setSaldo(credito.getMonto());
+		credito.setEdad(edad);
+
+		credito.setSaldo(cuenta.getSaldo());
 
 		double saldoAnterior = cuenta.getSaldo();
 
 		credito.setFechaCredito(new java.util.Date());
 
+		credito.setCuenta(cuenta);
+
 		ejb.guardarCredito(credito);
 
-		
-		////probar
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter(new File("NewData.csv"));
+			pw = new PrintWriter(
+					new File("/Users/italomendieta/Desktop/ArchivosDMR/" + cuenta.getNumeroCuenta() + ".csv"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		StringBuilder builder = new StringBuilder();
-		String ColumnNamesList = "Id,Name";
-		
+		String ColumnNamesList = "DNI;" + "PLAZOMESESCREDITO;" + "HISTORIALCREDITO;" + "PROPOSITOCREDITO;"
+				+ "MONTOCREDITO;" + "SALDOCUENTAAHORROS;" + "TIEMPOEMPLEO;" + "TASAPAGO;" + "ESTADOCIVILYSEXO;"
+				+ "GARANTE;" + "AVALUOVIVIENDA;" + "ACTIVOS;" + "EDAD;" + "VIVIENDA;" + "CANTIDADCREDITOSEXISTENTES;"
+				+ "EMPLEO;" + "TRABAJADOREXTRANJERO;" + "TIPOCLIENTE";
+
 		builder.append(ColumnNamesList + "\n");
-		builder.append("1" + ",");
-		builder.append("Chola");
-		builder.append('\n');
+		builder.append(cuenta.getCliente().getPersona().getCedula() + ";" + credito.getCuotas() + ";"
+				+ credito.getHistorialCreditos() + ";" + credito.getPropositoCredito() + ";" + credito.getMonto() + ";"
+				+ cuenta.getSaldo() + ";" + credito.getTipoEmpleo() + ";" + credito.getTasaPostpago() + ";"
+				+ credito.getEstadoCivil() + ";" + credito.getGarante() + ";" + credito.getAvaluo() + ";"
+				+ credito.getActivos() + ";" + edad + ";" + credito.getVivienda() + ";"
+				+ credito.getCreditosExistentes() + ";" + credito.getEmpleo() + ";" + credito.getTrabajodorExtranjero()
+				+ ";" + credito.getTipoCliente() + ";");
 		pw.write(builder.toString());
 		pw.close();
 		System.out.println("done!");
+	}
+
+	public String contrasenia() {
+		numeroCuenta1 = cuenta.getId_cuenta();
+		return "CambiarContrasenia?faces-redirect=true&numeroCuenta=" + numeroCuenta1;
+	}
+
+	public void cambiarContrasenia() throws Exception {
+
+		cuenta = ejb.buscarCuenta(cuenta.getNumeroCuenta());
+
+		cl = ejb.buscarCliente(cuenta.getCliente().getPersona().getCedula());
+		
+		String passOld = cuenta.getCliente().getContrasenia();
+		
+		
+		
+		System.out.println(passOld + " -old");
+		if (passOld.equals(passwordOld)) {
+			cl.setContrasenia(passwordNew);
+			ejb.actualizarCliente(cl);
+			ejb.enviarCorreo("CAMBIO DE  A CONTRASEÑA", "Se cambiado la contraseña de  la BANCA VIRTUAL \n"
+					+ "Su nueva Contraseña es: "+passwordNew
+					+ "", cl.getPersona().getCorreo());
+
+		} else {
+			System.out.println("Contrasena no es correcta");
+		}
+
 	}
 
 	public Cuenta getCuenta() {
@@ -523,5 +587,38 @@ public class ClienteBean {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
+
+	public int getCreditosExistentes() {
+		return creditosExistentes;
+	}
+
+	public void setCreditosExistentes(int creditosExistentes) {
+		this.creditosExistentes = creditosExistentes;
+	}
+
+	public double getSaldoCuenta() {
+		return saldoCuenta;
+	}
+
+	public void setSaldoCuenta(double saldoCuenta) {
+		this.saldoCuenta = saldoCuenta;
+	}
+
+	public String getPasswordOld() {
+		return passwordOld;
+	}
+
+	public void setPasswordOld(String passwordOld) {
+		this.passwordOld = passwordOld;
+	}
+
+	public String getPasswordNew() {
+		return passwordNew;
+	}
+
+	public void setPasswordNew(String passwordNew) {
+		this.passwordNew = passwordNew;
+	}
+	
 
 }

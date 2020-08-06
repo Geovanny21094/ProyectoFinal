@@ -158,11 +158,8 @@ public class gestionON implements DaoProyectoLocal {
 
 		Cliente aux = cldao.read(cl.getId_cliente());
 
-		if (aux != null) {
-			cldao.update(cl);
-		} else {
-			cldao.insert(cl);
-		}
+		cldao.update(cl);
+
 	}
 
 	public List<Cliente> buscarCliente(int id) throws Exception {
@@ -274,8 +271,8 @@ public class gestionON implements DaoProyectoLocal {
 
 	}
 
-	public List<Credito> buscarCredito(int id) throws Exception {
-		return crdao.getCredito(id + "%");
+	public List<Credito> buscarCreditoCuenta(int idCuenta) throws Exception {
+		return crdao.getCreditosCuenta(idCuenta);
 
 	}
 

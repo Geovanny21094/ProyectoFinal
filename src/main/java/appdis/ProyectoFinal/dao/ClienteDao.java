@@ -36,14 +36,24 @@ public class ClienteDao {
 		return em.find(Cliente.class, id_cliente);
 	}
 
-	public Cliente readCedula(String cedula) {
-		return em.find(Cliente.class, cedula);
-	}
+//	public Cliente readCedula(String cedula) {
+//		return em.find(Cliente.class, cedula);
+//	}
 
 	public void delete(int id_cliente) {
 		Cliente cl = read(id_cliente);
 		em.remove(cl);
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public Cliente readCedula(String cedula) {
+		String jpql = " SELECT cl FROM Cliente cl WHERE cl.persona.cedula =:cedula";
+		Query q = em.createQuery(jpql, Cliente.class);
+		q.setParameter("cedula", cedula);
+		return (Cliente) q.getSingleResult();
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<Cliente> getClientes() {

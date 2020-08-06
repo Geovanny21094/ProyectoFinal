@@ -75,7 +75,7 @@
 				<label class="header-title mt-3">Creditos Existentes</label>
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" disabled="true"
-						placeholder="Ingrese la Cedula" />
+						value="#{clienteBean.creditosExistentes}" placeholder="Ingrese la Cedula" />
 				</div>
 			</div>
 
@@ -253,19 +253,19 @@
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="Menos de 1 año"
+							for="customCheckinline2" itemValue="Menos de 1 anio"
 							itemLabel="&nbsp;&nbsp;&nbsp;Menos de 1 año&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="De 1 año a 4 años"
+							for="customCheckinline2" itemValue="De 1 anio a 4 anio"
 							itemLabel="&nbsp;&nbsp;&nbsp;De 1 año a 4 años&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="De 4  a 7 años"
+							for="customCheckinline4" itemValue="De 4  a 7 anio"
 							itemLabel="&nbsp;&nbsp;&nbsp;De 4  a 7 años&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
@@ -391,7 +391,7 @@
 				<div>
 					<h:commandButton
 						class="btn btn-primary waves-effect waves-light mr-1"
-						action="#{clienteBean.agregarCuentaDestino()}"
+						action="#{clienteBean.solicitudCredito()}"
 						value="Agregar Cuenta" />
 				</div>
 			</div>
