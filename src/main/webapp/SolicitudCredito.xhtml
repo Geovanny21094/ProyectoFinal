@@ -67,7 +67,7 @@
 				<label class="header-title mt-3">Edad (Años)</label>
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" disabled="true"
-						placeholder="Ingrese la Cedula" value="#{clienteBean.edad}"/>
+						placeholder="Ingrese la Cedula" value="#{clienteBean.edad}" />
 				</div>
 			</div>
 
@@ -75,7 +75,8 @@
 				<label class="header-title mt-3">Creditos Existentes</label>
 				<div class="col-md-12">
 					<h:inputText type="text" class="form-control" disabled="true"
-						value="#{clienteBean.creditosExistentes}" placeholder="Ingrese la Cedula" />
+						value="#{clienteBean.creditosExistentes}"
+						placeholder="Ingrese la Cedula" />
 				</div>
 			</div>
 
@@ -98,61 +99,67 @@
 				<h:selectOneRadio value="#{clienteBean.credito.propositoCredito}">
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline1" itemValue="Inmuebles"
+							for="customCheckinline1" itemValue="inmuebles"
 							itemLabel="&nbsp;&nbsp;&nbsp;Inmuebles (casa, finca, etc)&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="Automovil"
+							for="customCheckinline2" itemValue="automovil"
 							itemLabel="&nbsp;&nbsp;&nbsp;Automovil&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline3" itemValue="Tecnologia"
+							for="customCheckinline3" itemValue="muebles"
+							itemLabel="&nbsp;&nbsp;&nbsp;Muebles&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="tecnologia"
 							itemLabel="&nbsp;&nbsp;&nbsp;Tecnologia&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="Electrodomesticos"
+							for="customCheckinline4" itemValue="electrodomesticos"
 							itemLabel="&nbsp;&nbsp;&nbsp;Electrodomesticos&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="Reparaciones"
+							for="customCheckinline4" itemValue="reparaciones"
 							itemLabel="&nbsp;&nbsp;&nbsp;Reparaciones&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="Educacion"
+							for="customCheckinline4" itemValue="educacion"
 							itemLabel="&nbsp;&nbsp;&nbsp;Educacion&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="Vacaciones"
+							for="customCheckinline4" itemValue="vacaciones"
 							itemLabel="&nbsp;&nbsp;&nbsp;Vacaciones&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline4" itemValue="Capacitacion"
+							for="customCheckinline4" itemValue="capacitacion"
 							itemLabel="&nbsp;&nbsp;&nbsp;Capacitacion&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline1" itemValue="Negocios"
+							for="customCheckinline1" itemValue="negocio"
 							itemLabel="&nbsp;&nbsp;&nbsp;Negocios&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="Otros"
+							for="customCheckinline2" itemValue="otros"
 							itemLabel="&nbsp;&nbsp;&nbsp;Otros&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
@@ -167,40 +174,75 @@
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline1" itemValue="Divorciado/Separado"
+							for="customCheckinline1" itemValue="MasculinoDivorciado/Separado"
 							itemLabel="&nbsp;Masculino: Divorciado/Separado&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="Soltero"
+							for="customCheckinline2" itemValue="MasculinoSoltero"
 							itemLabel="&nbsp;&nbsp;&nbsp;Masculino: Soltero&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline3" itemValue="Casado/Viudo"
+							for="customCheckinline3" itemValue="MasculinoCasado/Viudo"
 							itemLabel="&nbsp;&nbsp;&nbsp;Masculino: Casado/Viudo&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline1" itemValue="Divorciado/Separado"
+							for="customCheckinline1" itemValue="FemeninoDivorciado/Separado"
 							itemLabel="&nbsp;Femenino: Divorciado/Separado&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline2" itemValue="Soltero"
+							for="customCheckinline2" itemValue="FemeninoSoltero"
 							itemLabel="&nbsp;&nbsp;&nbsp;Femenino: Soltero&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+
+
+				</h:selectOneRadio>
+
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Historial de Creditos</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.historialCreditos}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline1" itemValue="NoCreditos"
+							itemLabel="&nbsp;&nbsp;&nbsp;No se tomaron Creditos&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline3" itemValue="Casado/Viudo"
-							itemLabel="&nbsp;&nbsp;&nbsp;Femenino: Casado/Viudo&nbsp;&nbsp;&nbsp;&nbsp;" />
+							for="customCheckinline2"
+							itemValue="Pagados"
+							itemLabel="&nbsp;&nbsp;&nbsp;Creditos Pagados&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Devueltos"
+							itemLabel="&nbsp;&nbsp;&nbsp;Creditos Existentes Devueltos&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Retraso"
+							itemLabel="&nbsp;&nbsp;&nbsp;Retraso en pagar en el Pasado&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+					
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline3" itemValue="Critica"
+							itemLabel="&nbsp;&nbsp;&nbsp;Cuenta Critica&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
 
 				</h:selectOneRadio>
 
@@ -247,7 +289,7 @@
 				<h:selectOneRadio value="#{clienteBean.credito.tipoEmpleo}">
 					<div class="custom-control custom-radio custom-control-inline mb-2">
 						<f:selectItem class="custom-control-input"
-							for="customCheckinline1" itemValue="Desempleado"
+							for="customCheckinline1" itemValue="desempleado"
 							itemLabel="&nbsp;&nbsp;&nbsp;Desempleado&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
@@ -273,6 +315,32 @@
 						<f:selectItem class="custom-control-input"
 							for="customCheckinline4" itemValue="Mas de 7 años"
 							itemLabel="&nbsp;&nbsp;&nbsp;Mas de 7 años&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+				</h:selectOneRadio>
+			</div>
+
+
+			<div>
+				<label class="header-title mt-4 mb-3">Garante</label>
+
+				<h:selectOneRadio value="#{clienteBean.credito.garante}">
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline5" itemValue="ninguno"
+							itemLabel="&nbsp;&nbsp;&nbsp;Ninguno&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline6" itemValue="co-aplicante"
+							itemLabel="&nbsp;&nbsp;&nbsp;co-aplicante&nbsp;&nbsp;&nbsp;&nbsp;" />
+					</div>
+
+					<div class="custom-control custom-radio custom-control-inline mb-2">
+						<f:selectItem class="custom-control-input"
+							for="customCheckinline7" itemValue="garante"
+							itemLabel="&nbsp;&nbsp;&nbsp;garante&nbsp;&nbsp;&nbsp;&nbsp;" />
 					</div>
 
 				</h:selectOneRadio>
@@ -391,8 +459,7 @@
 				<div>
 					<h:commandButton
 						class="btn btn-primary waves-effect waves-light mr-1"
-						action="#{clienteBean.solicitudCredito()}"
-						value="Agregar Cuenta" />
+						action="#{clienteBean.solicitudCredito()}" value="Agregar Cuenta" />
 				</div>
 			</div>
 

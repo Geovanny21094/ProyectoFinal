@@ -41,6 +41,14 @@ public class CreditoDao {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Credito> getCreditosAprobar() {
+		String jpql = " SELECT cr FROM Credito cr WHERE cr.estadoCredito LIKE '%Pendiente%'";
+		Query q = em.createQuery(jpql, Credito.class);
+//		q.setParameter("filtro", filtro);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Credito> getCreditos() {
 		String jpql = " SELECT cr FROM Credito cr";
 		Query q = em.createQuery(jpql, Credito.class);
@@ -54,6 +62,14 @@ public class CreditoDao {
 		Query q = em.createQuery(jpql, Credito.class);
 		q.setParameter("filtro", filtro);
 		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Credito getCredito(int idCuenta) {
+		String jpql = " SELECT cr FROM Credito cr WHERE id_cuenta = :idCuenta";
+		Query q = em.createQuery(jpql, Credito.class);
+		q.setParameter("idCuenta", idCuenta);
+		return (Credito) q.getSingleResult();
 	}
 
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template2/template.xhtml">
+
+	<ui:define name="titulo">
+		Creditos
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group">
+
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
+					action="AdministracionRolesLista" />
+
+
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Rol" action="AdministracionRoles" />
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Usuario" action="AdministracionClientes" />
+
+
+			</div>
+
+			<h:dataTable class="table" var="apro"
+				value="#{jefeCredito.listCreditosAprobar}">
+
+				<h:column>
+					<f:facet name="header"># Cuenta</f:facet>
+					<h:outputLabel class="co-name" value="#{apro.cuenta.numeroCuenta}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cedula</f:facet>
+					<h:outputLabel class="co-name"
+						value="#{apro.cuenta.cliente.persona.cedula}" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nombres</f:facet>
+					<h:outputLabel class="co-name"
+						value="#{apro.cuenta.cliente.persona.nombres} " />
+					<h:outputLabel class="co-name"
+						value="#{apro.cuenta.cliente.persona.apellidos}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Evaluo Vivienda</f:facet>
+					<h:outputLabel class="co-name" value="#{apro.avaluo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Monto</f:facet>
+					<h:outputLabel class="co-name" value="#{apro.monto}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cuotas</f:facet>
+					<h:outputLabel class="co-name" value="#{apro.cuotas}" />
+				</h:column>
+
+
+
+				<h:column>
+					<f:facet name="header">Opciones</f:facet>
+
+					<h:commandButton class="btn btn-success"
+						action="#{jefeCredito.generarCredito(apro.cuenta.numeroCuenta)}"
+						value="Aprobar">
+						<!-- <f:ajax render="table"></f:ajax> -->
+					</h:commandButton>
+
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						value="Rechazar"
+						action="#{jefeCredito.rechacharCredito(apro.cuenta.numeroCuenta)}" />
+				</h:column>
+			</h:dataTable>
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

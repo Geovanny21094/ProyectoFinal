@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template2/template.xhtml">
+
+	<ui:define name="titulo">
+		Tabla de Amortizacion
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form>
+
+			<div class="form-group">
+
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
+					action="AdministracionRolesLista" />
+
+
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Rol" action="AdministracionRoles" />
+
+				<h:commandButton
+					class="btn btn-primary waves-effect waves-light mr-1"
+					value="Crear Usuario" action="AdministracionClientes" />
+
+
+			</div>
+
+			<h:dataTable class="table" var="amo"
+				value="#{clienteBean.listaAmortizacions}">
+
+				<h:column>
+					<f:facet name="header">Numero de Cuota</f:facet>
+					<h:outputLabel class="co-name" value="#{amo.numeroCuota}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Fecha de Pago</f:facet>
+					<h:outputLabel class="co-name"
+						value="#{amo.fechaPago}" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor a Pagar</f:facet>
+					<h:outputLabel class="co-name"
+						value="#{amo.valor}" />
+				</h:column>
+
+				
+				<h:column>
+					<f:facet name="header">Opciones</f:facet>
+
+					<h:commandButton class="btn btn-success"
+						value="Pagar Cuota">
+						<!-- <f:ajax render="table"></f:ajax> -->
+					</h:commandButton>
+
+				</h:column>
+			</h:dataTable>
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

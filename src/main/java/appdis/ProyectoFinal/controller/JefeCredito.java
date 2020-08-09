@@ -35,6 +35,7 @@ public class JefeCredito {
 	private Credito credito;
 
 	private List<Credito> listCreditos;
+	private List<Credito> listCreditosAprobar;
 
 	private Part file;
 	private String folder = "/Users/italomendieta/Desktop/ArchivosDMR/";
@@ -45,6 +46,9 @@ public class JefeCredito {
 		credito = new Credito();
 
 		listCreditos = ejb.buscarCreditos();
+		listCreditosAprobar = ejb.buscarCreditosAprobar();
+
+		this.listCreditosAprobar = listCreditosAprobar;
 
 	}
 
@@ -52,20 +56,37 @@ public class JefeCredito {
 		cuenta = ejb.buscarCuenta(cuenta.getNumeroCuenta());
 	}
 
+	public void rechacharCredito(String numueroCuenta) throws Exception {
+		cuenta = ejb.buscarCuenta(numueroCuenta);
+
+		credito.setCuenta(cuenta);
+		credito.setEstadoCredito("Rechazado");
+
+		ejb.actualizarCredito(credito);
+
+		ejb.enviarCorreo("CREDITO", "Su Credito a sido Rechazado", cuenta.getCliente().getPersona().getCorreo());
+	}
+
 	/*
 	 * Metodo que genera Credtio
 	 */
-	public void generarCredito() throws Exception {
+	public void generarCredito(String numueroCuenta) throws Exception {
 
+		System.out.println("--> " + numueroCuenta);
 		Transaccion newTransaccion = new Transaccion();
-		cuenta = ejb.buscarCuenta(cuenta.getNumeroCuenta());
+		cuenta = ejb.buscarCuenta(numueroCuenta);
 
-		credito.setCuenta(cuenta);
+		int idCredito = cuenta.getId_cuenta();
+
+		credito = ejb.buscarCreditos(idCredito);
+
+//		credito.setCuenta(cuenta);
 		credito.setSaldo(credito.getMonto());
 		credito.setFechaCredito(new java.util.Date());
+		credito.setEstadoCredito("Aprobado");
 		double saldoAnterior = cuenta.getSaldo();
 
-		ejb.guardarCredito(credito);
+		ejb.actualizarCredito(credito);
 
 		int meses;
 		int numCuotas = credito.getCuotas();
@@ -130,6 +151,7 @@ public class JefeCredito {
 				"/Users/italomendieta/bin/wildfly18/bin/Amortizacion.xls");
 
 		fileOut.close();
+		listCreditosAprobar = ejb.buscarCreditosAprobar();
 	}
 
 	public void upload() {
@@ -140,7 +162,6 @@ public class JefeCredito {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public Cuenta getCuenta() {
@@ -173,6 +194,14 @@ public class JefeCredito {
 
 	public void setFile(Part file) {
 		this.file = file;
+	}
+
+	public List<Credito> getListCreditosAprobar() {
+		return listCreditosAprobar;
+	}
+
+	public void setListCreditosAprobar(List<Credito> listCreditosAprobar) {
+		this.listCreditosAprobar = listCreditosAprobar;
 	}
 
 }

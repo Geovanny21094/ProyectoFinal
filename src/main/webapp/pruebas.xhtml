@@ -2,74 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<h:head></h:head>
-<h:body>
-
-	<h:form>
-		cedula
-		<h:inputText value="#{proyectoBean.persona.cedula}" />
-		<br />
-		nombte
-		<h:inputText value="#{proyectoBean.persona.nombres}" />
-		<br />
-		apellido
-		<h:inputText value="#{proyectoBean.persona.apellidos}" />
-		<br />
-		direcion
-
-		<h:inputText value="#{proyectoBean.persona.direccion}" />
-		<br />
-				correo
-		<h:inputText value="#{proyectoBean.persona.genero}" />
-		<br />
-		Fecha
-		<h:inputText value="#{proyectoBean.persona.fecha_nacimiento}">
-			<f:convertDateTime pattern="dd/mm/yyyy" />
-		</h:inputText>
-		<br />
-
-		<h:inputText value="#{proyectoBean.persona.direccion}" /><br/>
-		telefno
-		<h:inputText value="#{proyectoBean.persona.telefonos}" /><br/>
-		correo
-		<h:inputText value="#{proyectoBean.persona.genero}" /><br/>
-		
-		correo
-		<h:inputText value="#{proyectoBean.persona.correo}" />
-		<br />
-
-			<h:dataTable id="agregar" value="#{proyectoBean.persona.telefonos}"
-			var="tel">
-
-
-			<h:column>
-				<f:facet name="header">
-					num
-				</f:facet>
-				<h:inputText value="#{tel.numero}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">
-					tipo
-				</f:facet>
-				<h:selectOneMenu 
-					value="#{tel.tipo}">
-					<f:selectItem 
-						itemValue="Celular" itemLabel="Celular"></f:selectItem>
-					<f:selectItem 
-						itemValue="Convencional" itemLabel="Convencional"></f:selectItem>
-				</h:selectOneMenu>
-			</h:column>
-
-		</h:dataTable>
+<ui:composition template="/template2/template3.xhtml">
 
 
 
-		<h:commandButton action="Guardar"
-			value="#{proyectoBean.guardarDatosPersona()}" />
-	</h:form>
-</h:body>
+	<ui:define name="titulo">
+
+	</ui:define>
+	Django
+	<ui:define name="contenido">
+
+		<h:form class="form-horizontal form-material">
+
+			<h:commandButton action="" value="Google" />
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
 </html>
+
+

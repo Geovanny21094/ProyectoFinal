@@ -39,7 +39,7 @@ public class AmortizacionDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Amortizacion> getAmortizaciones(int filtro) {
-		String jpql = " SELECT cr FROM Amortizacion cr WHERE id_amortizacion = :filtro";
+		String jpql = " SELECT cr FROM Amortizacion cr WHERE id_credito = :filtro";
 		Query q = em.createQuery(jpql, Amortizacion.class);
 		q.setParameter("filtro", filtro);
 		return q.getResultList();

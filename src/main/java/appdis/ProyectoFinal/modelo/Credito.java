@@ -64,7 +64,7 @@ public class Credito {
 	
 	private String tipoCliente;
 	
-
+	private String estadoCredito;
 	
 	private Date fechaCredito;
 	
@@ -234,6 +234,14 @@ public class Credito {
 
 	public void setTipoCliente(String tipoCliente) {
 		this.tipoCliente = tipoCliente;
+	}
+
+	public String getEstadoCredito() {
+		return estadoCredito;
+	}
+
+	public void setEstadoCredito(String estadoCredito) {
+		this.estadoCredito = estadoCredito;
 	}
 
 	

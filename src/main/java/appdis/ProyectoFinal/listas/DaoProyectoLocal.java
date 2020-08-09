@@ -63,8 +63,12 @@ public interface DaoProyectoLocal {
 	public void guardarCredito(Credito cr) throws Exception;
 
 	public void actualizarCredito(Credito cr) throws Exception;
+	
+	public Credito buscarCreditos(int idCuenta) throws Exception;
 
 	public List<Credito> buscarCreditos() throws Exception;
+	
+	public List<Credito> buscarCreditosAprobar() throws Exception;
 
 	public List<Credito> buscarCreditoCuenta(int idCuenta) throws Exception;
 
@@ -196,4 +200,11 @@ public interface DaoProyectoLocal {
 
 	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception;
 
+	
+	/*Categorizacion*/
+	public void categorizacion(Credito c) throws Exception;
+	public void generarCSV(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
+			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago,
+			String estadoCivilSexo, String garante, int avaluoVivienda, String activos, int edad, String vivienda,
+			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta) throws Exception;
 }
