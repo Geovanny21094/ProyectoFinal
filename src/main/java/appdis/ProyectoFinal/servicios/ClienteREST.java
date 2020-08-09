@@ -33,7 +33,7 @@ public class ClienteREST {
 	@GET
 	@Path("/cliente/{user}/{clave}")
 	@Produces("application/json")
-	public void isValidCliente(@PathParam("user") String user, @PathParam("clave") String clave) {
+	public Cuenta isValidCliente(@PathParam("user") String user, @PathParam("clave") String clave) {
 		List<Transaccion> listaTransacciones;
 		Notificaciones notificaciones = new Notificaciones();
 		Cuenta cuenta = new Cuenta();
@@ -60,8 +60,10 @@ public class ClienteREST {
 //				pag = "ClienteHome?faces-redirect=true&numeroCuenta=" + cuentanumeroCuenta1;
 
 				listaTransacciones = ejb.buscarTransaccion(cuenta.getId_cuenta());
+				return cuenta;
 
 			} else {
+				
 				System.out.println("false");
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
 						"Se intento ingresar a la BANCA VIRTUAL \n" + "Estado FALLIDO", cl.getPersona().getCorreo());
@@ -75,7 +77,7 @@ public class ClienteREST {
 				numeroCuenta1 = cuenta.getId_cuenta();
 
 				listaTransacciones = ejb.buscarTransaccion(numeroCuenta1);
-
+				return null;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -83,6 +85,7 @@ public class ClienteREST {
 		}
 		cl = new Cliente();
 		notificaciones = new Notificaciones();
+		return null;
 	}
 
 	@GET
