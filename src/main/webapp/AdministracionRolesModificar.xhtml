@@ -12,6 +12,51 @@
 			<f:viewParam name="cedula" value="#{administradorBean.cedula}"></f:viewParam>
 		</f:metadata>
 	</h:head>>
+	
+	<ui:define name="menu">
+		<div class="container-fluid">
+			<div id="navigation">
+				<ul class="navigation-menu">
+					<ui:insert name="menu">
+					</ui:insert>
+
+					<li class="has-submenu"><a href="#"> <i class="fe-airplay"></i>Cliente
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu megamenu">
+							<li>
+								<ul>
+									<li><a
+										href="/ProyectoFinal/faces/AdministracionClientedLista.xhtml">Ver
+											Clientes</a></li>
+									<li><a
+										href="/ProyectoFinal/faces/AdministracionClientes.xhtml">Nuevo
+											Cliente</a></li>
+
+								</ul>
+							</li>
+
+						</ul></li>
+
+					<li class="has-submenu"><a href="#"> <i
+							class="fe-book-open"></i>Rol
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu">
+							<li><a
+								href="/ProyectoFinal/faces/AdministracionRolesLista.xhtml">Ver
+									Roles</a></li>
+							<li><a href="/ProyectoFinal/faces/AdministracionRoles.xhtml">Nuevo
+									Rol</a></li>
+						</ul></li>
+
+				</ul>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</ui:define>
 
 
 	<ui:define name="titulo">
@@ -73,39 +118,7 @@
 			</div>
 
 
-			<div class="form-group">
-				<label class="col-md-12">Telefonos</label>
-				<div class="col-md-12">
-
-					<h:dataTable id="agregar" value="#{administradorBean.persona.telefonos}"
-						var="tel">
-
-
-						<h:column>
-							<f:facet name="header">
-								<label class="col-md-12">Num Numero</label>
-							</f:facet>
-							<h:inputText class="form-control form-control-line"
-								value="#{tel.persona}" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">
-								<label class="col-md-12">Tipo</label>
-							</f:facet>
-							<h:selectOneMenu class="form-control" value="#{tel.tipo}">
-								<f:selectItem class="form-control" itemValue="Celular"
-									itemLabel="Celular"></f:selectItem>
-								<f:selectItem class="form-control" itemValue="Convencional"
-									itemLabel="Convencional"></f:selectItem>
-							</h:selectOneMenu>
-						</h:column>
-
-					</h:dataTable>
-					<!-- 	kk -->
-				</div>
-			</div>
-
+			
 			<div class="form-group">
 				<label for="col-md-12" class="col-md-12">Correo</label>
 				<div class="col-md-12">
@@ -145,12 +158,7 @@
 
 			<div class="form-group mb-0">
 				<div>
-					<h:commandButton
-						class="btn btn-primary waves-effect waves-light mr-1" action=".."
-						value="+">
-						<f:ajax render="agregar" execute="agregar">
-						</f:ajax>
-					</h:commandButton>
+					
 					<h:commandButton
 						class="btn btn-primary waves-effect waves-light mr-1"
 						action="#{administradorBean.ModificarRol()}" value="Guardar" />

@@ -165,6 +165,9 @@ public interface DaoProyectoLocal {
 	public String getUserRol(Rol rol) throws Exception;
 
 	public String getPasswordRol(Rol rol) throws Exception;
+	
+	public Rol getRol(String user) throws Exception;
+
 
 	/* Transsacion */
 	public void guardarTransaccion(Transaccion tra) throws Exception;
@@ -199,6 +202,13 @@ public interface DaoProyectoLocal {
 	public void actualizarAmortizacion(Amortizacion amortizacion) throws Exception;
 
 	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception;
+	
+	public List<Amortizacion> buscarAmortizacionesPagadas(int id_credito) throws Exception;
+
+	public Amortizacion buscarAmortizacion(int idAmortizacion) throws Exception;
+
+	
+	public String noExiste();
 
 	
 	/*Categorizacion*/

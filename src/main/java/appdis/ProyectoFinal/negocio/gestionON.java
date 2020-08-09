@@ -275,17 +275,15 @@ public class gestionON implements DaoProyectoLocal {
 		return crdao.getCreditosAprobar();
 	}
 
-	
 	public List<Credito> buscarCreditoCuenta(int idCuenta) throws Exception {
 		return crdao.getCreditosCuenta(idCuenta);
 
 	}
-	
-	public Credito buscarCreditos(int idCuenta) throws Exception{
+
+	public Credito buscarCreditos(int idCuenta) throws Exception {
 		Credito aux = crdao.getCredito(idCuenta);
 		return aux;
 	}
-
 
 	public void eliminarCredito(int id) throws Exception {
 		crdao.delete(id);
@@ -678,7 +676,32 @@ public class gestionON implements DaoProyectoLocal {
 	}
 
 	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception {
-		return AmoDao.getAmortizaciones(id_credito);
+		List<Amortizacion> amo;
+		if ((amo = AmoDao.getAmortizaciones(id_credito)) != null) {
+			return amo;
+		} else {
+			noExiste();
+			throw new Exception("No Tiene Creditos");
+		}
+	}
+	
+	public List<Amortizacion> buscarAmortizacionesPagadas(int id_credito) throws Exception {
+		List<Amortizacion> amo;
+		if ((amo = AmoDao.getAmortizacionesPagadas(id_credito)) != null) {
+			return amo;
+		} else {
+			noExiste();
+			throw new Exception("No Tiene Creditos");
+		}
+	}
+
+	public Amortizacion buscarAmortizacion(int idAmortizacion) throws Exception {
+		Amortizacion aux = AmoDao.getAmortizacion(idAmortizacion);
+		return aux;
+	}
+
+	public String noExiste() {
+		return "NoExiste?faces-redirect=true";
 	}
 
 	public String getPasswordRol(Rol rol) throws Exception {
@@ -703,6 +726,12 @@ public class gestionON implements DaoProyectoLocal {
 
 	public List<Rol> buscarRol(int id) throws Exception {
 		return rdao.getRol(id + "%");
+
+	}
+
+	public Rol getRol(String user) throws Exception {
+		Rol aux = rdao.getRolUser(user);
+		return aux;
 
 	}
 
@@ -758,15 +787,14 @@ public class gestionON implements DaoProyectoLocal {
 	public void categorizacion(Credito c) throws Exception {
 
 		String DNI = c.getCuenta().getCliente().getPersona().getCedula();
-		String numeroCuenta=c.getCuenta().getNumeroCuenta();
-		int plazoCreditos=c.getCuotas();
-		int montoCredito=(int) c.getMonto();
-		int tasaPago=(int) c.getTasaPostpago();
-		int avaluoVivienda=(int) c.getAvaluo();
-		int edad=c.getEdad();
-		int creditosExistentes=c.getCreditosExistentes();
-		
-		
+		String numeroCuenta = c.getCuenta().getNumeroCuenta();
+		int plazoCreditos = c.getCuotas();
+		int montoCredito = (int) c.getMonto();
+		int tasaPago = (int) c.getTasaPostpago();
+		int avaluoVivienda = (int) c.getAvaluo();
+		int edad = c.getEdad();
+		int creditosExistentes = c.getCreditosExistentes();
+
 		/*
 		 * A30: no se tomaron créditos A31: todos los créditos en este banco se
 		 * pagarondebidamente A32: créditos existentes devueltos debidamente hasta ahora
@@ -903,7 +931,7 @@ public class gestionON implements DaoProyectoLocal {
 
 		String tiempoEmpleo = c.getTipoEmpleo();
 		String tiempoEmpleoReturn = "";
-		
+
 		if (tiempoEmpleo.equalsIgnoreCase("desempleado")) {
 			tiempoEmpleoReturn = A71;
 		}
@@ -1074,15 +1102,17 @@ public class gestionON implements DaoProyectoLocal {
 			trabajodorExtranjeroReturn = A202;
 		}
 
-		generarCSV(DNI, plazoCreditos, historialCreditosReturn, propositoCreditoReturn, montoCredito, saldoCuentaAhorrosReturn,
-				tiempoEmpleoReturn, tasaPago, estadoCivilSexoReturn, garanteReturn, avaluoVivienda, activosReturn, edad,
-				viviendaReturn, creditosExistentes, empleoReturn, trabajodorExtranjeroReturn, numeroCuenta);
+		generarCSV(DNI, plazoCreditos, historialCreditosReturn, propositoCreditoReturn, montoCredito,
+				saldoCuentaAhorrosReturn, tiempoEmpleoReturn, tasaPago, estadoCivilSexoReturn, garanteReturn,
+				avaluoVivienda, activosReturn, edad, viviendaReturn, creditosExistentes, empleoReturn,
+				trabajodorExtranjeroReturn, numeroCuenta);
 	}
 
 	public void generarCSV(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
-			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago,
-			String estadoCivilSexo, String garante, int avaluoVivienda, String activos, int edad, String vivienda,
-			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta) throws Exception {
+			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago, String estadoCivilSexo,
+			String garante, int avaluoVivienda, String activos, int edad, String vivienda,
+			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta)
+			throws Exception {
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new File("/Users/italomendieta/Desktop/ArchivosDMR/" + numeroCuenta + ".csv"));

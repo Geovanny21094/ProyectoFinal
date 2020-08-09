@@ -19,6 +19,7 @@ public class Amortizacion {
 	private int numeroCuota;
 	private Date fechaPago;
 	private double valor;
+	private String estado;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -74,6 +75,18 @@ public class Amortizacion {
 	public void setCredito(Credito credito) {
 		this.credito = credito;
 	}
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 	
 	
 

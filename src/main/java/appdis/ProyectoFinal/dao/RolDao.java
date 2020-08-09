@@ -64,7 +64,14 @@ public class RolDao {
 			Query q = em.createQuery(jpql, Rol.class);
 			q.setParameter("user", user);
 			q.setParameter("pass", pass);
-
+			return (Rol) q.getSingleResult();
+		}
+		
+		@SuppressWarnings("unchecked")
+		public Rol getRolUser(String user) {
+			String jpql = " SELECT r FROM Rol r WHERE usuario LIKE :user";
+			Query q = em.createQuery(jpql, Rol.class);
+			q.setParameter("user", user);
 			return (Rol) q.getSingleResult();
 		}
 	

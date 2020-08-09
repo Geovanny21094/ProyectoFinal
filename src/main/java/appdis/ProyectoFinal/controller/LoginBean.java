@@ -47,7 +47,7 @@ public class LoginBean {
 		cuenta = new Cuenta();
 		envCorreo = new EnviarCorreo();
 		newTransaccion = new Transaccion();
-		notificaciones=new Notificaciones();
+		notificaciones = new Notificaciones();
 
 	}
 
@@ -66,7 +66,7 @@ public class LoginBean {
 				notificaciones.setMensaje_notificacion("Ingreso Satisfactorio");
 				notificaciones.setFecha(new Date());
 				notificaciones.setCliente(cl);
-				//cl.guardarNotificacion(notificaciones);
+				// cl.guardarNotificacion(notificaciones);
 
 				ejb.guardarNotificaciones(notificaciones);
 
@@ -85,10 +85,10 @@ public class LoginBean {
 				notificaciones.setMensaje_notificacion("Ingreso Erroneo");
 				notificaciones.setFecha(new Date());
 				notificaciones.setCliente(cl);
-				//cl.guardarNotificacion(notificaciones);
+				// cl.guardarNotificacion(notificaciones);
 
 				ejb.guardarNotificaciones(notificaciones);
-				
+
 				listatransacciones = ejb.buscarTransaccion(numeroCuenta);
 
 			}
@@ -107,19 +107,21 @@ public class LoginBean {
 	public String isValidRol() {
 		String pag = "";
 		try {
-//			String user=cliente.getUsuario();
-//			String pass=cliente.getContrasenia();
 			if (ejb.isValidUserPassR(rol.getUsuario(), rol.getContrasenia()) == true) {
-				// cliente=dalp.getCorreo(cliente.getUsuario());
 				System.out.println("true");
-				// dalp.enviarCorreo("INGRESO A CUENTA","Se ingreso a la BANCA VIRTUAL",
-				// cliente.getPersona().getCorreo());
-				pag = "AdministracionRolesLista?faces-redirect=true";
+
+				Rol r1 = ejb.getRol(rol.getUsuario());
+
+				if (r1.getCargo().equalsIgnoreCase("Administrador")) {
+					pag = "AdministracionRolesLista?faces-redirect=true";
+				} else if (r1.getCargo().equalsIgnoreCase("Jefe Credito")) {
+					pag = "JefeCredito?faces-redirect=true";
+				} else if (r1.getCargo().equalsIgnoreCase("Cajero")) {
+					pag = "Cajera?faces-redirect=true";
+
+				}
 			} else {
 				System.out.println("false");
-				// dalp.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL", "Se intento
-				// ingresar a la BANCA VIRTUAL \n"
-				// + "Estado FALLIDO", cliente.getPersona().getCorreo());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

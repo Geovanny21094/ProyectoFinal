@@ -12,6 +12,51 @@
 	<ui:define name="titulo">
 		Crear Cliente
 	</ui:define>
+	
+	<ui:define name="menu">
+		<div class="container-fluid">
+			<div id="navigation">
+				<ul class="navigation-menu">
+					<ui:insert name="menu">
+					</ui:insert>
+
+					<li class="has-submenu"><a href="#"> <i class="fe-airplay"></i>Cliente
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu megamenu">
+							<li>
+								<ul>
+									<li><a
+										href="/ProyectoFinal/faces/AdministracionClientedLista.xhtml">Ver
+											Clientes</a></li>
+									<li><a
+										href="/ProyectoFinal/faces/AdministracionClientes.xhtml">Nuevo
+											Cliente</a></li>
+
+								</ul>
+							</li>
+
+						</ul></li>
+
+					<li class="has-submenu"><a href="#"> <i
+							class="fe-book-open"></i>Rol
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu">
+							<li><a
+								href="/ProyectoFinal/faces/AdministracionRolesLista.xhtml">Ver
+									Roles</a></li>
+							<li><a href="/ProyectoFinal/faces/AdministracionRoles.xhtml">Nuevo
+									Rol</a></li>
+						</ul></li>
+
+				</ul>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</ui:define>
 
 	<ui:define name="contenido">
 
@@ -112,12 +157,7 @@
 
 			<div class="form-group">
 				<div>
-					<h:commandButton
-						class="btn btn-primary waves-effect waves-light mr-1" action=".."
-						value="+">
-						<f:ajax render="agregar" execute="agregar">
-						</f:ajax>
-					</h:commandButton>
+
 					<h:commandButton
 						class="btn btn-primary waves-effect waves-light mr-1"
 						action="#{administradorBean.agregarCliente()}" value="Guardar" />

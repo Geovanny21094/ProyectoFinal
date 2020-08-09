@@ -102,6 +102,8 @@ public class AdministradorBean {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	/*
 	 * Metodo que Guarda el Rol de una Persona Creada

@@ -42,9 +42,10 @@ public class CreditoDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Credito> getCreditosAprobar() {
-		String jpql = " SELECT cr FROM Credito cr WHERE cr.estadoCredito LIKE '%Pendiente%'";
+		String Pendiente="Pendiente";
+		String jpql = "SELECT cr FROM Credito cr WHERE estadoCredito LIKE :Pendiente";
 		Query q = em.createQuery(jpql, Credito.class);
-//		q.setParameter("filtro", filtro);
+		q.setParameter("Pendiente", Pendiente);
 		return q.getResultList();
 	}
 	

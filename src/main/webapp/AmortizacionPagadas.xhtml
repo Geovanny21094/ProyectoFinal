@@ -7,7 +7,7 @@
 <ui:composition template="/template2/template.xhtml">
 
 	<ui:define name="titulo">
-		Tabla de Amortizacion
+		Cuotas Pagadas
 	</ui:define>
 
 	<ui:define name="menu">
@@ -36,6 +36,9 @@
 										<li><a onclick="#{clienteBean.Amortizacion()}"
 											href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
 												Amortización</a></li>
+										<li><a 
+											href="/ProyectoFinal/faces/AmortizacionPagadas.xhtml">Creditos
+												Pagados</a></li>
 
 									</ul>
 								</li>
@@ -106,12 +109,11 @@
 			</div> -->
 
 			<h:commandButton class="btn btn-success"
-				action="#{clienteBean.comprobarPagos()}"
-				value="Comprobar">
+				action="#{clienteBean.AmortizacionPagadas()}" value="Comprobar">
 			</h:commandButton>
 
 			<h:dataTable class="table" var="amo"
-				value="#{clienteBean.listaAmortizacions}">
+				value="#{clienteBean.listaAmortizacionsPagadas}">
 
 				<h:column>
 					<f:facet name="header">Numero de Cuota</f:facet>
@@ -134,19 +136,6 @@
 					<h:outputLabel class="co-name" value="#{amo.estado}" />
 				</h:column>
 
-
-				<h:column>
-					<f:facet name="header">Opciones</f:facet>
-
-					<h:commandButton class="btn btn-success"
-						action="#{clienteBean.pagarAmortizacion(amo.id_Amoritizacion)}"
-						value="Pagar Cuota">
-					</h:commandButton>
-					
-					<h:commandButton class="btn btn-primary waves-effect waves-light mr-1"
-						action="#{clienteBean.pagarAmortizacion(amo.id_Amoritizacion)}"
-						value="Abonar"/>
-				</h:column>
 			</h:dataTable>
 
 

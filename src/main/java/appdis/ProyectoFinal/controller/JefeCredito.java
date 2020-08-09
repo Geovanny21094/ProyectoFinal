@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,26 +46,28 @@ public class JefeCredito {
 		cuenta = new Cuenta();
 		credito = new Credito();
 
-		listCreditos = ejb.buscarCreditos();
+//		listCreditos = ejb.buscarCreditos(); Si no funciona algo descomentar Jeje
 		listCreditosAprobar = ejb.buscarCreditosAprobar();
-
-		this.listCreditosAprobar = listCreditosAprobar;
-
+		this.listCreditosAprobar=listCreditosAprobar;
 	}
 
 	public void cargarDatosCuenta() throws Exception {
 		cuenta = ejb.buscarCuenta(cuenta.getNumeroCuenta());
 	}
 
-	public void rechacharCredito(String numueroCuenta) throws Exception {
+	public String rechacharCredito(String numueroCuenta) throws Exception {
 		cuenta = ejb.buscarCuenta(numueroCuenta);
-
+		int idCredito = cuenta.getId_cuenta();
+		credito = ejb.buscarCreditos(idCredito);
 		credito.setCuenta(cuenta);
 		credito.setEstadoCredito("Rechazado");
-
 		ejb.actualizarCredito(credito);
-
 		ejb.enviarCorreo("CREDITO", "Su Credito a sido Rechazado", cuenta.getCliente().getPersona().getCorreo());
+		
+		listCreditosAprobar=new ArrayList<Credito>();
+		listCreditosAprobar = ejb.buscarCreditosAprobar();
+		
+		return "JefeCredito?faces-redirect=true";
 	}
 
 	/*
@@ -115,6 +118,7 @@ public class JefeCredito {
 			amortizacion.setFechaPago(fechaPago);
 			amortizacion.setNumeroCuota(i);
 			amortizacion.setValor(valorCuotas);
+			amortizacion.setEstado("Pendiente");
 
 			amortizacion.setCredito(credito);
 
@@ -151,6 +155,7 @@ public class JefeCredito {
 				"/Users/italomendieta/bin/wildfly18/bin/Amortizacion.xls");
 
 		fileOut.close();
+		listCreditosAprobar=new ArrayList<Credito>();
 		listCreditosAprobar = ejb.buscarCreditosAprobar();
 	}
 

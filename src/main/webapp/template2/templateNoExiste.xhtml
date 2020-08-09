@@ -3,11 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" lang="es">
-
 <h:head>
 	<meta charset="utf-8" />
-	<title><ui:insert name="titulo">
-		</ui:insert></title>
+	<title><ui:insert name="titulo" /></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta
 		content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -15,7 +13,7 @@
 	<meta content="Coderthemes" name="author" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<!-- App favicon -->
-	<link rel="shortcut icon" href="template2/assets/images/favicon.ico" />
+	<link rel="shortcut icon" href="assets/images/favicon.ico" />
 
 	<!-- Bootstrap select pluings -->
 	<link
@@ -71,7 +69,7 @@
 
 						<li class="dropdown notification-list"><a
 							class="nav-link dropdown-toggle  waves-effect waves-light"
-							data-toggle="dropdown" href="form-validation.html#" role="button"
+							data-toggle="dropdown" href="pages-404-alt.html#" role="button"
 							aria-haspopup="false" aria-expanded="false"> <i
 								class="fe-bell noti-icon"></i> <span
 								class="badge badge-danger rounded-circle noti-icon-badge">9</span>
@@ -182,10 +180,10 @@
 
 						<li class="dropdown notification-list"><a
 							class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light"
-							data-toggle="dropdown" href="form-validation.html#" role="button"
+							data-toggle="dropdown" href="pages-404-alt.html#" role="button"
 							aria-haspopup="false" aria-expanded="false"> <img
-								src="assets/images/users/avatar-1.jpg" alt="user-image"
-								class="rounded-circle" />
+								src="template2/assets/images/users/avatar-1.jpg"
+								alt="user-image" class="rounded-circle" />
 						</a>
 							<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 								<!-- item-->
@@ -228,17 +226,21 @@
 
 					<!-- LOGO -->
 					<div class="logo-box">
-						<a href="index.html" class="logo text-center logo"> <span
+						<a href="index.html" class="logo text-center logo-light"> <span
 							class="logo-lg"> <img
-								src="template2/assets/images/logo.png" alt="" height="60" /> <!-- <span class="logo-lg-text-light">Codefox</span> -->
+								src="template2/assets/images/logo-light.png" alt="" height="20" />
+								<!-- <span class="logo-lg-text-light">Codefox</span> -->
 						</span> <span class="logo-sm"> <!-- <span class="logo-sm-text-dark">C</span> -->
-								<img src="template2/assets/images/logo.png" alt="" height="24" />
+								<img src="template2/assets/images/logo-sm.png" alt=""
+								height="24" />
 						</span>
 						</a> <a href="index.html" class="logo text-center logo-dark"> <span
 							class="logo-lg"> <img
-								src="template2/assets/images/logo.png" alt="" height="20" /> <!-- <span class="logo-lg-text-png">Codefox</span> -->
+								src="template2/assets/images/logo-dark.png" alt="" height="20" />
+								<!-- <span class="logo-lg-text-png">Codefox</span> -->
 						</span> <span class="logo-sm"> <!-- <span class="logo-sm-text-dark">c</span> -->
-								<img src="template2/assets/images/logo" alt="" height="24" />
+								<img src="template2/assets/images/logo-sm.png" alt=""
+								height="24" />
 						</span>
 						</a>
 					</div>
@@ -267,51 +269,28 @@
 				<!-- Start Content-->
 				<div class="container-fluid">
 
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Forms</a></li>
-										<li class="breadcrumb-item active">Form Validation</li>
-									</ol>
-								</div>
-								<h4 class="page-title"><ui:insert name="titulo">
-									</ui:insert></h4>
-							</div>
-						</div>
-					</div>
-					<!-- end page title -->
+					<div class="row justify-content-center">
+						<div class="col-lg-4">
+							<div class="my-5 pt-5">
 
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="header-title"><ui:insert name="titulo">
-									</ui:insert></h4>
-									<p class="sub-header"></p>
-
+								<div class="text-center">
+									<img src="template2/assets/images/icons/high_priority.svg"
+										alt="high_priority.svg" height="60" />
+									<h2 class="text-uppercase text-primary mt-4">
+										<ui:insert name="titulo">
+										</ui:insert>
+									</h2>
 									<ui:insert name="contenido">
 									</ui:insert>
+
 								</div>
+
 							</div>
+							<!-- end card -->
+
 						</div>
 						<!-- end col -->
-
-						
-						<!-- end col -->
 					</div>
-					<!-- end row -->
-
-
-					<!-- end row -->
-
-
-
 					<!-- end row -->
 
 				</div>
@@ -331,9 +310,9 @@
 						</div>
 						<div class="col-md-6">
 							<div class="text-md-right footer-links d-none d-sm-block">
-								<a href="form-validation.html#">About Us</a> <a
-									href="form-validation.html#">Help</a> <a
-									href="form-validation.html#">Contact Us</a>
+								<a href="pages-404-alt.html#">About Us</a> <a
+									href="pages-404-alt.html#">Help</a> <a
+									href="pages-404-alt.html#">Contact Us</a>
 							</div>
 						</div>
 					</div>
@@ -365,7 +344,7 @@
 					<strong>Customize </strong> the overall color scheme, layout, etc.
 				</div>
 				<div class="mb-2">
-					<img src="assets/images/layouts/light.png"
+					<img src="template2/assets/images/layouts/light.png"
 						class="img-fluid img-thumbnail" alt="" />
 				</div>
 				<div class="custom-control custom-switch mb-3">
@@ -375,38 +354,39 @@
 				</div>
 
 				<div class="mb-2">
-					<img src="assets/images/layouts/dark.png"
+					<img src="template2/assets/images/layouts/dark.png"
 						class="img-fluid img-thumbnail" alt="" />
 				</div>
 				<div class="custom-control custom-switch mb-3">
 					<input type="checkbox" class="custom-control-input theme-choice"
 						id="dark-mode-switch"
-						data-bsStyle="assets/css/bootstrap-dark.min.css"
-						data-appStyle="assets/css/app-dark.min.css" /> <label
+						data-bsStyle="template2/assets/css/bootstrap-dark.min.css"
+						data-appStyle="template2/assets/css/app-dark.min.css" /> <label
 						class="custom-control-label" for="dark-mode-switch">Dark
 						Mode</label>
 				</div>
 
 				<div class="mb-2">
-					<img src="assets/images/layouts/rtl.png"
+					<img src="template2/assets/images/layouts/rtl.png"
 						class="img-fluid img-thumbnail" alt="" />
 				</div>
 				<div class="custom-control custom-switch mb-3">
 					<input type="checkbox" class="custom-control-input theme-choice"
-						id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css" />
-					<label class="custom-control-label" for="rtl-mode-switch">RTL
+						id="rtl-mode-switch"
+						data-appStyle="template2/assets/css/app-rtl.min.css" /> <label
+						class="custom-control-label" for="rtl-mode-switch">RTL
 						Mode</label>
 				</div>
 
 				<div class="mb-2">
-					<img src="assets/images/layouts/dark-rtl.png"
+					<img src="template2/assets/images/layouts/dark-rtl.png"
 						class="img-fluid img-thumbnail" alt="" />
 				</div>
 				<div class="custom-control custom-switch mb-5">
 					<input type="checkbox" class="custom-control-input theme-choice"
 						id="dark-rtl-mode-switch"
-						data-bsStyle="assets/css/bootstrap-dark.min.css"
-						data-appStyle="assets/css/app-dark-rtl.min.css" /> <label
+						data-bsStyle="template2/assets/css/bootstrap-dark.min.css"
+						data-appStyle="/template2/assets/css/app-dark-rtl.min.css" /> <label
 						class="custom-control-label" for="dark-rtl-mode-switch">Dark
 						RTL Mode</label>
 				</div>
@@ -430,19 +410,10 @@
 
 	<!-- Vendor js -->
 	<script src="template2/assets/js/vendor.min.js"></script>
-	
-	<script src="template2/assets/libs/bootstrap-filestyle2/bootstrap-filestyle.min.js"></script>
-	
 
 	<!-- Bootstrap select plugin -->
 	<script
 		src="template2/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-	<!-- Plugin js-->
-	<script src="template2/assets/libs/parsleyjs/parsley.min.js"></script>
-
-	<!-- Validation init js-->
-	<script src="template2/assets/js/pages/form-validation.init.js"></script>
 
 	<!-- App js -->
 	<script src="template2/assets/js/app.min.js"></script>

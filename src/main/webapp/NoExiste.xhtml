@@ -2,24 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="/template2/template.xhtml">
+<ui:composition template="/template2/templateNoExiste.xhtml">
 
 	<ui:define name="titulo">
-		Accesos a la Cuenta
+		ERROR: No tiene Creditos
 	</ui:define>
-	
-	<ui:define name="menu">
+
+ <ui:define name="menu">
 		<div class="container-fluid">
 			<div id="navigation">
-				<!-- Navigation Menu-->
 				<ul class="navigation-menu">
 					<ui:insert name="menu">
 					</ui:insert>
 
 					<li class="has-submenu"><a
-						onclick="#{clienteBean.actualizarTransacciones()}"
 						href="/ProyectoFinal/faces/ClienteHome.xhtml"> <i
 							class="fe-airplay"></i>Inicio
 					</a></li>
@@ -31,10 +30,10 @@
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a onclick="#{clienteBean.creditoMethod()}"
+									<li><a
 										href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
 											Credito</a></li>
-									<li><a onclick="#{clienteBean.Amortizacion()}"
+									<li><a 
 										href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
 											Amortización</a></li>
 
@@ -48,10 +47,10 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a onclick="#{clienteBean.registrarCuenta()}"
+							<li><a 
 								href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
 									Cuenta</a></li>
-							<li><a onclick="#{clienteBean.tranferencia()}"
+							<li><a 
 								href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia</a></li>
 						</ul></li>
 
@@ -60,7 +59,7 @@
 					</a>
 						<ul class="submenu">
 							<li><a
-								onclick="#{clienteBean.trasacionesFecha(clienteBean.cuenta.numeroCuenta)}"
+								
 								href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
 									Transacciones </a></li>
 
@@ -72,56 +71,25 @@
 					</a>
 						<ul class="submenu">
 							<li><a
-								onclick="#{clienteBean.accesoCliente(clienteBean.cuenta.id_cuenta)}"
+								
 								href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos de
 									la Cuenta </a></li>
 						</ul></li>
 
 
 				</ul>
-				<!-- End navigation menu -->
 
 				<div class="clearfix"></div>
 			</div>
-			<!-- end #navigation -->
 		</div>
+		
 	</ui:define>
-
-
+	
 	<ui:define name="contenido">
-
-		<h:form>
-			<div class="form-group">
-				
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					action="ClienteHome?faces-redirect=true" value="Cuenta">
-				</h:commandButton>
-				
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
-				</h:commandButton>
-			</div>
-		</h:form>
-
-		<h:dataTable class="table table-striped" var="noti"
-			value="#{clienteBean.listaNotificaciones}">
-
-			<h:column>
-				<f:facet name="header">Fecha</f:facet>
-				<h:outputLabel value="#{noti.fecha}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Estado</f:facet>
-				<h:outputLabel value="#{noti.mensaje_notificacion}" />
-			</h:column>
-
-		</h:dataTable>
-
-
+			
+		
 	</ui:define>
 </ui:composition>
+
+
 </html>

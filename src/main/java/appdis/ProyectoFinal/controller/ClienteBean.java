@@ -48,6 +48,7 @@ public class ClienteBean {
 	private List<CuentasDestino> listCuenDestino = new ArrayList<>();
 	private List<Notificaciones> listaNotificaciones;
 	private List<Amortizacion> listaAmortizacions;
+	private List<Amortizacion> listaAmortizacionsPagadas;
 	private List<Transaccion> listaTransacciones;
 	private List<SelectItem> nombreCuentas;
 	private List<Transaccion> listaTrans;
@@ -55,6 +56,7 @@ public class ClienteBean {
 	private String numeroCuenta;
 	private String cadenaCuenta;
 	private double saldoCuenta;
+	private double parteMonto;
 
 	private int numeroCuenta1;
 	private int edad;
@@ -70,7 +72,7 @@ public class ClienteBean {
 
 	private Part file;
 	private String folder = "/Users/italomendieta/Desktop/ArchivosDMR/";
-	
+
 	@PostConstruct
 	public void init() throws Exception {
 		cl = new Cliente();
@@ -87,8 +89,6 @@ public class ClienteBean {
 		this.creditosExistentes = creditosExistentes;
 
 	}
-	
-
 
 	public String isValidCliente() {
 		String pag = "";
@@ -301,8 +301,8 @@ public class ClienteBean {
 	 */
 	public String creditoMethod() throws Exception {
 //		nombresCuentas();
-		
-		credito=new Credito();
+
+		credito = new Credito();
 		numeroCuenta1 = cuenta.getId_cuenta();
 
 		cuenta = ejb.buscarCuenta(numeroCuenta1);
@@ -394,14 +394,14 @@ public class ClienteBean {
 		credito.setCuenta(cuenta);
 
 		credito.setEstadoCredito("Pendiente");
-		
+
 //		upload();
 
 		ejb.guardarCredito(credito);
 
 		ejb.categorizacion(credito);
 	}
-	
+
 	public void upload() throws Exception {
 		try (InputStream input = file.getInputStream()) {
 			cuenta = ejb.buscarCuenta(cuenta.getNumeroCuenta());
@@ -441,13 +441,110 @@ public class ClienteBean {
 	}
 
 	public String Amortizacion() throws Exception {
+		
+		String pag = "";
 		numeroCuenta1 = cuenta.getId_cuenta();
 //		cuenta = ejb.buscarCuenta(numeroCuenta);
-		credito=ejb.buscarCreditos(cuenta.getId_cuenta());
-		
-		listaAmortizacions=ejb.buscarAmortizaciones(credito.getId_credito());
+		credito = ejb.buscarCreditos(cuenta.getId_cuenta());
+
+		if ((listaAmortizacions = ejb.buscarAmortizaciones(credito.getId_credito())) != null) {
+			pag = "Amortizacion?faces-redirect=true&idCredito=" + credito.getId_credito();
+		} else {
+			pag = "NoExiste?faces-redirect=true";
+		}
+		return pag;
+
+	}
+	
+	public String AmortizacionPagadas() throws Exception {
+
+		String pag = "";
+		numeroCuenta1 = cuenta.getId_cuenta();
+//		cuenta = ejb.buscarCuenta(numeroCuenta);
+		credito = ejb.buscarCreditos(cuenta.getId_cuenta());
+
+		if ((listaAmortizacionsPagadas = ejb.buscarAmortizacionesPagadas(credito.getId_credito())) != null) {
+			pag = "AmortizacionPagadas?faces-redirect=true&idCredito=" + credito.getId_credito();
+		} else {
+			pag = "NoExiste?faces-redirect=true";
+		}
+
+		return pag;
+
+	}
+
+	public void pagarAmortizacion(int idAmortizacion) throws Exception {
+
+		Amortizacion amo = ejb.buscarAmortizacion(idAmortizacion);
+		double saldo = cuenta.getSaldo();
+		double saldoPagar = amo.getValor();
+		double saldoTotal;
+
+		if (saldoPagar <= saldo) {
+
+			saldoTotal = saldo - saldoPagar;
+			cuenta.setSaldo(saldoTotal);
+
+			amo.setEstado("Pagada");
+
+			ejb.actualizarAmortizacion(amo);
+			ejb.actualizarCuenta(cuenta);
+
+			Amortizacion();
+		} else {
+			System.out.println("No tiene SALDO suficiente");
+		}
+
+	}
+
+	public void pagarParteAmortizacion(int idAmortizacion) throws Exception {
+
+		Amortizacion amo = ejb.buscarAmortizacion(idAmortizacion);
+		double saldoCue = cuenta.getSaldo();
+		double saldoAmor = amo.getValor();
+		double saldoTotalCuenta;
+		double saldoTotalAmortizacion;
+
+		if (parteMonto <= saldoCue) {
+
+			saldoTotalCuenta = saldoCue - parteMonto;
+			saldoTotalAmortizacion=saldoAmor-parteMonto;
+			
+			cuenta.setSaldo(saldoTotalCuenta);
+			
+			amo.setValor(saldoTotalAmortizacion);
+
+			ejb.actualizarAmortizacion(amo);
+			ejb.actualizarCuenta(cuenta);
+
+			Amortizacion();
+		} else {
+			System.out.println("No tiene SALDO suficiente");
+		}
+
+	}
+	
+	public void comprobarPagos() throws Exception {
+		java.util.Date fechaActual = new java.util.Date();
+		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+		sdformat.format(fechaActual);
+
+		listaAmortizacions = ejb.buscarAmortizaciones(credito.getId_credito());
+
+		for (Amortizacion amo : listaAmortizacions) {
+
+			java.util.Date fechaPago = amo.getFechaPago();
+			sdformat.format(fechaPago);
+
+			if (fechaPago.before(fechaActual)) {
+				amo.setEstado("Vencida");
+				ejb.actualizarAmortizacion(amo);
 				
-		return "Amortizacion?faces-redirect=true&idCredito=" + credito.getId_credito();
+				System.out.println("Cuota num-> " + amo.getNumeroCuota());
+			} else {
+				System.out.println("no hay cuotas vencidas");
+			}
+		}
 	}
 
 	public Cuenta getCuenta() {
@@ -641,6 +738,23 @@ public class ClienteBean {
 	public void setListaAmortizacions(List<Amortizacion> listaAmortizacions) {
 		this.listaAmortizacions = listaAmortizacions;
 	}
+
+	public List<Amortizacion> getListaAmortizacionsPagadas() {
+		return listaAmortizacionsPagadas;
+	}
+
+	public void setListaAmortizacionsPagadas(List<Amortizacion> listaAmortizacionsPagadas) {
+		this.listaAmortizacionsPagadas = listaAmortizacionsPagadas;
+	}
+
+	public double getParteMonto() {
+		return parteMonto;
+	}
+
+	public void setParteMonto(double parteMonto) {
+		this.parteMonto = parteMonto;
+	}
+	
 	
 	
 

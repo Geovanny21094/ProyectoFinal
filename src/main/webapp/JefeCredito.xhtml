@@ -7,7 +7,47 @@
 <ui:composition template="/template2/template.xhtml">
 
 	<ui:define name="titulo">
-		Creditos
+		Creditos Pendientes
+	</ui:define>
+	
+	<ui:define name="menu">
+		<div class="container-fluid">
+			<div id="navigation">
+				<!-- Navigation Menu-->
+				<ul class="navigation-menu">
+					<ui:insert name="menu">
+					</ui:insert>
+
+					<li class="has-submenu"><a
+						onclick="#{jefeCredito.listCreditosAprobar}"
+						href="/ProyectoFinal/faces/JefeCredito.xhtml"> <i
+							class="fe-airplay"></i>Inicio
+					</a></li>
+
+					<li class="has-submenu"><a href="#"> <i
+							class="fe-airplay"></i>Creditos
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu megamenu">
+							<li>
+								<ul>
+									<li><a onclick="#"
+										href="/ProyectoFinal/faces/CreditosAprobados.xhtml">Creditos Aprobados</a></li>
+									<li><a onclick="#"
+										href="/ProyectoFinal/faces/CreditosRechazadosxhtml">Creditos Rechazados</a></li>
+
+								</ul>
+							</li>
+
+						</ul></li>
+
+				</ul>
+				<!-- End navigation menu -->
+
+				<div class="clearfix"></div>
+			</div>
+			<!-- end #navigation -->
+		</div>
 	</ui:define>
 
 
@@ -15,24 +55,8 @@
 
 		<h:form>
 
-			<div class="form-group">
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
-					action="AdministracionRolesLista" />
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					value="Crear Rol" action="AdministracionRoles" />
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					value="Crear Usuario" action="AdministracionClientes" />
-
-			</div>
-
 			<h:dataTable class="table" var="cre"
-				value="#{jefeCredito.listCreditos}">
+				value="#{jefeCredito.listCreditosAprobar}">
 
 				<h:column>
 					<f:facet name="header">Numero Cuenta</f:facet>
@@ -69,13 +93,13 @@
 				<h:column>
 					<f:facet name="header">Opciones</f:facet>
 
-					<h:commandButton class="btn btn-success" value="Aprobar">
+					<h:commandButton class="btn btn-success" value="Aprobar" action="#{jefeCredito.generarCredito(cre.cuenta.numeroCuenta)}">
 						<!-- <f:ajax render="table"></f:ajax> -->
 					</h:commandButton>
 
 					<h:commandButton
-						class="btn btn-primary waves-effect waves-light mr-1"
-						value="Rechazar" />
+						class="btn btn-primary waves-effect waves-light mr-1" action="#{jefeCredito.rechacharCredito(cre.cuenta.numeroCuenta)}"
+						value="Rechazar"  />
 
 				</h:column>
 			</h:dataTable>
