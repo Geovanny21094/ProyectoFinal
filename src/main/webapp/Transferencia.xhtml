@@ -13,7 +13,7 @@
 	<ui:define name="titulo">
 		Transferencia
 	</ui:define>
-	
+
 	<ui:define name="menu">
 		<div class="container-fluid">
 			<div id="navigation">
@@ -96,8 +96,16 @@
 
 
 	<ui:define name="contenido">
-
 		<h:form>
+			<h:commandButton
+				class="btn btn-primary waves-effect waves-light mr-1"
+				action="#{clienteBean.nombresCuentas()}" value="Actualizar">
+				<f:ajax render="datos" execute="@all"></f:ajax>
+			</h:commandButton>
+
+		</h:form>
+
+		<h:form id="datos">
 
 			<div class="form-group">
 				<div class="row">
@@ -181,7 +189,8 @@
 				<label for="col-md-12" class="col-md-12">Monto</label>
 				<div class="col-md-12">
 					<h:inputText type="text" placeholder="400"
-						class="form-control form-control-line" value="#{clienteBean.tranferencia.monto}" />
+						class="form-control form-control-line"
+						value="#{clienteBean.tranferencia.monto}" />
 				</div>
 			</div>
 

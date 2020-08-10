@@ -204,10 +204,11 @@ public class ClienteBean {
 
 		double saldoAnterior = cuentaOrigen.getSaldo();
 		if (montoTra <= saldoAnterior) {
-			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
-			newTransaccion.setTipo("Retiro");
-			newTransaccion.setMonto(montoTra);
+			
 			try {
+				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
+				newTransaccion.setTipo("Retiro");
+				newTransaccion.setMonto(montoTra);
 				System.out.println(cuentaOrigen.getNumeroCuenta());
 				newTransaccion.setCuenta(cuentaOrigen);
 				cuentaOrigen.setSaldo(saldoAnterior - montoTra);
@@ -216,6 +217,7 @@ public class ClienteBean {
 
 				double saldo = montoTra + cuentaDestino.getSaldo();
 
+				newTransaccion=new Transaccion();
 				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
 				newTransaccion.setTipo("Deposito");
 				newTransaccion.setMonto(montoTra);
@@ -508,7 +510,7 @@ public class ClienteBean {
 		numeroCuenta1 = cuenta.getId_cuenta();
 //		cuenta = ejb.buscarCuenta(numeroCuenta);
 		credito = ejb.buscarCreditos(cuenta.getId_cuenta());
-
+		listaAmortizacions=new ArrayList<Amortizacion>();
 		if ((listaAmortizacions = ejb.buscarAmortizaciones(credito.getId_credito())) != null) {
 			pag = "Amortizacion?faces-redirect=true&idCredito=" + credito.getId_credito();
 		} else {
@@ -525,6 +527,7 @@ public class ClienteBean {
 //		cuenta = ejb.buscarCuenta(numeroCuenta);
 		credito = ejb.buscarCreditos(cuenta.getId_cuenta());
 
+		listaAmortizacionsPagadas =new ArrayList<Amortizacion>();
 		if ((listaAmortizacionsPagadas = ejb.buscarAmortizacionesPagadas(credito.getId_credito())) != null) {
 			pag = "AmortizacionPagadas?faces-redirect=true&idCredito=" + credito.getId_credito();
 		} else {
@@ -537,7 +540,6 @@ public class ClienteBean {
 
 	public String irAbonarCredito(int idAmortizacion) throws Exception {
 		amo = ejb.buscarAmortizacion(idAmortizacion);
-
 		return "AbonarCredito?faces-redirect=true&idCredito=" + amo.getCredito().getCuenta().getId_cuenta();
 	}
 
@@ -572,6 +574,8 @@ public class ClienteBean {
 		double saldoAmor = amo.getValor();
 		double saldoTotalCuenta;
 		double saldoTotalAmortizacion;
+		
+		cuenta=ejb.buscarCuenta(cuenta.getNumeroCuenta());
 
 		if (parteMonto <= saldoCue) {
 
