@@ -44,16 +44,11 @@ public class TransaccionDao {
 	@SuppressWarnings("unchecked")
 	public List<Transaccion> getTransaccion(int filtro) {
 
-
 		String jpql = "SELECT tra FROM Transaccion tra WHERE tra.cuenta.id_cuenta LIKE :filtro";
 
+		// Query q = em.createQuery(jpql, Transferencia.class);
 
-
-		//	Query q = em.createQuery(jpql, Transferencia.class);
-
-
-		//	Query q = em.createQuery(jpql, Transferencia.class);
-
+		// Query q = em.createQuery(jpql, Transferencia.class);
 
 		Query q = em.createQuery(jpql, Transaccion.class);
 
@@ -67,35 +62,49 @@ public class TransaccionDao {
 
 	public List<Transaccion> getTransaccioFiltron(String numeroCuenta) {
 //			String jpql = "SELECT s FROM Transaccion s WHERE s.cuenta.numeroCuenta= :numeroCuenta AND s.Fecha = CURRENT_DATE() -30";
-		String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN '2020-05-10' AND '2020-06-29' order by e.Fecha";
+		String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN '2020-05-10' AND '2020-08-10' order by e.Fecha";
 		Query q = em.createQuery(jpql, Transaccion.class);
 
-			q.setParameter("numeroCuenta", numeroCuenta);
+		q.setParameter("numeroCuenta", numeroCuenta);
 		return q.getResultList();
 	}
-	
-	public List<Transaccion> getTransaccioFiltron2(String numeroCuenta, Date fechaIni, Date fechaFin) {
-//		String jpql = "SELECT s FROM Transaccion s WHERE s.cuenta.numeroCuenta= :numeroCuenta AND s.Fecha = CURRENT_DATE() -30";
-	String jpql = "SELECT e FROM Transaccion e WHERE cuenta.numeroCuenta= :numeroCuenta AND e.Fecha BETWEEN :fechaIni AND :fechaFin";
-	Query q = em.createQuery(jpql, Transaccion.class);
 
-	q.setParameter("numeroCuenta", numeroCuenta);
-	q.setParameter("fechaIni", fechaIni);
-	q.setParameter("fechaFin", fechaFin);
-	return q.getResultList();
+	public List<Transaccion> getTransaccion5Dias(int numeroCuenta) {
 
+		Object intevalo = "INTERVAL 5 DAY";
+		String jpql = "SELECT * FROM Transaccion  WHERE id_cuenta = :numeroCuenta AND Fecha > DATE_SUB(NOW(), INTERVAL 5 DAY);";
+		Query q2 = em.createNativeQuery(jpql, Transaccion.class);
+		q2.setParameter("numeroCuenta", numeroCuenta);
+		return q2.getResultList();
 
+	}
 
-		}
+	public List<Transaccion> getTransaccion1Semana(int numeroCuenta) {
 
-	 
+		Object intevalo = "INTERVAL 5 DAY";
+		String jpql = "SELECT * FROM Transaccion  WHERE id_cuenta = :numeroCuenta AND Fecha > DATE_SUB(NOW(), INTERVAL 1 WEEK);";
+		Query q2 = em.createNativeQuery(jpql, Transaccion.class);
+		q2.setParameter("numeroCuenta", numeroCuenta);
+		return q2.getResultList();
 
-		
-	
-		
-}		
-		
-		
-		
+	}
 
+	public List<Transaccion> getTransaccion1Mes(int numeroCuenta) {
+		Object intevalo = "INTERVAL 5 DAY";
+		String jpql = "SELECT * FROM Transaccion  WHERE id_cuenta = :numeroCuenta AND Fecha > DATE_SUB(NOW(), INTERVAL 1 MONTH);";
+		Query q2 = em.createNativeQuery(jpql, Transaccion.class);
+		q2.setParameter("numeroCuenta", numeroCuenta);
+		return q2.getResultList();
 
+	}
+
+	public List<Transaccion> getTransaccion1Anio(int numeroCuenta) {
+		Object intevalo = "INTERVAL 5 DAY";
+		String jpql = "SELECT * FROM Transaccion  WHERE id_cuenta = :numeroCuenta AND Fecha > DATE_SUB(NOW(), INTERVAL 1 YEAR);";
+		Query q2 = em.createNativeQuery(jpql, Transaccion.class);
+		q2.setParameter("numeroCuenta", numeroCuenta);
+		return q2.getResultList();
+
+	}
+
+}

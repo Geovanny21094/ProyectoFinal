@@ -613,9 +613,20 @@ public class gestionON implements DaoProyectoLocal {
 		return tradao.getTransaccioFiltron(numeroCuenta);
 	}
 
-	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin)
-			throws Exception {
-		return tradao.getTransaccioFiltron2(numeroCuenta, fechaIni, fechaFin);
+	public List<Transaccion> getTransaccion5Dias(int numeroCuenta) throws Exception {
+		return tradao.getTransaccion5Dias(numeroCuenta);
+	}
+
+	public List<Transaccion> getTransaccion1Semana(int numeroCuenta) throws Exception {
+		return tradao.getTransaccion1Semana(numeroCuenta);
+	}
+
+	public List<Transaccion> getTransaccion1Mes(int numeroCuenta) throws Exception {
+		return tradao.getTransaccion1Mes(numeroCuenta);
+	}
+
+	public List<Transaccion> getTransaccion1Abnio(int numeroCuenta) throws Exception {
+		return tradao.getTransaccion1Anio(numeroCuenta);
 	}
 
 	public List<Transaccion> buscarTransaccion(int id) throws Exception {
@@ -654,6 +665,10 @@ public class gestionON implements DaoProyectoLocal {
 	public List<CuentasDestino> buscarCuentasDestino(String cuentaOrigen) throws Exception {
 		return cueDesDao.getCuentas(cuentaOrigen);
 	}
+	
+	public List<CuentasDestino> listarDestino() throws Exception {
+		return cueDesDao.listarCuentas();
+	}
 
 	public void guardarAmortizacion(Amortizacion amortizacion) throws Exception {
 		Amortizacion aux = AmoDao.read(amortizacion.getId_Amoritizacion());
@@ -684,7 +699,7 @@ public class gestionON implements DaoProyectoLocal {
 			throw new Exception("No Tiene Creditos");
 		}
 	}
-	
+
 	public List<Amortizacion> buscarAmortizacionesPagadas(int id_credito) throws Exception {
 		List<Amortizacion> amo;
 		if ((amo = AmoDao.getAmortizacionesPagadas(id_credito)) != null) {
@@ -784,7 +799,7 @@ public class gestionON implements DaoProyectoLocal {
 		return cedulaValida;
 	}
 
-	public void categorizacion(Credito c) throws Exception {
+	public String categorizacion(Credito c) throws Exception {
 
 		String DNI = c.getCuenta().getCliente().getPersona().getCedula();
 		String numeroCuenta = c.getCuenta().getNumeroCuenta();
@@ -1102,10 +1117,38 @@ public class gestionON implements DaoProyectoLocal {
 			trabajodorExtranjeroReturn = A202;
 		}
 
-		generarCSV(DNI, plazoCreditos, historialCreditosReturn, propositoCreditoReturn, montoCredito,
-				saldoCuentaAhorrosReturn, tiempoEmpleoReturn, tasaPago, estadoCivilSexoReturn, garanteReturn,
-				avaluoVivienda, activosReturn, edad, viviendaReturn, creditosExistentes, empleoReturn,
-				trabajodorExtranjeroReturn, numeroCuenta);
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new File("/Users/italomendieta/Desktop/ArchivosDMR/" + numeroCuenta + ".csv"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		StringBuilder builder = new StringBuilder();
+		String ColumnNamesList = "DNI;" + "PLAZOMESESCREDITO;" + "HISTORIALCREDITO;" + "PROPOSITOCREDITO;"
+				+ "MONTOCREDITO;" + "SALDOCUENTAAHORROS;" + "TIEMPOEMPLEO;" + "TASAPAGO;" + "ESTADOCIVILYSEXO;"
+				+ "GARANTE;" + "AVALUOVIVIENDA;" + "ACTIVOS;" + "EDAD;" + "VIVIENDA;" + "CANTIDADCREDITOSEXISTENTES;"
+				+ "EMPLEO;" + "TRABAJADOREXTRANJERO;" + "TIPOCLIENTE";
+
+		builder.append(ColumnNamesList + "\n");
+		builder.append(DNI + ";" + plazoCreditos + ";" + historialCreditosReturn + ";" + propositoCreditoReturn + ";"
+				+ montoCredito + ";" + saldoCuentaAhorrosReturn + ";" + tiempoEmpleoReturn + ";" + tasaPago + ";"
+				+ estadoCivilSexoReturn + ";" + garanteReturn + ";" + avaluoVivienda + ";" + activosReturn + ";" + edad
+				+ ";" + viviendaReturn + ";" + creditosExistentes + ";" + empleoReturn + ";"
+				+ trabajodorExtranjeroReturn + ";" + 1 + ";");
+		pw.write(builder.toString());
+		pw.close();
+		System.out.println("done!");
+
+		return (DNI + ";" + plazoCreditos + ";" + historialCreditosReturn + ";" + propositoCreditoReturn + ";"
+				+ montoCredito + ";" + saldoCuentaAhorrosReturn + ";" + tiempoEmpleoReturn + ";" + tasaPago + ";"
+				+ estadoCivilSexoReturn + ";" + garanteReturn + ";" + avaluoVivienda + ";" + activosReturn + ";" + edad
+				+ ";" + viviendaReturn + ";" + creditosExistentes + ";" + empleoReturn + ";"
+				+ trabajodorExtranjeroReturn + ";" + 1 + ";");
+
+//		generarCSV(DNI, plazoCreditos, historialCreditosReturn, propositoCreditoReturn, montoCredito,
+//				saldoCuentaAhorrosReturn, tiempoEmpleoReturn, tasaPago, estadoCivilSexoReturn, garanteReturn,
+//				avaluoVivienda, activosReturn, edad, viviendaReturn, creditosExistentes, empleoReturn,
+//				trabajodorExtranjeroReturn, numeroCuenta);
 	}
 
 	public void generarCSV(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
@@ -1115,7 +1158,7 @@ public class gestionON implements DaoProyectoLocal {
 			throws Exception {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter(new File("/Users/italomendieta/Desktop/ArchivosDMR/" + numeroCuenta + ".csv"));
+			pw = new PrintWriter(new File("/home/gioabad210/ArchivosDMR/ArchivosDMR/" + numeroCuenta + ".csv"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -1132,7 +1175,19 @@ public class gestionON implements DaoProyectoLocal {
 				+ cantidadCreditosExistentes + ";" + empleo + ";" + trabajadorExtranjero + ";" + 1 + ";");
 		pw.write(builder.toString());
 		pw.close();
+
 		System.out.println("done!");
+	}
+
+	public String json(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
+			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago, String estadoCivilSexo,
+			String garante, int avaluoVivienda, String activos, int edad, String vivienda,
+			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta) {
+
+		return (DNI + ";" + plazoMesesCreditos + ";" + hitorialCredito + ";" + propositoCredito + ";" + montoCredito
+				+ ";" + saldoCuentaAhorros + ";" + tiempoEmpleo + ";" + tasaPago + ";" + estadoCivilSexo + ";" + garante
+				+ ";" + avaluoVivienda + ";" + activos + ";" + edad + ";" + vivienda + ";" + cantidadCreditosExistentes
+				+ ";" + empleo + ";" + trabajadorExtranjero + ";" + 1 + ";");
 	}
 
 }

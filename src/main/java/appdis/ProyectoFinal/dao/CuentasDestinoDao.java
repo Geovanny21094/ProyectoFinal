@@ -37,6 +37,11 @@ public class CuentasDestinoDao {
 		em.remove(cu);
 	}
 
+	public List<CuentasDestino> listarCuentas() {
+		String jpql = "SELECT cuDes FROM CuentasDestino cuDes";
+		Query q = em.createQuery(jpql, CuentasDestino.class);
+		return q.getResultList();
+	}
 
 	public List<CuentasDestino> getCuentas(String cuentaOrigen) {
 		String jpql = "SELECT cuDes FROM CuentasDestino cuDes WHERE cuDes.cuenta.numeroCuenta = :cuentaOrigen";
@@ -44,7 +49,7 @@ public class CuentasDestinoDao {
 		q.setParameter("cuentaOrigen", cuentaOrigen);
 		return q.getResultList();
 	}
-	
+
 	public CuentasDestino getCuenta(String numeroCuentaBeneficiario) {
 		String jpql = "SELECT cuDes FROM CuentasDestino cuDes WHERE numeroCuentaBeneficiario = :numeroCuentaBeneficiario";
 		Query q = em.createQuery(jpql, CuentasDestino.class);

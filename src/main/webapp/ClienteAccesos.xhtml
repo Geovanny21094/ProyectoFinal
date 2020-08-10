@@ -13,13 +13,11 @@
 	<ui:define name="menu">
 		<div class="container-fluid">
 			<div id="navigation">
-				<!-- Navigation Menu-->
 				<ul class="navigation-menu">
 					<ui:insert name="menu">
 					</ui:insert>
 
 					<li class="has-submenu"><a
-						onclick="#{clienteBean.actualizarTransacciones()}"
 						href="/ProyectoFinal/faces/ClienteHome.xhtml"> <i
 							class="fe-airplay"></i>Inicio
 					</a></li>
@@ -31,13 +29,13 @@
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a onclick="#{clienteBean.creditoMethod()}"
-										href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
+									<li><a href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
 											Credito</a></li>
-									<li><a onclick="#{clienteBean.Amortizacion()}"
-										href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
+									<li><a href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
 											Amortización</a></li>
-
+									<li><a
+										href="/ProyectoFinal/faces/AmortizacionPagadas.xhtml">Creditos
+											Pagados</a></li>
 								</ul>
 							</li>
 
@@ -48,20 +46,19 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a onclick="#{clienteBean.registrarCuenta()}"
-								href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
+							<li><a href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
 									Cuenta</a></li>
-							<li><a onclick="#{clienteBean.tranferencia()}"
-								href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia</a></li>
+							<li><a href="/ProyectoFinal/faces/TransferenciaLocal.xhtml">Transferencia
+									Local</a></li>
+							<li><a href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia
+									Externa</a></li>
 						</ul></li>
 
 					<li class="has-submenu"><a href="#"> <i class="fe-layers"></i>Transacciones
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								onclick="#{clienteBean.trasacionesFecha(clienteBean.cuenta.numeroCuenta)}"
-								href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
+							<li><a href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
 									Transacciones </a></li>
 
 						</ul></li>
@@ -71,20 +68,26 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								onclick="#{clienteBean.accesoCliente(clienteBean.cuenta.id_cuenta)}"
-								href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos de
-									la Cuenta </a></li>
+							<li><a href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos
+									de la Cuenta </a></li>
 						</ul></li>
 
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/CambiarContrasenia.xhtml"> <i
+							class="fe-settings"></i>Cambiar Contraseña
+					</a></li>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/index.xhtml"> <i class="fe-log-out"></i>Cerrar
+							Sesion
+					</a></li>
 
 				</ul>
-				<!-- End navigation menu -->
 
 				<div class="clearfix"></div>
 			</div>
-			<!-- end #navigation -->
 		</div>
+
 	</ui:define>
 
 
@@ -96,14 +99,11 @@
 
 				<h:commandButton
 					class="btn btn-primary waves-effect waves-light mr-1"
-					action="ClienteHome?faces-redirect=true" value="Cuenta">
+					action="#{clienteBean.accesoCliente(clienteBean.cuenta.id_cuenta)}" value="Actualizar">
 				</h:commandButton>
 				
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					action="#{clienteBean.cerrarSesion()}" value="Cerrar Sesión">
-				</h:commandButton>
-			</div>
+				</div>
+				
 		</h:form>
 
 		<h:dataTable class="table table-striped" var="noti"

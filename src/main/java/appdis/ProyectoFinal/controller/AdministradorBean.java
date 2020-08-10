@@ -102,8 +102,6 @@ public class AdministradorBean {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	/*
 	 * Metodo que Guarda el Rol de una Persona Creada
@@ -198,6 +196,14 @@ public class AdministradorBean {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public String socios() {
+		return "login?faces-redirect=true";
+	}
+	
+	public String roles() {
+		return "loginRol?faces-redirect=true";
 	}
 
 	public List<Cuenta> getListaCuenta() {

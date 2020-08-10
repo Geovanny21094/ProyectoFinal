@@ -63,7 +63,7 @@ public class ClienteREST {
 				return cuenta;
 
 			} else {
-				
+
 				System.out.println("false");
 				ejb.enviarCorreo("INTENTO DE INGRESO A LA BANCA VIRTUAL",
 						"Se intento ingresar a la BANCA VIRTUAL \n" + "Estado FALLIDO", cl.getPersona().getCorreo());
@@ -98,6 +98,21 @@ public class ClienteREST {
 	}
 
 	@GET
+	@Path("/cuentaDestino/{numeroCuenta}")
+	@Produces("application/json")
+	public CuentasDestino getCuentaDestino(@PathParam("numeroCuenta") String numeroCuenta) throws Exception {
+		CuentasDestino cuentaDes = ejb.buscarCuentaDestino(numeroCuenta);
+		return cuentaDes;
+	}
+
+	@GET
+	@Path("/ListarcuentaDestino/")
+	@Produces("application/json")
+	public List<CuentasDestino> getCuentaDestino() throws Exception {
+		return ejb.listarDestino();
+	}
+
+	@GET
 	@Path("/amortizacion/{idCuenta}")
 	@Produces("application/json")
 	public List<Amortizacion> amortizaciones(@PathParam("idCuenta") int idCuenta) throws Exception {
@@ -108,6 +123,17 @@ public class ClienteREST {
 		listaAmortizacions = ejb.buscarAmortizaciones(credito.getId_credito());
 
 		return listaAmortizacions;
+	}
+
+	@POST
+	@Path("/agregarCuentaDestino/{numeroCuentaOrigen}")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public void agregarCuentaDestino(@PathParam("numeroCuentaOrigen") String numeroCuentaOrigen, CuentasDestino cueDes)
+			throws Exception {
+		Cuenta cuenta = ejb.buscarCuenta(numeroCuentaOrigen);
+		cueDes.setCuenta(cuenta);
+		ejb.guardarCuentaDestino(cueDes);
 	}
 
 	@POST
@@ -140,19 +166,22 @@ public class ClienteREST {
 	}
 
 	@POST
-	@Path("/tranferenciaExterna/{numeroCuentaOrigen}")
+	@Path("/tranferenciaExterna/{numeroCuentaOrigen}/{numeroCuentaDestino}/{monto}")
 	@Produces("application/json")
 	@Consumes("application/json")
 	public void tranferirDineroCuenta(@PathParam("numeroCuentaOrigen") String numeroCuentaOrigen,
-			Transferencia transferencia) throws Exception {
+			@PathParam("numeroCuentaDestino") String numeroCuentaDestino, @PathParam("monto") double monto)
+			throws Exception {
 
 		Cuenta cuenta = new Cuenta();
 		Transaccion newTransaccion = new Transaccion();
 		CuentasDestino cueDes = new CuentasDestino();
+		Transferencia transferencia = new Transferencia();
 
-		double monto = transferencia.getMonto();
+//		double monto = transferencia.getMonto();
 
 		cuenta = ejb.buscarCuenta(numeroCuentaOrigen);
+		cueDes = ejb.buscarCuentaDestino(numeroCuentaDestino);
 
 		double saldoAnterior = cuenta.getSaldo();
 		if (monto <= saldoAnterior) {
@@ -182,6 +211,14 @@ public class ClienteREST {
 		} else {
 			System.out.println("Saldo Insuficinete");
 		}
+	}
+
+	@GET
+	@Path("/validarCredito")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public String validarCredito(Credito c) throws Exception {
+		return ejb.categorizacion(c);
 	}
 
 }

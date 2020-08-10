@@ -4,10 +4,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/template2/template.xhtml">
+
+<h:head>
+
+</h:head>
+<ui:composition template="/template2/template3.xhtml">
 
 	<ui:define name="titulo">
-		Cuotas Pagadas
+		Transferencia Local
 	</ui:define>
 
 	<ui:define name="menu">
@@ -92,62 +96,97 @@
 
 
 	<ui:define name="contenido">
+
 		<h:form>
 
-			<!-- <div class="form-group">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Cuenta Origen</label>
+						<h:inputText type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{clienteBean.cuenta.numeroCuenta}" disabled="true" />
+					</div>
+				</div>
+			</div>
 
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1" value="Roles"
-					action="AdministracionRolesLista" />
-
-
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					value="Crear Rol" action="AdministracionRoles" />
-
-				<h:commandButton
-					class="btn btn-primary waves-effect waves-light mr-1"
-					value="Crear Usuario" action="AdministracionClientes" />
-
-
-			</div> -->
-
-			<h:commandButton class="btn btn-success"
-				action="#{clienteBean.AmortizacionPagadas()}" value="Actualizar">
-			</h:commandButton>
-
-			<h:dataTable class="table" var="amo"
-				value="#{clienteBean.listaAmortizacionsPagadas}">
-
-				<h:column>
-					<f:facet name="header">Numero de Cuota</f:facet>
-					<h:outputLabel class="co-name" value="#{amo.numeroCuota}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Fecha de Pago</f:facet>
-					<h:outputLabel class="co-name" value="#{amo.fechaPago}" />
-
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Valor a Pagar</f:facet>
-					<h:outputLabel class="co-name" value="#{amo.valor}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Estado</f:facet>
-					<h:outputLabel class="co-name" value="#{amo.estado}" />
-				</h:column>
-
-			</h:dataTable>
-
-
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-12">Cuneta Destino</label>
+						<h:inputText type="text" placeholder="C25001"
+							class="form-control form-control-line"
+							value="#{clienteBean.numCuentaDestino}">
+							<f:ajax render="datos" execute="@form">
+							</f:ajax>
+						</h:inputText>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-12">.</label>
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1"
+							action="#{clienteBean.cargarDatosCuentaDestinoLocal()}" value="Buscar" />
+					</div>
+				</div>
+			</div>
 		</h:form>
 
+		<h:form id="formulario">
+
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Nombre Propietario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Perez Lopez" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cuentaDestino.cliente.persona.nombres} 
+						#{clienteBean.cuentaDestino.cliente.persona.apellidos}"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Cedula Destinatario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Av. Americas" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cuentaDestino.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Email Destinatario</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="Av. Americas" disabled="true"
+						class="form-control form-control-line"
+						value="#{clienteBean.cuentaDestino.cliente.persona.correo}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="col-md-12" class="col-md-12">Monto</label>
+				<div class="col-md-12">
+					<h:inputText type="text" placeholder="400"
+						class="form-control form-control-line"
+						value="#{clienteBean.montoTra}" />
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton class="btn btn-success"
+						action="#{clienteBean.tranferirDineroLocal()}" value="Guardar">
+					</h:commandButton>
+
+				</div>
+			</div>
+		</h:form>
+
+
 	</ui:define>
+
+
 </ui:composition>
 
 

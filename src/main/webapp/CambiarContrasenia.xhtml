@@ -10,6 +10,86 @@
 	<ui:define name="titulo">
 		Cambiar Contraseña
 	</ui:define>
+	
+	<ui:define name="menu">
+		<div class="container-fluid">
+			<div id="navigation">
+				<ul class="navigation-menu">
+					<ui:insert name="menu">
+					</ui:insert>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/ClienteHome.xhtml"> <i
+							class="fe-airplay"></i>Inicio
+					</a></li>
+
+					<li class="has-submenu"><a href="#"> <i
+							class="fe-briefcase"></i>Credito
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu megamenu">
+							<li>
+								<ul>
+									<li><a href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
+											Credito</a></li>
+									<li><a href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
+											Amortización</a></li>
+									<li><a
+										href="/ProyectoFinal/faces/AmortizacionPagadas.xhtml">Creditos
+											Pagados</a></li>
+								</ul>
+							</li>
+
+						</ul></li>
+
+					<li class="has-submenu"><a href="#"> <i
+							class="fe-book-open"></i>Transferencia
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu">
+							<li><a href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
+									Cuenta</a></li>
+							<li><a href="/ProyectoFinal/faces/TransferenciaLocal.xhtml">Transferencia
+									Local</a></li>
+							<li><a href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia
+									Externa</a></li>
+						</ul></li>
+
+					<li class="has-submenu"><a href="#"> <i class="fe-layers"></i>Transacciones
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu">
+							<li><a href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
+									Transacciones </a></li>
+
+						</ul></li>
+
+					<li class="has-submenu"><a href="#"> <i class="fe-layout"></i>Accesos
+							a la Cuenta
+							<div class="arrow-down"></div>
+					</a>
+						<ul class="submenu">
+							<li><a href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos
+									de la Cuenta </a></li>
+						</ul></li>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/CambiarContrasenia.xhtml"> <i
+							class="fe-settings"></i>Cambiar Contraseña
+					</a></li>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/index.xhtml"> <i class="fe-log-out"></i>Cerrar
+							Sesion
+					</a></li>
+
+				</ul>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</ui:define>
 
 
 	<ui:define name="contenido">

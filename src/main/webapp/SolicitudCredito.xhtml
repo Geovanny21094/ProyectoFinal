@@ -16,13 +16,11 @@
 	<ui:define name="menu">
 		<div class="container-fluid">
 			<div id="navigation">
-				<!-- Navigation Menu-->
 				<ul class="navigation-menu">
 					<ui:insert name="menu">
 					</ui:insert>
 
 					<li class="has-submenu"><a
-						
 						href="/ProyectoFinal/faces/ClienteHome.xhtml"> <i
 							class="fe-airplay"></i>Inicio
 					</a></li>
@@ -34,13 +32,13 @@
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a 
-										href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
+									<li><a href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
 											Credito</a></li>
-									<li><a
-										href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
+									<li><a href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
 											Amortización</a></li>
-
+									<li><a
+										href="/ProyectoFinal/faces/AmortizacionPagadas.xhtml">Creditos
+											Pagados</a></li>
 								</ul>
 							</li>
 
@@ -51,20 +49,19 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a 
-								href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
+							<li><a href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
 									Cuenta</a></li>
-							<li><a 
-								href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia</a></li>
+							<li><a href="/ProyectoFinal/faces/TransferenciaLocal.xhtml">Transferencia
+									Local</a></li>
+							<li><a href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia
+									Externa</a></li>
 						</ul></li>
 
 					<li class="has-submenu"><a href="#"> <i class="fe-layers"></i>Transacciones
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								
-								href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
+							<li><a href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
 									Transacciones </a></li>
 
 						</ul></li>
@@ -74,26 +71,41 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								
-								href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos de
-									la Cuenta </a></li>
+							<li><a href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos
+									de la Cuenta </a></li>
 						</ul></li>
 
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/CambiarContrasenia.xhtml"> <i
+							class="fe-settings"></i>Cambiar Contraseña
+					</a></li>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/index.xhtml"> <i class="fe-log-out"></i>Cerrar
+							Sesion
+					</a></li>
 
 				</ul>
-				<!-- End navigation menu -->
 
 				<div class="clearfix"></div>
 			</div>
-			<!-- end #navigation -->
 		</div>
+
 	</ui:define>
 	
 	<ui:define name="contenido">
 
 		<h:form class="form-horizontal form-material"
 			enctype="multipart/form-data" prependId="false">
+			
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{clienteBean.creditoMethod()}" value="Actualizar" />
+				</div>
+			</div>
+			
 
 			<div>
 				<label class="header-title mt-3">Numero de Cuenta</label>

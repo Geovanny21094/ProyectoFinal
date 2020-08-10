@@ -39,7 +39,7 @@ public class JefeCredito {
 	private List<Credito> listCreditosAprobar;
 
 	private Part file;
-	private String folder = "/Users/italomendieta/Desktop/ArchivosDMR/";
+	private String folder = "/home/gioabad210/ArchivosDMR/";
 
 	@PostConstruct
 	public void init() throws Exception {
@@ -118,7 +118,7 @@ public class JefeCredito {
 			amortizacion.setFechaPago(fechaPago);
 			amortizacion.setNumeroCuota(i);
 			amortizacion.setValor(valorCuotas);
-			amortizacion.setEstado("Pendiente");
+			amortizacion.setEstado("Por Pagar");
 
 			amortizacion.setCredito(credito);
 
@@ -152,7 +152,7 @@ public class JefeCredito {
 
 		ejb.enviarCorreo1("CREDITO", "Se le adjunta la Tabla de amortizaciones de su Credito",
 				cuenta.getCliente().getPersona().getCorreo(),
-				"/Users/italomendieta/bin/wildfly18/bin/Amortizacion.xls");
+				"/home/gioabad210/ArchivosDMR/Amortizacion.xls");
 
 		fileOut.close();
 		listCreditosAprobar=new ArrayList<Credito>();

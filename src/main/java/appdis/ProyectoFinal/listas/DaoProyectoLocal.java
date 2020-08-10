@@ -63,11 +63,11 @@ public interface DaoProyectoLocal {
 	public void guardarCredito(Credito cr) throws Exception;
 
 	public void actualizarCredito(Credito cr) throws Exception;
-	
+
 	public Credito buscarCreditos(int idCuenta) throws Exception;
 
 	public List<Credito> buscarCreditos() throws Exception;
-	
+
 	public List<Credito> buscarCreditosAprobar() throws Exception;
 
 	public List<Credito> buscarCreditoCuenta(int idCuenta) throws Exception;
@@ -165,9 +165,8 @@ public interface DaoProyectoLocal {
 	public String getUserRol(Rol rol) throws Exception;
 
 	public String getPasswordRol(Rol rol) throws Exception;
-	
-	public Rol getRol(String user) throws Exception;
 
+	public Rol getRol(String user) throws Exception;
 
 	/* Transsacion */
 	public void guardarTransaccion(Transaccion tra) throws Exception;
@@ -178,7 +177,13 @@ public interface DaoProyectoLocal {
 
 	public List<Transaccion> buscarTransaccionDias(String numeroCuenta) throws Exception;
 
-	public List<Transaccion> buscarTransaccionDias2(String numeroCuenta, Date fechaIni, Date fechaFin) throws Exception;
+	public List<Transaccion> getTransaccion5Dias(int numeroCuenta) throws Exception;
+
+	public List<Transaccion> getTransaccion1Semana(int numeroCuenta) throws Exception;
+
+	public List<Transaccion> getTransaccion1Mes(int numeroCuenta) throws Exception;
+
+	public List<Transaccion> getTransaccion1Abnio(int numeroCuenta) throws Exception;
 
 	public void eliminarTransaccion(int id) throws Exception;
 
@@ -195,6 +200,9 @@ public interface DaoProyectoLocal {
 	public CuentasDestino buscarCuentaDestino(String numeroCuentaDestinatario) throws Exception;
 
 	public List<CuentasDestino> buscarCuentasDestino(String cuentaOrigen) throws Exception;
+	
+	public List<CuentasDestino> listarDestino() throws Exception;
+
 
 	/* Credito */
 	public void guardarAmortizacion(Amortizacion amortizacion) throws Exception;
@@ -202,19 +210,24 @@ public interface DaoProyectoLocal {
 	public void actualizarAmortizacion(Amortizacion amortizacion) throws Exception;
 
 	public List<Amortizacion> buscarAmortizaciones(int id_credito) throws Exception;
-	
+
 	public List<Amortizacion> buscarAmortizacionesPagadas(int id_credito) throws Exception;
 
 	public Amortizacion buscarAmortizacion(int idAmortizacion) throws Exception;
 
-	
 	public String noExiste();
 
-	
-	/*Categorizacion*/
-	public void categorizacion(Credito c) throws Exception;
+	/* Categorizacion */
+	public String categorizacion(Credito c) throws Exception;
+
 	public void generarCSV(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
-			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago,
-			String estadoCivilSexo, String garante, int avaluoVivienda, String activos, int edad, String vivienda,
-			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta) throws Exception;
+			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago, String estadoCivilSexo,
+			String garante, int avaluoVivienda, String activos, int edad, String vivienda,
+			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta)
+			throws Exception;
+
+	public String json(String DNI, int plazoMesesCreditos, String hitorialCredito, String propositoCredito,
+			int montoCredito, String saldoCuentaAhorros, String tiempoEmpleo, int tasaPago, String estadoCivilSexo,
+			String garante, int avaluoVivienda, String activos, int edad, String vivienda,
+			int cantidadCreditosExistentes, String empleo, String trabajadorExtranjero, String numeroCuenta);
 }

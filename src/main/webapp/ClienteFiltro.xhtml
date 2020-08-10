@@ -9,11 +9,10 @@
 	<ui:define name="titulo">
 		Ultimos Movimientos de Cuenta
 	</ui:define>
-	
+
 	<ui:define name="menu">
 		<div class="container-fluid">
 			<div id="navigation">
-				<!-- Navigation Menu-->
 				<ul class="navigation-menu">
 					<ui:insert name="menu">
 					</ui:insert>
@@ -30,13 +29,13 @@
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a
-										href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
+									<li><a href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
 											Credito</a></li>
-									<li><a
-										href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
+									<li><a href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
 											Amortización</a></li>
-
+									<li><a
+										href="/ProyectoFinal/faces/AmortizacionPagadas.xhtml">Creditos
+											Pagados</a></li>
 								</ul>
 							</li>
 
@@ -47,19 +46,19 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
+							<li><a href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
 									Cuenta</a></li>
-							<li><a
-								href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia</a></li>
+							<li><a href="/ProyectoFinal/faces/TransferenciaLocal.xhtml">Transferencia
+									Local</a></li>
+							<li><a href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia
+									Externa</a></li>
 						</ul></li>
 
 					<li class="has-submenu"><a href="#"> <i class="fe-layers"></i>Transacciones
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
+							<li><a href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
 									Transacciones </a></li>
 
 						</ul></li>
@@ -69,21 +68,27 @@
 							<div class="arrow-down"></div>
 					</a>
 						<ul class="submenu">
-							<li><a
-								href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos de
-									la Cuenta </a></li>
+							<li><a href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos
+									de la Cuenta </a></li>
 						</ul></li>
 
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/CambiarContrasenia.xhtml"> <i
+							class="fe-settings"></i>Cambiar Contraseña
+					</a></li>
+
+					<li class="has-submenu"><a
+						href="/ProyectoFinal/faces/index.xhtml"> <i class="fe-log-out"></i>Cerrar
+							Sesion
+					</a></li>
 
 				</ul>
-				<!-- End navigation menu -->
 
 				<div class="clearfix"></div>
 			</div>
-			<!-- end #navigation -->
 		</div>
-	</ui:define>
 
+	</ui:define>
 
 
 	<ui:define name="contenido">
@@ -92,40 +97,56 @@
 
 			<div class="form-group">
 				<div class="row">
-					<div class="col-md-3">
-						<label class="col-md-12">Tipo Movimiento</label>
-						<h:selectOneMenu class="btn waves-effect waves-light mr-1 form-control form-control-line "
-							value="#{cajeraBean.tipo}">
-							<f:selectItem class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
-								itemValue="Deposito" itemLabel="Deposito"></f:selectItem>
-							<f:selectItem class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
-								itemValue="Retiro" itemLabel="Retiro"></f:selectItem>
-						</h:selectOneMenu>
 
-					</div>
-					<div class="col-md-3">
-						<label class="col-md-12">Fecha Desde</label> <input type="text"
-							placeholder="DD-MM-AAAA" class="form-control form-control-line"
-							value="#{clienteBean.fechaIni}" />
-					</div>
-					<div class="col-md-3">
-						<label class="col-md-12">Fecha Hasta</label> <input type="text"
-							placeholder="DD-MM-AAAA"  class="form-control form-control-line"
-							value="#{clienteBean.fechaFin}" />
-					</div>
 
 					<div class="col-md-3">
-						<label class="col-md-12">.</label>
 						<h:commandButton
 							class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
-							value="Buscar" action="#{clienteBean.trasacionesFecha2(loginBean.cuenta.numeroCuenta)}" />
+							value="5 Dias ultimo"
+							action="#{clienteBean.trasacionesDias(clienteBean.cuenta.id_cuenta)}">
+							<f:ajax render="datos" execute="@all">
+							</f:ajax>
+						</h:commandButton>
+					</div>
+
+					<div class="col-md-3">
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
+							value="Hace 1 Semana"
+							action="#{clienteBean.trasacionesSemana(clienteBean.cuenta.id_cuenta)}">
+							<f:ajax render="datos" execute="@all">
+							</f:ajax>
+						</h:commandButton>
+
+					</div>
+
+					<div class="col-md-3">
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
+							value="Hace 1 Mes"
+							action="#{clienteBean.trasacionesMes(clienteBean.cuenta.id_cuenta)}">
+							<f:ajax render="datos" execute="@all">
+							</f:ajax>
+						</h:commandButton>
+					</div>
+
+
+					<div class="col-md-3">
+						<h:commandButton
+							class="btn btn-primary waves-effect waves-light mr-1 form-control form-control-line "
+							value="Hace 1 Año"
+							action="#{clienteBean.trasacionesAnio(clienteBean.cuenta.id_cuenta)}">
+							<f:ajax render="datos" execute="@all">
+							</f:ajax>
+						</h:commandButton>
 					</div>
 
 				</div>
 			</div>
 
 
-			<h:dataTable class="table table-striped" var="tra" value="#{clienteBean.listaTrans}">
+			<h:dataTable id="datos" class="table table-striped" var="tra"
+				value="#{clienteBean.listaTrans}">
 
 				<h:column>
 					<f:facet name="header"># Cuenta</f:facet>

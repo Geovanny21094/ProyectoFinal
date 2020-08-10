@@ -32,7 +32,7 @@ public class EnviarCorreo {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("coopdmr0@gmail.com", "3694compac"); // Correo y contraseña que se va
+				return new PasswordAuthentication("coopdmr0@gmail.com", "mjztsghipwhtczzz"); // Correo y contraseña que se va
 																						// a utilizar
 																						// para enviar el correo.
 			}
@@ -57,7 +57,7 @@ public class EnviarCorreo {
 
 	public void enviarMail1(String asunto, String mensaje, String correoDestino, String archivo) throws AddressException, MessagingException {
 		String Host = "smtp.gmail.com";
-		String Password = "3694compac";
+		String Password = "mjztsghipwhtczzz";
 		String from = "coopdmr0@gmail.com";
 		String toAddress = correoDestino;
 		String filename = archivo;

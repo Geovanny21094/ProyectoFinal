@@ -20,6 +20,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
+import javax.ws.rs.PathParam;
 
 import appdis.ProyectoFinal.listas.DaoProyectoLocal;
 import appdis.ProyectoFinal.modelo.Amortizacion;
@@ -40,6 +41,7 @@ public class ClienteBean {
 
 	private Cliente cl;
 	private Cuenta cuenta;
+	private Cuenta cuentaDestino;
 	private Credito credito;
 	private CuentasDestino cueDes;
 	Transferencia tranferencia;
@@ -52,11 +54,14 @@ public class ClienteBean {
 	private List<Transaccion> listaTransacciones;
 	private List<SelectItem> nombreCuentas;
 	private List<Transaccion> listaTrans;
+	private Amortizacion amo;
 
 	private String numeroCuenta;
+	private String numCuentaDestino;
 	private String cadenaCuenta;
 	private double saldoCuenta;
 	private double parteMonto;
+	private double montoTra;
 
 	private int numeroCuenta1;
 	private int edad;
@@ -71,12 +76,13 @@ public class ClienteBean {
 	private String passwordNew;
 
 	private Part file;
-	private String folder = "/Users/italomendieta/Desktop/ArchivosDMR/";
+	private String folder = "/home/gioabad210/ArchivosDMR/ArchivosDMR/";
 
 	@PostConstruct
 	public void init() throws Exception {
 		cl = new Cliente();
 		cuenta = new Cuenta();
+		amo = new Amortizacion();
 		credito = new Credito();
 		cueDes = new CuentasDestino();
 		tranferencia = new Transferencia();
@@ -112,6 +118,9 @@ public class ClienteBean {
 				cuenta = ejb.buscarCuenta(cl.getId_cliente());
 				numeroCuenta1 = cuenta.getId_cuenta();
 				System.out.println("cedula-> " + cuenta.getId_cuenta());
+
+				nombresCuentas();
+
 				pag = "ClienteHome?faces-redirect=true&numeroCuenta=" + numeroCuenta1;
 
 				listaTransacciones = ejb.buscarTransaccion(numeroCuenta1);
@@ -141,6 +150,11 @@ public class ClienteBean {
 		user = "";
 		clave = "";
 		return pag;
+	}
+
+	public void listarTransacciones() throws Exception {
+		numeroCuenta1 = cuenta.getId_cuenta();
+		listaTransacciones = ejb.buscarTransaccion(numeroCuenta1);
 	}
 
 	/*
@@ -179,6 +193,52 @@ public class ClienteBean {
 		} else {
 			System.out.println("Saldo Insuficinete");
 		}
+	}
+
+	public void tranferirDineroLocal() throws Exception {
+
+//		Transferencia tranferencia = new Transferencia();
+		Transaccion newTransaccion = new Transaccion();
+		Cuenta cuentaOrigen = ejb.buscarCuenta(cuenta.getNumeroCuenta());
+		cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
+
+		double saldoAnterior = cuentaOrigen.getSaldo();
+		if (montoTra <= saldoAnterior) {
+			newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
+			newTransaccion.setTipo("Retiro");
+			newTransaccion.setMonto(montoTra);
+			try {
+				System.out.println(cuentaOrigen.getNumeroCuenta());
+				newTransaccion.setCuenta(cuentaOrigen);
+				cuentaOrigen.setSaldo(saldoAnterior - montoTra);
+				ejb.actualizarCuenta(cuentaOrigen);
+				ejb.guardarTransaccion(newTransaccion);
+
+				double saldo = montoTra + cuentaDestino.getSaldo();
+
+				newTransaccion.setFecha(new Date(Calendar.getInstance().getTime().getTime()));
+				newTransaccion.setTipo("Deposito");
+				newTransaccion.setMonto(montoTra);
+
+				cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
+				newTransaccion.setCuenta(cuentaDestino);
+				cuentaDestino.setSaldo(saldo);
+				ejb.actualizarCuenta(cuentaDestino);
+				ejb.guardarTransaccion(newTransaccion);
+
+			} catch (
+
+			Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Saldo Insuficinete");
+		}
+	}
+
+	public void cargarDatosCuentaDestinoLocal() throws Exception {
+		cuentaDestino = ejb.buscarCuenta(numCuentaDestino);
 	}
 
 	/*
@@ -255,25 +315,27 @@ public class ClienteBean {
 	/*
 	 * Metodo Lista las transaciones dentro de un rango de fechas
 	 */
-	public String trasacionesFecha2(String numeroCuenta) {
+	public void trasacionesDias(int numeroCuenta) throws Exception {
+		listaTrans = ejb.getTransaccion5Dias(numeroCuenta);
 
-		try {
-
-			System.out.println(numeroCuenta);
-
-			listaTrans = new ArrayList<Transaccion>();
-			listaTrans = ejb.buscarTransaccionDias2(numeroCuenta, fechaIni, fechaFin);
-
-			for (Transaccion tra : listaTrans) {
-				System.out.println(tra.getFecha());
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (Transaccion tra : listaTrans) {
+			System.out.println(tra.getFecha());
 		}
+	}
 
-		return "ClienteFiltro?faces-redirect=true";
+	public void trasacionesSemana(int numeroCuenta) throws Exception {
+		listaTrans = new ArrayList<Transaccion>();
+		listaTrans = ejb.getTransaccion1Semana(numeroCuenta);
+	}
 
+	public void trasacionesMes(int numeroCuenta) throws Exception {
+		listaTrans = new ArrayList<Transaccion>();
+		listaTrans = ejb.getTransaccion1Mes(numeroCuenta);
+	}
+
+	public void trasacionesAnio(int numeroCuenta) throws Exception {
+		listaTrans = new ArrayList<Transaccion>();
+		listaTrans = ejb.getTransaccion1Abnio(numeroCuenta);
 	}
 
 	/*
@@ -315,7 +377,7 @@ public class ClienteBean {
 
 		String fechaNac = cuenta.getCliente().getPersona().getFecha_nacimiento().toString();
 		String fechaAct = new java.util.Date().toLocaleString();
-		String anioActual = fechaAct.substring(6, 10);
+		String anioActual = fechaAct.substring(8, 12);
 
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy");
@@ -441,7 +503,7 @@ public class ClienteBean {
 	}
 
 	public String Amortizacion() throws Exception {
-		
+
 		String pag = "";
 		numeroCuenta1 = cuenta.getId_cuenta();
 //		cuenta = ejb.buscarCuenta(numeroCuenta);
@@ -455,7 +517,7 @@ public class ClienteBean {
 		return pag;
 
 	}
-	
+
 	public String AmortizacionPagadas() throws Exception {
 
 		String pag = "";
@@ -471,6 +533,12 @@ public class ClienteBean {
 
 		return pag;
 
+	}
+
+	public String irAbonarCredito(int idAmortizacion) throws Exception {
+		amo = ejb.buscarAmortizacion(idAmortizacion);
+
+		return "AbonarCredito?faces-redirect=true&idCredito=" + amo.getCredito().getCuenta().getId_cuenta();
 	}
 
 	public void pagarAmortizacion(int idAmortizacion) throws Exception {
@@ -497,9 +565,9 @@ public class ClienteBean {
 
 	}
 
-	public void pagarParteAmortizacion(int idAmortizacion) throws Exception {
+	public void pagarParteAmortizacion() throws Exception {
 
-		Amortizacion amo = ejb.buscarAmortizacion(idAmortizacion);
+//		Amortizacion amo = ejb.buscarAmortizacion(idAmortizacion);
 		double saldoCue = cuenta.getSaldo();
 		double saldoAmor = amo.getValor();
 		double saldoTotalCuenta;
@@ -508,22 +576,32 @@ public class ClienteBean {
 		if (parteMonto <= saldoCue) {
 
 			saldoTotalCuenta = saldoCue - parteMonto;
-			saldoTotalAmortizacion=saldoAmor-parteMonto;
-			
-			cuenta.setSaldo(saldoTotalCuenta);
-			
-			amo.setValor(saldoTotalAmortizacion);
+			saldoTotalAmortizacion = saldoAmor - parteMonto;
+			if (saldoTotalAmortizacion == 0) {
+				cuenta.setSaldo(saldoTotalCuenta);
 
-			ejb.actualizarAmortizacion(amo);
-			ejb.actualizarCuenta(cuenta);
+				amo.setValor(saldoTotalAmortizacion);
+				amo.setEstado("Pagada");
 
-			Amortizacion();
+				ejb.actualizarAmortizacion(amo);
+				ejb.actualizarCuenta(cuenta);
+			} else {
+
+				cuenta.setSaldo(saldoTotalCuenta);
+
+				amo.setValor(saldoTotalAmortizacion);
+
+				ejb.actualizarAmortizacion(amo);
+				ejb.actualizarCuenta(cuenta);
+
+				Amortizacion();
+			}
 		} else {
 			System.out.println("No tiene SALDO suficiente");
 		}
 
 	}
-	
+
 	public void comprobarPagos() throws Exception {
 		java.util.Date fechaActual = new java.util.Date();
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
@@ -539,7 +617,7 @@ public class ClienteBean {
 			if (fechaPago.before(fechaActual)) {
 				amo.setEstado("Vencida");
 				ejb.actualizarAmortizacion(amo);
-				
+
 				System.out.println("Cuota num-> " + amo.getNumeroCuota());
 			} else {
 				System.out.println("no hay cuotas vencidas");
@@ -754,8 +832,37 @@ public class ClienteBean {
 	public void setParteMonto(double parteMonto) {
 		this.parteMonto = parteMonto;
 	}
-	
-	
-	
+
+	public Amortizacion getAmo() {
+		return amo;
+	}
+
+	public void setAmo(Amortizacion amo) {
+		this.amo = amo;
+	}
+
+	public double getMontoTra() {
+		return montoTra;
+	}
+
+	public void setMontoTra(double montoTra) {
+		this.montoTra = montoTra;
+	}
+
+	public String getNumCuentaDestino() {
+		return numCuentaDestino;
+	}
+
+	public void setNumCuentaDestino(String numCuentaDestino) {
+		this.numCuentaDestino = numCuentaDestino;
+	}
+
+	public Cuenta getCuentaDestino() {
+		return cuentaDestino;
+	}
+
+	public void setCuentaDestino(Cuenta cuentaDestino) {
+		this.cuentaDestino = cuentaDestino;
+	}
 
 }

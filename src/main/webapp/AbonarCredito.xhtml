@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template2/template3.xhtml">
+
+
+
+	<ui:define name="titulo">
+	Abonar Credito
+	</ui:define>
+	
+	<ui:define name="menu">
+		<h:form>
+			<div class="container-fluid">
+				<div id="navigation">
+					<!-- Navigation Menu-->
+					<ul class="navigation-menu">
+						<ui:insert name="menu">
+						</ui:insert>
+
+						<li class="has-submenu"><a
+							href="/ProyectoFinal/faces/ClienteHome.xhtml"> <i
+								class="fe-airplay"></i>Inicio
+						</a></li>
+
+						<li class="has-submenu"><a href="#"> <i
+								class="fe-briefcase"></i>Credito
+								<div class="arrow-down"></div>
+						</a>
+							<ul class="submenu megamenu">
+								<li>
+									<ul>
+										<li><a href="/ProyectoFinal/faces/SolicitudCredito.xhtml">Solicitud
+												Credito</a></li>
+										<li><a
+											href="/ProyectoFinal/faces/Amortizacion.xhtml">Tabla
+												Amortización</a></li>
+
+									</ul>
+								</li>
+
+							</ul></li>
+
+						<li class="has-submenu"><a href="#"> <i
+								class="fe-book-open"></i>Transferencia
+								<div class="arrow-down"></div>
+						</a>
+							<ul class="submenu">
+								<li><a href="/ProyectoFinal/faces/RegistrarCuenta.xhtml">Registra
+										Cuenta</a></li>
+								<li><a href="/ProyectoFinal/faces/Transferencia.xhtml">Transferencia</a></li>
+							</ul></li>
+
+						<li class="has-submenu"><a href="#"> <i class="fe-layers"></i>Transacciones
+								<div class="arrow-down"></div>
+						</a>
+							<ul class="submenu">
+								<li><a href="/ProyectoFinal/faces/ClienteFiltro.xhtml">Ultimas
+										Transacciones </a></li>
+
+							</ul></li>
+
+						<li class="has-submenu"><a href="#"> <i class="fe-layout"></i>Accesos
+								a la Cuenta
+								<div class="arrow-down"></div>
+						</a>
+							<ul class="submenu">
+								<li><a href="/ProyectoFinal/faces/ClienteAccesos.xhtml">Accesos
+										de la Cuenta </a></li>
+							</ul></li>
+
+
+					</ul>
+					<!-- End navigation menu -->
+
+					<div class="clearfix"></div>
+				</div>
+				<!-- end #navigation -->
+			</div>
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="contenido">
+
+
+		<h:form class="form-horizontal form-material" id="datos">
+
+			<div class="form-group">
+				<label class="col-md-12">Numero de Cuenta</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.amo.credito.cuenta.numeroCuenta}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Cedula Cliente</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.amo.credito.cuenta.cliente.persona.cedula}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Nombre</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.amo.credito.cuenta.cliente.persona.nombres}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Apellido</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.amo.credito.cuenta.cliente.persona.apellidos}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-12">Numero de Cuota</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula" value="#{clienteBean.amo.numeroCuota}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Valor</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="true"
+						placeholder="Ingrese la Cedula" value="#{clienteBean.amo.valor}" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-12">Valor Abonar</label>
+				<div class="col-md-12">
+					<h:inputText type="text" class="form-control" disabled="false"
+						placeholder="Ingrese la Cedula"
+						value="#{clienteBean.parteMonto}" />
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div>
+					<h:commandButton
+						class="btn btn-primary waves-effect waves-light mr-1"
+						action="#{clienteBean.pagarParteAmortizacion()}" value="Abonar" />
+				</div>
+			</div>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+
