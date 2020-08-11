@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BFB3B3"
+    android:clickable="true"
+    android:clipToPadding="true"
+    tools:context=".TransferenciaActivity">
+
+    <EditText
+        android:id="@+id/txtOrigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_x="119dp"
+        android:layout_y="144dp"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDatosOrigen"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="103dp"
+        android:layout_x="115dp"
+        android:layout_y="217dp"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Confirmar Origen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrigen" />
+
+    <TextView
+        android:id="@+id/lblNombreDestinatario"
+        android:layout_width="198dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_marginBottom="69dp"
+        android:layout_x="130dp"
+        android:layout_y="480dp"
+        android:background="@color/design_default_color_background"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/btnDatosOrigen"
+        tools:text="Verifique aqui el nombre Beneficiado" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_x="51dp"
+        android:layout_y="291dp"
+        android:text="Nombres"
+        app:layout_constraintEnd_toStartOf="@+id/lblNombreDestinatario3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblNombreDestinatario3" />
+
+    <Button
+        android:id="@+id/btnSalir"
+        android:layout_width="68dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="9dp"
+        android:layout_x="4dp"
+        android:layout_y="5dp"
+        android:background="@drawable/abc_vector_test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnTransferir"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginBottom="25dp"
+        android:layout_x="33dp"
+        android:layout_y="656dp"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:clickable="false"
+        android:enabled="false"
+        android:text="CONFIRMAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_x="17dp"
+        android:layout_y="159dp"
+        android:text="Cuenta Origen"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtOrigen"
+        app:layout_constraintEnd_toStartOf="@+id/txtOrigen"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_x="17dp"
+        android:layout_y="359dp"
+        android:text="Cuenta Destino"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDestino"
+        app:layout_constraintEnd_toStartOf="@+id/txtDestino"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lblNombreOrigen"
+        android:layout_width="206dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_marginBottom="75dp"
+        android:layout_x="125dp"
+        android:layout_y="286dp"
+        android:background="@color/design_default_color_background"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMonto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/btnDatosDestino"
+        tools:text="Verifique aqui el nombre Beneficiado" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_x="31dp"
+        android:layout_y="487dp"
+        android:text="Destinatario"
+        app:layout_constraintEnd_toStartOf="@+id/lblNombreDestinatario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDatosDestino" />
+
+    <EditText
+        android:id="@+id/txtMonto"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginRight="119dp"
+        android:layout_marginBottom="24dp"
+        android:layout_x="126dp"
+        android:layout_y="578dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/btnTransferir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblSaldo"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/lblSaldo"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:layout_x="174dp"
+        android:layout_y="547dp"
+        android:text="Monto"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtMonto"
+        app:layout_constraintEnd_toStartOf="@+id/txtMonto"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnDatosDestino"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="28dp"
+        android:layout_x="112dp"
+        android:layout_y="413dp"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Confirmar Destino"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDestino" />
+
+    <EditText
+        android:id="@+id/txtDestino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="312dp"
+        android:layout_x="126dp"
+        android:layout_y="345dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="19dp"
+        android:layout_y="44dp"
+        android:text="Volver" />
+
+</android.widget.AbsoluteLayout>

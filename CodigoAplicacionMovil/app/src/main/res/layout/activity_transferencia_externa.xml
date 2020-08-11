@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BFB3B3"
+    tools:context=".TransferenciaExterna">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:text="Cuenta Origen"
+        app:layout_constraintEnd_toStartOf="@+id/txtOrigenExterna"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtOrigenExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblSeleccionBanco"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:text="Banco/Cooperativa:"
+        app:layout_constraintBottom_toBottomOf="@+id/cboBanco"
+        app:layout_constraintEnd_toStartOf="@+id/txtOrigenExterna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cboBanco" />
+
+    <Spinner
+        android:id="@+id/cboBanco"
+        android:layout_width="258dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="85dp"
+        android:entries="@array/combobancos"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCedulaBeneficiari"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblTipoCuenta" />
+
+    <TextView
+        android:id="@+id/lblMontoExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="MONTO"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtMontoExterno"
+        app:layout_constraintEnd_toStartOf="@+id/txtMontoExterno" />
+
+    <Button
+        android:id="@+id/btnConfirmarExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:text="CONFIRMAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtOrigenExterna"
+        app:layout_constraintStart_toStartOf="@+id/lblTipoCuenta" />
+
+    <Button
+        android:id="@+id/btnCancelarExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="73dp"
+        android:layout_marginRight="73dp"
+        android:layout_marginBottom="7dp"
+        android:text="CANCELAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/lblcuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="CUENTA"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtCuentaExterna"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtCuentaExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="11dp"
+        android:ems="10"
+        android:enabled="true"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/lblTipoCuenta"
+        app:layout_constraintStart_toEndOf="@+id/lblcuenta" />
+
+    <TextView
+        android:id="@+id/lblNombreDelBeneif"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:text="Nombre del beneficiario"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNombreExterno"
+        app:layout_constraintEnd_toStartOf="@+id/txtNombreExterno"
+        app:layout_constraintStart_toStartOf="@+id/lblSeleccionBanco"
+        app:layout_constraintTop_toTopOf="@+id/txtNombreExterno" />
+
+    <RadioButton
+        android:id="@+id/rbtCorriente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="18dp"
+        android:checked="false"
+        android:text="Corriente"
+        app:layout_constraintStart_toEndOf="@+id/lblTipoCuenta"
+        app:layout_constraintTop_toTopOf="@+id/lblTipoCuenta" />
+
+    <RadioButton
+        android:id="@+id/rbtAhorro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:checked="true"
+        android:text="Ahorros"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rbtCorriente"
+        app:layout_constraintEnd_toEndOf="@+id/btnBuscarDestino" />
+
+    <TextView
+        android:id="@+id/lblTipoCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="128dp"
+        android:text="Tipo Cuenta"
+        app:layout_constraintStart_toStartOf="@+id/lblcuenta"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblCorreo"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="63dp"
+        android:text="Correo Electronico"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMontoExterno"
+        app:layout_constraintEnd_toStartOf="@+id/lblBanco"
+        app:layout_constraintStart_toStartOf="@+id/lblCedu"
+        app:layout_constraintTop_toTopOf="@+id/lblNombreDelBeneif" />
+
+    <EditText
+        android:id="@+id/txtCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txtMontoExterno"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreExterno" />
+
+    <EditText
+        android:id="@+id/txtNombreExterno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txtCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/txtCedulaBeneficiari" />
+
+    <EditText
+        android:id="@+id/txtMontoExterno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelarExterna"
+        app:layout_constraintStart_toStartOf="@+id/btnCancelarExterna"
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
+
+    <TextView
+        android:id="@+id/lblCedu"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="151dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="151dp"
+        android:text="Cedula Beneficiario"
+        app:layout_constraintBottom_toTopOf="@+id/txtMontoExterno"
+        app:layout_constraintEnd_toStartOf="@+id/lblBanco"
+        app:layout_constraintStart_toStartOf="@+id/lblSeleccionBanco"
+        app:layout_constraintTop_toBottomOf="@+id/lblTipoCuenta" />
+
+    <EditText
+        android:id="@+id/txtCedulaBeneficiari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="262dp"
+        android:layout_marginBottom="261dp"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblCedu"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Button
+        android:id="@+id/btnBuscarDestino"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:background="@android:drawable/ic_menu_send"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtCuentaExterna"
+        app:layout_constraintEnd_toEndOf="@+id/cboBanco"
+        app:layout_constraintStart_toEndOf="@+id/txtCuentaExterna" />
+
+    <TextView
+        android:id="@+id/lblBanco"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:enabled="false"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cboBanco"
+        app:layout_constraintEnd_toEndOf="@+id/cboBanco"
+        app:layout_constraintStart_toStartOf="@+id/cboBanco" />
+</androidx.constraintlayout.widget.ConstraintLayout>

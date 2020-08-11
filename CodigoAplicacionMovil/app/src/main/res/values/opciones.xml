@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="combobancos">
+    <item>BANCO DEL AUSTRO</item>
+    <item>BANCO GUAYAQUIL</item>
+    <item>BANCO PICHINCHA</item>
+    <item>BANCO PRODUBANCO</item>
+    <item>BANCO DEL PACIFICO</item>
+    <item>COOPERATIVA JEEP</item>
+    <item>COOPERATIVA JARDIN AZUAYO</item>
+    <item>COOPERATIVA CACPE</item>
+    <item>COOPERATIVA CREA</item>
+
+    </string-array>
+</resources>
