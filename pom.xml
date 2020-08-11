@@ -20,17 +20,8 @@
 	<packaging>war</packaging>
 	<name>ProyectoFinal</name>
 	<description>Insert description for your project here.</description>
-	
 
 	<properties>
-	
-	
-	
-  <maven.compiler.source>1.8</maven.compiler.source>
-  <maven.compiler.target>1.8</maven.compiler.target>
-
-	
-	
 		<!-- Explicitly declaring the source encoding eliminates the following 
 			message: -->
 		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
@@ -179,50 +170,6 @@
 			<artifactId>poi</artifactId>
 			<version>4.1.2</version>
 		</dependency>
-		
-		
-		   <!-- Compile/runtime dependencies -->
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.9.17</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-testing</artifactId>
-            <version>1.9.17</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-stubs</artifactId>
-            <version>1.9.17</version>
-            <scope>test</scope>
-        </dependency>
-        
-        
-        
-        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
-<dependency>
-    <groupId>org.eclipse.jetty</groupId>
-    <artifactId>jetty-server</artifactId>
-    <version>9.4.0.M0</version>
-</dependency>
-        
-		
 	</dependencies>
 
 	<build>
@@ -230,9 +177,7 @@
 			the version - a non versioned name is required e.g. when building a deployable 
 			artifact using the ShrinkWrap API -->
 		<finalName>${project.artifactId}</finalName>
-   
-   
-   
+
 		<plugins>
 			<!--Configuration of the maven-compiler-plugin -->
 			<plugin>
@@ -243,19 +188,6 @@
 					<!-- put your configurations here -->
 				</configuration>
 			</plugin>
-			
-			
-			
-			<plugin>
-    <groupId>org.eclipse.jetty</groupId>
-    <artifactId>jetty-maven-plugin</artifactId>
-    <version>9.4.0.M0</version>
-</plugin>
-			
-			
-			
-			
-			
 
 			<!--Build configuration for the WAR plugin: -->
 			<plugin>
@@ -299,64 +231,9 @@
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<scope>test</scope>
 				</dependency>
-				
-				
-				
-				   <!-- Test Dependencies -->
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-testing</artifactId>
-            <version>1.9.17</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-stubs</artifactId>
-            <version>1.9.17</version>
-            <scope>test</scope>
-        </dependency>
-				
-				
-				
-				
-				
 			</dependencies>
-			
-
 			<build>
 				<plugins>
-			
-			
-			
-           <plugin>
-               <groupId>com.google.appengine</groupId>
-               <artifactId>appengine-maven-plugin</artifactId>
-               <version>1.9.9</version>
-           </plugin>
-
-			
-			
-			
-			
-			
-			<plugin>
-     <groupId>com.google.appengine</groupId>
-     <artifactId>appengine-maven-plugin</artifactId>
-     <version>1.9.80</version>
-     <configuration>
-         <enableJarClasses>false</enableJarClasses>
-         <port>8181</port>
-         <address>0.0.0.0</address>
-     </configuration>
- </plugin>
-			
-			<plugin>
-   <groupId>com.google.cloud.tools</groupId>
-   <artifactId>appengine-maven-plugin</artifactId>
-   <version>2.2.0</version>
-</plugin>
-			
-			
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
@@ -420,19 +297,5 @@
 			</build>
 		</profile>
 	</profiles>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 </project>
